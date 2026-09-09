@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "version": "MATERIALS_V1_2026-09-08",
+  "date": "2026-09-08",
+  "status": "CONCEPT_PREVIEW",
+  "baseGeometryId": "BASE_GEOMETRY_V1",
+  "interiorGeometryId": "INTERIOR_V1",
+  "presets": [
+    {
+      "id": "warm_greige",
+      "name": "Warm Greige · 디아망/나투스진 방향",
+      "wall": {
+        "brandDirection": "LX Z:IN 디아망 계열",
+        "label": "웜 라이트 그레이지 후보",
+        "color": "#eee9df",
+        "roughness": 0.96
+      },
+      "floor": {
+        "brandDirection": "동화자연마루 나투스진 계열",
+        "label": "라이트 스톤/타일룩 후보",
+        "color": "#d8d2c6",
+        "roughness": 0.72
+      },
+      "note": "실제품 품번 확정 전 색감/명도 시뮬레이션"
+    },
+    {
+      "id": "soft_ivory",
+      "name": "Soft Ivory · 밝고 넓게",
+      "wall": {
+        "brandDirection": "LX Z:IN 디아망 계열",
+        "label": "소프트 아이보리 후보",
+        "color": "#f3efe6",
+        "roughness": 0.97
+      },
+      "floor": {
+        "brandDirection": "동화자연마루 나투스진 계열",
+        "label": "오프화이트 스톤/타일룩 후보",
+        "color": "#e1ddd3",
+        "roughness": 0.74
+      },
+      "note": "실제품 품번 확정 전 색감/명도 시뮬레이션"
+    },
+    {
+      "id": "calm_grey",
+      "name": "Calm Grey · 차분한 모던",
+      "wall": {
+        "brandDirection": "LX Z:IN 디아망 계열",
+        "label": "라이트 웜그레이 후보",
+        "color": "#e9e8e3",
+        "roughness": 0.96
+      },
+      "floor": {
+        "brandDirection": "동화자연마루 나투스진 계열",
+        "label": "웜그레이 스톤/타일룩 후보",
+        "color": "#cbc8c0",
+        "roughness": 0.7
+      },
+      "note": "실제품 품번 확정 전 색감/명도 시뮬레이션"
+    }
+  ],
+  "defaultPreset": "warm_greige",
+  "notes": [
+    "현재는 실제 제품 텍스처가 아닌 후보군의 명도·색온도·무광 질감 프리뷰다.",
+    "실제품 품번과 샘플 사진 확보 후 texture/PBR map으로 교체한다."
+  ]
+}

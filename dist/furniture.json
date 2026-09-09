@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "catalog": [
+    {
+      "type": "sofa",
+      "name": "소파",
+      "size": [
+        2200,
+        800,
+        900
+      ],
+      "color": "#b1b5b1"
+    },
+    {
+      "type": "bed",
+      "name": "침대",
+      "size": [
+        1500,
+        550,
+        2100
+      ],
+      "color": "#ded6c9"
+    },
+    {
+      "type": "table",
+      "name": "식탁 / 책상",
+      "size": [
+        1400,
+        750,
+        800
+      ],
+      "color": "#b89b77"
+    },
+    {
+      "type": "wardrobe",
+      "name": "옷장",
+      "size": [
+        1600,
+        2100,
+        600
+      ],
+      "color": "#e5e2dc"
+    },
+    {
+      "type": "fridge",
+      "name": "냉장고",
+      "size": [
+        900,
+        1800,
+        750
+      ],
+      "color": "#c1c9cc"
+    },
+    {
+      "type": "cabinet",
+      "name": "주방 하부장",
+      "size": [
+        1800,
+        850,
+        600
+      ],
+      "color": "#e7e6e1"
+    }
+  ],
+  "items": []
+}

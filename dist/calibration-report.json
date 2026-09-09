@@ -1,0 +1,241 @@
+{
+  "baselineId": "BASE_GEOMETRY_V1",
+  "date": "2026-09-07",
+  "method": "Visual comparison against reflected original; printed dimensions preserved; existing openings adjusted only.",
+  "sourceImage": "floorplan.png",
+  "sourcePixelOriginLine1": [
+    155,
+    65
+  ],
+  "mmPerPixel": 38.1,
+  "rotation": 0,
+  "pixelReadingUncertainty": 2,
+  "approximateMmReadingUncertainty": 76.2,
+  "changes": [
+    {
+      "id": "left-dimension-chain",
+      "status": "PRINTED_DERIVED",
+      "before": [
+        4800,
+        9550
+      ],
+      "after": [
+        4820,
+        9555
+      ],
+      "basis": "1785 + 3035 = 4820; 4820 + 4735 = 9555. Printed dimensions take priority over pixel residuals."
+    },
+    {
+      "id": "north-bed3",
+      "before": {
+        "id": "north-bed3",
+        "name": "발코니3 외측 기준",
+        "a": [
+          0,
+          500
+        ],
+        "b": [
+          2050,
+          500
+        ],
+        "external": true,
+        "thickness": 200,
+        "kind": "unresolved",
+        "evidence": "image-estimated",
+        "note": "원본 상단 선이 창호/난간인지 구별 불충분. 외측 기준선 후보.",
+        "openings": []
+      },
+      "after": {
+        "id": "north-bed3",
+        "name": "발코니3 외측 기준",
+        "a": [
+          0,
+          300
+        ],
+        "b": [
+          2050,
+          300
+        ],
+        "external": true,
+        "thickness": 200,
+        "kind": "unresolved",
+        "evidence": "image-estimated",
+        "note": "원본 상단 선이 창호/난간인지 구별 불충분. 외측 기준선 후보.",
+        "openings": []
+      },
+      "status": "ASSUMED",
+      "basis": "Visible top balcony boundary near source y=73 px; (73-65)*38.1≈305 mm. No new opening inferred."
+    },
+    {
+      "id": "west",
+      "before": {
+        "id": "west",
+        "name": "현관측 외벽",
+        "a": [
+          0,
+          500
+        ],
+        "b": [
+          0,
+          11205
+        ],
+        "external": true,
+        "thickness": 200,
+        "kind": "wall",
+        "evidence": "image-estimated",
+        "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+        "openings": [
+          {
+            "id": "entry",
+            "type": "door",
+            "start": 4750,
+            "width": 1150,
+            "hinge": "start",
+            "swing": 90,
+            "open": true,
+            "evidence": "image-estimated",
+            "symbolEvidence": "visible",
+            "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정."
+          }
+        ]
+      },
+      "after": {
+        "id": "west",
+        "name": "현관측 외벽",
+        "a": [
+          0,
+          300
+        ],
+        "b": [
+          0,
+          11205
+        ],
+        "external": true,
+        "thickness": 200,
+        "kind": "wall",
+        "evidence": "image-estimated",
+        "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+        "openings": [
+          {
+            "id": "entry",
+            "type": "door",
+            "start": 4950,
+            "width": 1000,
+            "hinge": "start",
+            "swing": 90,
+            "open": true,
+            "evidence": "image-estimated",
+            "symbolEvidence": "visible",
+            "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정."
+          }
+        ]
+      },
+      "status": "ASSUMED",
+      "basis": "Keep door top z=5250; visible source doorway y≈203–229 px, width≈991mm rounded to1000. North wall endpoint follows visible boundary."
+    },
+    {
+      "id": "glaze-bed1",
+      "status": "ASSUMED",
+      "before": {
+        "start": 180,
+        "width": 3300
+      },
+      "after": {
+        "start": 500,
+        "width": 2440
+      },
+      "sourcePixelRange": [
+        [
+          277,
+          328
+        ],
+        [
+          341,
+          328
+        ]
+      ],
+      "basis": "Visible glazing between solid wall returns; old opening overlapped solid end walls. X starts at 4150+500 mm; pixel-derived width rounded to10mm. Printed wall location z=9955 retained."
+    },
+    {
+      "id": "w-kitchen-out",
+      "status": "ASSUMED",
+      "before": {
+        "start": 1150,
+        "width": 1850
+      },
+      "after": {
+        "start": 1350,
+        "width": 1750
+      },
+      "sourcePixelRange": [
+        [
+          244,
+          65
+        ],
+        [
+          290,
+          65
+        ]
+      ],
+      "basis": "Top glazing break visible in the source. Pixel-derived horizontal range; not a new opening."
+    },
+    {
+      "id": "w-bed1-out",
+      "status": "ASSUMED",
+      "before": {
+        "start": 4550,
+        "width": 3050
+      },
+      "after": {
+        "start": 4300,
+        "width": 2900
+      },
+      "sourcePixelRange": [
+        [
+          268,
+          358
+        ],
+        [
+          344,
+          358
+        ]
+      ],
+      "basis": "Existing lower outer glazing fitted between visible posts. Straight reference retained; no new curved contour."
+    },
+    {
+      "id": "door-bath2",
+      "status": "ASSUMED",
+      "coordinateFrame": "line2",
+      "before": {
+        "start": 2050,
+        "width": 650,
+        "hinge": "end",
+        "swing": -90
+      },
+      "after": {
+        "start": 2820,
+        "width": 650,
+        "hinge": "start",
+        "swing": 90
+      },
+      "sourcePixelRange": [
+        [
+          338,
+          241
+        ],
+        [
+          355,
+          241
+        ]
+      ],
+      "basis": "Visible quarter-circle lies at source x338–355 with hinge x338. Previous location followed adjacent white fixture. Correct location and hinge together."
+    }
+  ],
+  "unresolved": [
+    "Wall dimension reference face/center is not specified.",
+    "Wall thickness, all opening widths/offsets and glazing type/height remain ASSUMED.",
+    "Lower curved balcony outline and unclear upper boundary remain unresolved; no new spaces/openings added.",
+    "Printed-constrained lines may differ from image by a few pixels; no nonuniform image distortion applied."
+  ],
+  "futurePolicy": "Keep BASE_GEOMETRY_V1.json immutable. Derive interior working copies with baseGeometryId; do not overwrite the baseline."
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "version": "MATERIALS_V0_2026-09-08",
+  "date": "2026-09-08",
+  "units": "mm",
+  "status": "EMPTY_NOT_DESIGNED",
+  "baseGeometryId": "BASE_GEOMETRY_V1",
+  "interiorGeometryId": "INTERIOR_V1",
+  "wallFinishes": [],
+  "floorFinishes": [],
+  "doorFinishes": [],
+  "filmFinishes": [],
+  "notes": ["마감재 설계 전 빈 레이어. 추후 제품명/품번/공간별 적용 범위를 기록한다."]
+}

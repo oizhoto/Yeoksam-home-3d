@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "name": "역삼푸르지오 24평 · 확장 검토안",
+  "settings": {
+    "ceilingHeight": 2300,
+    "eyeHeight": 1600,
+    "playerRadius": 180,
+    "speed": 1800,
+    "wallThickness": 150,
+    "externalWallThickness": 200,
+    "doorHeight": 2050,
+    "windowSill": 850,
+    "windowHeight": 1300,
+    "snap": 50
+  },
+  "sourceDimensions": {
+    "overallWidthIncludingCommon": 10750,
+    "commonWidth": 2800,
+    "upperSegments": [
+      2800,
+      2650,
+      2600,
+      2700
+    ],
+    "lowerSegments": [
+      2800,
+      4150,
+      3800
+    ],
+    "rightSegments": [
+      1325,
+      2305,
+      1660,
+      1430,
+      3235,
+      1250
+    ],
+    "totalDepth": 11205
+  },
+  "bounds": [
+    0,
+    0,
+    7950,
+    11205
+  ],
+  "spawn": [
+    6050,
+    7000
+  ],
+  "rooms": [
+    {
+      "id": "bed3",
+      "name": "침실 3",
+      "rect": [
+        5300,
+        500,
+        7950,
+        4750
+      ],
+      "color": "#eee9df"
+    },
+    {
+      "id": "kitchen",
+      "name": "주방 / 식당",
+      "rect": [
+        2700,
+        0,
+        5300,
+        4750
+      ],
+      "color": "#eeeae2"
+    },
+    {
+      "id": "bed2",
+      "name": "침실 2",
+      "rect": [
+        0,
+        0,
+        2700,
+        3630
+      ],
+      "color": "#ece7dd"
+    },
+    {
+      "id": "bath1",
+      "name": "욕실 1",
+      "rect": [
+        0,
+        3630,
+        2700,
+        5290
+      ],
+      "color": "#d4e3e7"
+    },
+    {
+      "id": "bath2",
+      "name": "욕실 2",
+      "rect": [
+        0,
+        5290,
+        2700,
+        6720
+      ],
+      "color": "#d4e3e7"
+    },
+    {
+      "id": "living",
+      "name": "거실",
+      "rect": [
+        3800,
+        4750,
+        7950,
+        11205
+      ],
+      "color": "#f0eade"
+    },
+    {
+      "id": "hall",
+      "name": "거실 통로",
+      "rect": [
+        2700,
+        4750,
+        3800,
+        6720
+      ],
+      "color": "#f0eade"
+    },
+    {
+      "id": "bed1",
+      "name": "침실 1",
+      "rect": [
+        0,
+        6720,
+        3800,
+        11205
+      ],
+      "color": "#eee7dc"
+    }
+  ],
+  "walls": [
+    {
+      "id": "west",
+      "a": [
+        7950,
+        500
+      ],
+      "b": [
+        7950,
+        11205
+      ],
+      "external": true,
+      "openings": [
+        {
+          "type": "entry",
+          "start": 4550,
+          "width": 950
+        }
+      ]
+    },
+    {
+      "id": "north-bed3",
+      "a": [
+        7950,
+        500
+      ],
+      "b": [
+        5300,
+        500
+      ],
+      "external": true,
+      "openings": [
+        {
+          "type": "window",
+          "start": 350,
+          "width": 1950
+        }
+      ]
+    },
+    {
+      "id": "north-step",
+      "a": [
+        5300,
+        0
+      ],
+      "b": [
+        5300,
+        500
+      ],
+      "external": true,
+      "openings": []
+    },
+    {
+      "id": "north",
+      "a": [
+        5300,
+        0
+      ],
+      "b": [
+        0,
+        0
+      ],
+      "external": true,
+      "openings": [
+        {
+          "type": "window",
+          "start": 400,
+          "width": 1750
+        },
+        {
+          "type": "window",
+          "start": 3000,
+          "width": 1950
+        }
+      ]
+    },
+    {
+      "id": "east",
+      "a": [
+        0,
+        0
+      ],
+      "b": [
+        0,
+        11205
+      ],
+      "external": true,
+      "openings": []
+    },
+    {
+      "id": "south",
+      "a": [
+        7950,
+        11205
+      ],
+      "b": [
+        0,
+        11205
+      ],
+      "external": true,
+      "openings": [
+        {
+          "type": "window",
+          "start": 350,
+          "width": 3400
+        },
+        {
+          "type": "window",
+          "start": 4550,
+          "width": 3000
+        }
+      ]
+    },
+    {
+      "id": "bed3-east",
+      "a": [
+        5300,
+        500
+      ],
+      "b": [
+        5300,
+        4750
+      ],
+      "external": false,
+      "openings": [
+        {
+          "type": "door",
+          "start": 3250,
+          "width": 900,
+          "open": true
+        }
+      ]
+    },
+    {
+      "id": "bed3-south",
+      "a": [
+        7950,
+        4750
+      ],
+      "b": [
+        5300,
+        4750
+      ],
+      "external": false,
+      "openings": []
+    },
+    {
+      "id": "east-spine",
+      "a": [
+        2700,
+        0
+      ],
+      "b": [
+        2700,
+        6720
+      ],
+      "external": false,
+      "openings": [
+        {
+          "type": "door",
+          "start": 2550,
+          "width": 850,
+          "open": true
+        },
+        {
+          "type": "door",
+          "start": 4140,
+          "width": 750,
+          "open": true
+        },
+        {
+          "type": "door",
+          "start": 5540,
+          "width": 750,
+          "open": true
+        }
+      ]
+    },
+    {
+      "id": "bed2-south",
+      "a": [
+        2700,
+        3630
+      ],
+      "b": [
+        0,
+        3630
+      ],
+      "external": false,
+      "openings": []
+    },
+    {
+      "id": "bath-divider",
+      "a": [
+        2700,
+        5290
+      ],
+      "b": [
+        0,
+        5290
+      ],
+      "external": false,
+      "openings": []
+    },
+    {
+      "id": "bed1-north",
+      "a": [
+        3800,
+        6720
+      ],
+      "b": [
+        0,
+        6720
+      ],
+      "external": false,
+      "openings": [
+        {
+          "type": "door",
+          "start": 200,
+          "width": 900,
+          "open": true
+        }
+      ]
+    },
+    {
+      "id": "bed1-west",
+      "a": [
+        3800,
+        6720
+      ],
+      "b": [
+        3800,
+        11205
+      ],
+      "external": false,
+      "openings": []
+    }
+  ],
+  "extensions": [
+    {
+      "id": "balcony1",
+      "name": "발코니 1 확장",
+      "rect": [
+        0,
+        9955,
+        7950,
+        11205
+      ]
+    },
+    {
+      "id": "balcony2",
+      "name": "발코니 2 확장",
+      "rect": [
+        0,
+        0,
+        5300,
+        1325
+      ]
+    },
+    {
+      "id": "balcony3",
+      "name": "발코니 3 확장",
+      "rect": [
+        5300,
+        500,
+        7950,
+        1785
+      ]
+    }
+  ]
+}

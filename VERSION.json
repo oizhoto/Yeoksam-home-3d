@@ -1,0 +1,28 @@
+{
+  "project": "역삼푸르지오 24평 2호라인 Digital Twin",
+  "packageVersion": "V3_2026-09-08",
+  "packageDate": "2026-09-08",
+  "baseline": {
+    "id": "BASE_GEOMETRY_V1",
+    "date": "2026-09-07",
+    "file": "data/geometry/BASE_GEOMETRY_V1_2026-09-07.json",
+    "immutable": true
+  },
+  "interior": {
+    "id": "INTERIOR_V1",
+    "date": "2026-09-08",
+    "file": "data/interior/INTERIOR_V1_2026-09-08.json",
+    "status": "balcony-expansion-concept"
+  },
+  "working": {
+    "id": "APARTMENT_WORKING_V1",
+    "date": "2026-09-08",
+    "file": "data/working/APARTMENT_WORKING_V1_2026-09-08.json"
+  },
+  "policy": "data/ is source-of-truth; dist/ is deployable output. Never overwrite dated baseline snapshots.",
+  "materials": {
+    "id": "MATERIALS_V1_2026-09-08",
+    "status": "concept-preview",
+    "file": "data/materials/MATERIALS_V1_2026-09-08.json"
+  }
+}

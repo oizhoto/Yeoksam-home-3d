@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "version": "LIGHTING_V0_2026-09-08",
+  "date": "2026-09-08",
+  "units": "mm",
+  "status": "EMPTY_NOT_DESIGNED",
+  "baseGeometryId": "BASE_GEOMETRY_V1",
+  "interiorGeometryId": "INTERIOR_V1",
+  "fixtures": [],
+  "switchGroups": [],
+  "indirectLighting": [],
+  "notes": ["조명 설계 전 빈 레이어. 시스템에어컨/실링팬/천장 계획과 함께 확정한다."]
+}

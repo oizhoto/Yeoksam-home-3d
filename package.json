@@ -1,0 +1,18 @@
+{
+  "name": "yeoksam-apartment-studio",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --directory dist",
+    "check": "node --check dist/review.js && node --check dist/plan-core.js && node --check dist/shared-3d.js",
+    "test": "node tools/review-tests.mjs && node tools/shared-geometry-tests.mjs && node tools/interior-tests.mjs",
+    "dev": "vite --config vite.config.js",
+    "sync": "node tools/sync-data.mjs",
+    "test:legacy": "node tools/tests.mjs"
+  },
+  "devDependencies": {
+    "vite": "7.1.3"
+  },
+  "projectVersion": "V3_2026-09-08"
+}
