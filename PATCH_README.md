@@ -1,8 +1,7 @@
-# Yeoksam layered entry V4 patch
+# Yeoksam entry wall + camera preserve patch
 
-- 확장안을 기본 geometry로 고정
-- 중문/가구를 독립 ON/OFF 레이어로 변경
-- 완성안 = 현재 구현된 중문+가구 레이어 모두 ON 프리셋
-- 원본 = 비교용 BASE toggle
-- 사용자가 제공한 현관 사진을 참고해 중문/현관장/오픈니치/전신거울 1차안 추가
-- BASE_GEOMETRY_V1 / INTERIOR_V2_SVG_EXPANSION JSON은 수정하지 않음
+- Adds a full-height solid partition wall beside the translucent screen door.
+- Keeps the mirror as a thin wall-mounted surface instead of a dark freestanding-looking block.
+- Layer toggles (중문/가구/완성안/원본) no longer reset the current 3D zoom/orbit camera.
+- 3D / 워크스루 buttons still intentionally move to their preset viewpoints when the user explicitly changes view mode.
+- BASE_GEOMETRY_V1.json and INTERIOR_V2_SVG_EXPANSION.json are not included or modified.

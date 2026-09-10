@@ -31,7 +31,7 @@ function renderFurniture(){
   }
  }
 }
-function setFurniture(items=[]){furnitureItems=items;renderFurniture();dirtyCamera=true;}
+function setFurniture(items=[]){furnitureItems=items;renderFurniture();}
 
 function renderEntry(){
  clear(entryLayer);
@@ -50,13 +50,16 @@ function renderEntry(){
    const mat=new THREE.MeshStandardMaterial({color:'#e9e7e1',roughness:.82});
    const mesh=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(d)),mat);mesh.position.set(mm(x),mm(y+h/2),mm(z));mesh.castShadow=true;mesh.receiveShadow=true;entryLayer.add(mesh);
    if(o.niche){const nm=new THREE.MeshStandardMaterial({color:'#c9c2b6',roughness:.88});const niche=new THREE.Mesh(new THREE.BoxGeometry(mm(w*.82),mm(o.niche.height),mm(d+8)),nm);niche.position.set(mm(x),mm(o.niche.y+o.niche.height/2),mm(z+d*.02));entryLayer.add(niche);}
+  }else if(o.type==='partitionWall'){
+   const mat=finishes.wall.clone();mat.userData.owned=true;
+   const mesh=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(d)),mat);mesh.position.set(mm(x),mm(y+h/2),mm(z));mesh.castShadow=true;mesh.receiveShadow=true;entryLayer.add(mesh);
   }else if(o.type==='mirror'){
-   const mat=new THREE.MeshStandardMaterial({color:'#b9d2d7',roughness:.18,metalness:.72});
+   const mat=new THREE.MeshPhysicalMaterial({color:'#d9e4e6',roughness:.08,metalness:.35,clearcoat:.65,clearcoatRoughness:.08});
    const mesh=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(d)),mat);mesh.position.set(mm(x),mm(y+h/2),mm(z));entryLayer.add(mesh);
   }
  }
 }
-function setEntry(items=[]){entryItems=items;renderEntry();dirtyCamera=true;}
+function setEntry(items=[]){entryItems=items;renderEntry();}
 
 function entrance(){if(!config)return;mode='entry';orbit.enabled=false;document.exitPointerLock?.();for(const k in keys)delete keys[k];const f=entranceFrame(config);camera.fov=config.settings.verificationFov;camera.position.set(mm(f.outside[0]),mm(config.settings.eyeHeight),mm(f.outside[1]));camera.lookAt(mm(f.center[0]),mm(config.settings.eyeHeight),mm(f.center[1]));yaw=camera.rotation.y;pitch=0;ceiling.visible=true;camera.updateProjectionMatrix();dirtyCamera=true;}
 function update(c){config=c;const sig=JSON.stringify([c.walls,c.rooms,c.floorPolygons,c.settings,c.entrance]);if(sig===signature)return;signature=sig;compiled=compileGeometry(c);clear(body);clear(labels);clear(ceiling);compiled.parts.forEach(segment);compiled.floors.forEach(floor);config.rooms.filter(r=>!r.id.startsWith('bal')||r.expanded).forEach(label);if(signature===sig&&host.dataset.datasetRevision===undefined)entrance();host.dataset.datasetRevision=c.geometryRevision;host.dataset.geometryWallCount=c.walls.length;host.dataset.geometryPartCount=compiled.parts.length;host.dataset.livingLeft=String(entranceFrame(c).livingLeft);dirtyCamera=true;}
