@@ -7,10 +7,10 @@ import {drawKitchenLayer} from './kitchen-layer.js';
 const $=s=>document.querySelector(s);
 const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
 
-const [expandedRaw,furnitureData,fixedData,designData]=await Promise.all([
+const [expandedRaw,furnitureData,fixedData,designData,bathKitchenData]=await Promise.all([
   load('INTERIOR_V2_SVG_EXPANSION.json'),
   load('FURNITURE_V1.json'),
-  load('FIXED_INTERIOR_V1.json'),load('DESIGN_V1.json')
+  load('FIXED_INTERIOR_V1.json'),load('DESIGN_V1.json'),load('BATHROOM_KITCHEN_V1.json')
 ]);
 
 const expanded=validate(expandedRaw);
@@ -35,6 +35,7 @@ function model(){
   viewer.update(expanded);
   viewer.setEntry(fixedData.entryObjects);
   viewer.setKitchen(fixedData.kitchenObjects);
+  viewer.setBathroomKitchen(bathKitchenData);
   viewer.setFurniture(activeFurniture());
   viewer.setDesign(designData,designOn);
 }
@@ -47,7 +48,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='확장안 + 현관중문 + 세탁실 터닝도어 + 안방 붙박이장 + 주방은 기본 적용입니다.';
+  $('#note').textContent='V8.0 · 욕조형 공용욕실 + 욕실기구 + 싱크볼/인덕션 + 3열 냉장고장이 기본 적용됩니다.';
 }
 
 function render(){drawPlan();model();refreshUI();}

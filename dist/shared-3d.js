@@ -4,7 +4,8 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {compileGeometry,entranceFrame,blocked} from './plan-core.js';
 import {createFinishLibrary,materialForBox,MATERIAL_V1} from './materials.js';
 import {createDesignLayer} from './design-layer.js';
-export const APP_VERSION='V7.8';
+import {buildBathroomKitchenLayer} from './bathroom-kitchen-layer.js';
+export const APP_VERSION='V8.0';
 export function createShared3D(host,{onCameraChange}={}){
 host.dataset.appVersion=APP_VERSION;
 if(!host.querySelector('[data-yeoksam-version-badge]')){
@@ -27,7 +28,7 @@ const scene=new THREE.Scene();scene.background=new THREE.Color('#e7edf0');let re
 const finishes=createFinishLibrary(renderer);
 // Neutral daylight-biased lighting so material comparison is not excessively yellow.
 scene.add(new THREE.HemisphereLight('#fffdfa','#a9adb0',1.65));const sun=new THREE.DirectionalLight('#fff7e8',2.6);sun.position.set(-4,14,8);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-15,right:15,top:15,bottom:-15});sun.shadow.bias=-.00035;scene.add(sun);scene.add(sun.target);sun.target.position.set(4,0,5);const fill=new THREE.DirectionalLight('#edf4ff',.55);fill.position.set(8,7,-5);scene.add(fill);
-const camera=new THREE.PerspectiveCamera(90,1,.03,100);camera.rotation.order='YXZ';const orbit=new OrbitControls(camera,renderer.domElement);orbit.enabled=false;orbit.enableDamping=true;orbit.maxPolarAngle=Math.PI/2-.05;let config,compiled,signature='',mode='entry',yaw=0,pitch=0,dirtyCamera=true;const body=new THREE.Group(),labels=new THREE.Group(),ceiling=new THREE.Group(),furniture=new THREE.Group(),entryLayer=new THREE.Group(),kitchenLayer=new THREE.Group();scene.add(body,labels,ceiling,furniture,entryLayer,kitchenLayer);let furnitureItems=[],entryItems=[],kitchenItems=[];const mm=v=>v/1000,keys={};
+const camera=new THREE.PerspectiveCamera(90,1,.03,100);camera.rotation.order='YXZ';const orbit=new OrbitControls(camera,renderer.domElement);orbit.enabled=false;orbit.enableDamping=true;orbit.maxPolarAngle=Math.PI/2-.05;let config,compiled,signature='',mode='entry',yaw=0,pitch=0,dirtyCamera=true;const body=new THREE.Group(),labels=new THREE.Group(),ceiling=new THREE.Group(),furniture=new THREE.Group(),entryLayer=new THREE.Group(),kitchenLayer=new THREE.Group(),bathKitchenLayer=new THREE.Group();scene.add(body,labels,ceiling,furniture,entryLayer,kitchenLayer,bathKitchenLayer);let furnitureItems=[],entryItems=[],kitchenItems=[];const mm=v=>v/1000,keys={};
 function clear(g){g.traverse(o=>{o.geometry?.dispose();for(const m of (Array.isArray(o.material)?o.material:[o.material]))if(m?.userData?.owned){for(const key of ['map','bumpMap','roughnessMap'])m[key]?.dispose();m.dispose();}});g.clear();}
 function segment(p){const dx=p.b[0]-p.a[0],dz=p.b[1]-p.a[1],len=Math.hypot(dx,dz),glass=p.kind==='glass',door=p.kind==='door';const material=glass?finishes.glass:materialForBox(door?finishes.film:finishes.wall,mm(len),mm(p.height),mm(p.thickness),door?MATERIAL_V1.film.tileMeters:MATERIAL_V1.wall.tileMeters);const m=new THREE.Mesh(new THREE.BoxGeometry(mm(len),mm(p.height),mm(p.thickness)),material);m.position.set(mm((p.a[0]+p.b[0])/2),mm(p.y+p.height/2),mm((p.a[1]+p.b[1])/2));m.rotation.y=-Math.atan2(dz,dx);m.userData.geometryId=p.id;m.castShadow=!glass;m.receiveShadow=true;if(!(config.unknownStructureDisplay==='wireframe'&&p.structureStatus==='STRUCTURE_UNCONFIRMED'))body.add(m);if(p.structureStatus==='STRUCTURE_UNCONFIRMED'){const edge=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:'#c17c16'}));edge.position.copy(m.position);edge.rotation.copy(m.rotation);body.add(edge);}}
 function floor(f){const shape=new THREE.Shape();let minX=Infinity,minZ=Infinity,maxX=-Infinity,maxZ=-Infinity;f.polygon.forEach(([x,z],i)=>{minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);i?shape.lineTo(mm(x),-mm(z)):shape.moveTo(mm(x),-mm(z));});shape.closePath();const fm=finishes.floorMaterial(f.roomId,{width:mm(maxX-minX),depth:mm(maxZ-minZ)});if(![finishes.glass,finishes.wall,finishes.film,finishes.ceiling].includes(fm))fm.userData.owned=true;const mesh=new THREE.Mesh(new THREE.ExtrudeGeometry(shape,{depth:mm(config.settings.floorThickness),bevelEnabled:false}),fm);mesh.rotation.x=-Math.PI/2;mesh.position.y=-mm(config.settings.floorThickness);mesh.receiveShadow=true;mesh.userData.geometryId=f.id;body.add(mesh);const top=new THREE.Mesh(new THREE.ShapeGeometry(shape),finishes.ceiling);top.rotation.x=-Math.PI/2;top.position.y=mm(config.settings.ceilingHeight);ceiling.add(top);}
@@ -102,6 +103,14 @@ function renderKitchen(){
  }
 }
 function setKitchen(items=[]){kitchenItems=items;renderKitchen();}
+function setBathroomKitchen(data){
+ clear(bathKitchenLayer);
+ if(!data)return;
+ const built=buildBathroomKitchenLayer(data);
+ while(built.children.length)bathKitchenLayer.add(built.children[0]);
+ bathKitchenLayer.visible=true;
+ dirtyCamera=true;
+}
 
 function entrance(){if(!config)return;mode='entry';orbit.enabled=false;document.exitPointerLock?.();for(const k in keys)delete keys[k];const f=entranceFrame(config);camera.fov=config.settings.verificationFov;camera.position.set(mm(f.outside[0]),mm(config.settings.eyeHeight),mm(f.outside[1]));camera.lookAt(mm(f.center[0]),mm(config.settings.eyeHeight),mm(f.center[1]));yaw=camera.rotation.y;pitch=0;ceiling.visible=true;camera.updateProjectionMatrix();dirtyCamera=true;}
 function update(c){config=c;const sig=JSON.stringify([c.walls,c.rooms,c.floorPolygons,c.settings,c.entrance]);if(sig===signature)return;signature=sig;compiled=compileGeometry(c);clear(body);clear(labels);clear(ceiling);compiled.parts.forEach(segment);compiled.floors.forEach(floor);config.rooms.filter(r=>!r.id.startsWith('bal')||r.expanded).forEach(label);if(signature===sig&&host.dataset.datasetRevision===undefined)entrance();host.dataset.datasetRevision=c.geometryRevision;host.dataset.geometryWallCount=c.walls.length;host.dataset.geometryPartCount=compiled.parts.length;host.dataset.livingLeft=String(entranceFrame(c).livingLeft);dirtyCamera=true;}
@@ -115,5 +124,5 @@ let design;
 function setDesign(data,enabled=true){if(!design)design=createDesignLayer(scene,data);design.setVisible(enabled);labels.visible=!enabled;host.dataset.designEnabled=String(enabled);dirtyCamera=true;}
 function designCamera(p){mode='entry';orbit.enabled=false;document.exitPointerLock?.();camera.position.set(...p.position.map(mm));camera.lookAt(...p.target.map(mm));camera.fov=p.fov;ceiling.visible=true;camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;dirtyCamera=true;}
 function setLightMode(warm){design?.setWarm(warm);sun.color.set(warm?'#ffe0b0':'#ffffff');fill.color.set(warm?'#fff0db':'#edf4ff');host.dataset.lightMode=warm?'warm':'day';dirtyCamera=true;}
-return {update,setFurniture,setEntry,setKitchen,setDesign,designCamera,setLightMode,entrance,whole,cameraState,setCamera,source:()=>config,compiled:()=>compiled,screenshot:()=>renderer.domElement.toDataURL('image/png')};
+return {update,setFurniture,setEntry,setKitchen,setBathroomKitchen,setDesign,designCamera,setLightMode,entrance,whole,cameraState,setCamera,source:()=>config,compiled:()=>compiled,screenshot:()=>renderer.domElement.toDataURL('image/png')};
 }

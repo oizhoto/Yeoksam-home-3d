@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V7.8 — VERSION / HISTORY UI**
-- Last updated: **2026-09-10 23:22 KST**
+- Project version: **V8.0 — BATHROOM / KITCHEN DETAIL**
+- Last updated: **2026-09-10 23:38 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,17 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.0 — Bathroom / Kitchen Detail — 2026-09-10 23:38 KST
+- 공용욕실은 **욕조 유지**, 유리 파티션은 미설치 상태로 구현. 추후 별도 레이어로 추가 가능.
+- 공용욕실: 욕조, 변기, 세면대/하부장, 거울장, 세면 수전, 욕조 수전 추가.
+- 안방욕실: 변기, 세면대/하부장, 거울장, 샤워 수전 기본 모델 추가.
+- 욕실 600×600 warm-greige 타일 계획값 기록.
+- 기존 일자형 주방/상부장은 유지하면서 **싱크볼, 하이아크 수전, 인덕션** 3D fixture 추가.
+- 업로드된 주방 사진을 참고해 **원도어 3대 병렬 대응 냉장고장 + 상부 수납장**을 별도 3D detail layer로 추가.
+- 냉장고장 계획 envelope: W1950 × D700 × H2300, 3개 모듈 + 상부수납 H430. 실제 제품 선정 시 폭 조정 가능.
+- V7.5 baseline 구조/문/확장/중문/터닝도어 geometry는 수정하지 않음.
+
 
 ### V7.8 — Version / History UI — 2026-09-10 23:22 KST
 - 화면 최상단의 현재 프로젝트 버전을 **V7.8**로 통일.
