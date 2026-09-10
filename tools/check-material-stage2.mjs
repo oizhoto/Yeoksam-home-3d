@@ -1,0 +1,20 @@
+import {readFileSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
+import * as THREE from '../dist/vendor/three.module.js';
+const parent='304ac57b249fb4712d44b466eccbb7ab703cacee';
+const old=p=>execFileSync('git',['show',`${parent}:${p}`],{encoding:'utf8'});
+const current=p=>readFileSync(p,'utf8');
+for(const p of ['dist/apartment.config.json','dist/BASE_GEOMETRY_V1.json','dist/INTERIOR_V2_SVG_EXPANSION.json','dist/FIXED_INTERIOR_V1.json','dist/FURNITURE_V1.json','dist/DESIGN_V1.json','dist/design-layer.js','dist/plan-core.js','dist/review.js','dist/interior.js','dist/index.html'])assert.equal(current(p),old(p),`${p} changed`);
+const before=old('dist/shared-3d.js'),after=current('dist/shared-3d.js');
+// All geometry construction, fixed interiors, furniture, camera and lighting stay byte-identical.
+assert.equal(after.slice(after.indexOf('function floor(')),before.slice(before.indexOf('function floor(')));
+assert.equal(after.slice(after.indexOf('// Neutral daylight'),after.indexOf('function clear(')),before.slice(before.indexOf('// Neutral daylight'),before.indexOf('function clear(')));
+const meshSuffix=s=>s.split('\n').find(l=>l.startsWith('function segment(')).split('const m=new THREE.Mesh')[1];
+assert.equal(meshSuffix(after),meshSuffix(before));
+const s=new THREE.Shape();s.moveTo(0,0);s.lineTo(4,0);s.lineTo(4,3);s.lineTo(0,3);s.closePath();
+const g=new THREE.ExtrudeGeometry(s,{depth:.09,bevelEnabled:false});
+let maxU=0;for(let i=0;i<g.attributes.uv.count;i++)maxU=Math.max(maxU,g.attributes.uv.getX(i));
+assert.equal(maxU,4);g.dispose();
+console.log('PASS: protected files, design, furniture, lights, cameras and mesh vertices unchanged.');
+console.log('PASS: Three.js ExtrudeGeometry UVs are meters; floor repeat must be inverse board meters.');

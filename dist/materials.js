@@ -4,7 +4,7 @@ import * as THREE from 'three';
 // - LX Z:IN Diamant 회벽/블랑 그레이 PR002-13
 // - Dongwha Natus Jin Grande Emotion Blanc
 // - Younglim PX454-2 Luca White
-// Colors/textures are a calibrated digital approximation for design review,
+// Colors/textures are an uncalibrated digital approximation for design review,
 // not a substitute for physical samples under site lighting.
 
 const FINISH_INFO = Object.freeze({
@@ -115,14 +115,35 @@ function floorBump(){
 function filmMap(){
   return canvasTexture(768,(ctx,n)=>{
     const rnd=seeded(4542);ctx.fillStyle='#ecebe6';ctx.fillRect(0,0,n,n);
-    // very restrained Luca White stone/marble pattern
-    for(let i=0;i<22;i++){
-      let x=-n*.1+rnd()*n*.35, y=rnd()*n;
-      ctx.strokeStyle=`rgba(152,151,146,${.035+rnd()*.035})`;ctx.lineWidth=.7+rnd()*1.7;
-      ctx.beginPath();ctx.moveTo(x,y);
-      for(let k=1;k<=5;k++){x+=n*.22+rnd()*n*.08;y+=rnd()*90-45;ctx.lineTo(x,y)}
-      ctx.stroke();
+    // Fine low-contrast stone emboss approximation; no invented long marble veins.
+    for(let i=0;i<9000;i++){
+      const v=170+Math.floor(rnd()*65);ctx.fillStyle=`rgba(${v},${v},${v-3},.085)`;
+      ctx.fillRect(rnd()*n,rnd()*n,.5+rnd()*2,.5+rnd()*2);
     }
+  });
+}
+
+export const MATERIAL_V1=Object.freeze({
+  revision:'MATERIAL_STAGE2',
+  wall:{id:'LX_DIAMANT_PR002_13',tileMeters:.25,roughness:.94,bumpMeters:.00025},
+  floor:{id:'DONGWHA_NATUSJIN_GRANDE_EMOTION_BLANC',boardMeters:[.81,.325],roughness:.76,bumpMeters:.00018},
+  film:{id:'YOUNGLIM_LUCA_WHITE_PX454_2',tileMeters:.4,roughness:.62,bumpMeters:.00008},
+  note:'Procedural visual approximation. Color, relief and gloss are not measured manufacturer PBR data.'
+});
+
+function roughnessFrom(height){
+  const c=document.createElement('canvas');c.width=height.image.width;c.height=height.image.height;
+  const ctx=c.getContext('2d');ctx.drawImage(height.image,0,0);const px=ctx.getImageData(0,0,c.width,c.height);
+  for(let i=0;i<px.data.length;i+=4){const v=230+Math.round(px.data[i]/255*25);px.data[i]=px.data[i+1]=px.data[i+2]=v;}
+  ctx.putImageData(px,0,0);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.colorSpace=THREE.NoColorSpace;return t;
+}
+
+// BoxGeometry UVs are normalized; only UV/material state is altered, never vertices.
+export function materialForBox(source,width,height,depth,tileMeters){
+  return [[depth,height],[depth,height],[width,depth],[width,depth],[width,height],[width,height]].map(([u,v])=>{
+    const m=source.clone();m.userData={...source.userData,owned:true};
+    for(const key of ['map','bumpMap','roughnessMap'])if(source[key]){m[key]=source[key].clone();m[key].repeat.set(u/tileMeters,v/tileMeters);m[key].needsUpdate=true;}
+    return m;
   });
 }
 
@@ -134,11 +155,12 @@ export function createFinishLibrary(renderer){
   [wallTex,wallBump,floorTex,floorBumpTex,filmTex].forEach(t=>t.anisotropy=Math.min(8,maxAniso));
 
   const wall=new THREE.MeshStandardMaterial({
-    color:'#f0efeb', map:wallTex, bumpMap:wallBump, bumpScale:.006,
-    roughness:.96, metalness:0
+    color:'#ffffff', map:wallTex, bumpMap:wallBump, bumpScale:MATERIAL_V1.wall.bumpMeters,
+    roughness:MATERIAL_V1.wall.roughness, roughnessMap:roughnessFrom(wallBump), metalness:0
   });
   const film=new THREE.MeshStandardMaterial({
-    color:'#ffffff', map:filmTex, roughness:.58, metalness:0
+    color:'#ffffff', map:filmTex,bumpMap:wallBump.clone(),bumpScale:MATERIAL_V1.film.bumpMeters,
+    roughness:MATERIAL_V1.film.roughness,roughnessMap:roughnessFrom(wallBump),metalness:0
   });
   const glass=new THREE.MeshPhysicalMaterial({
     color:'#d6edf4',transparent:true,opacity:.26,roughness:.08,metalness:0,
@@ -153,15 +175,17 @@ export function createFinishLibrary(renderer){
     if(roomId==='bath1'||roomId==='bath2') return bathroom;
     if(roomId==='entry') return entry;
     if(roomId?.startsWith('bal')) return balcony;
-    const m=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:.78,metalness:0});
+    const m=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:MATERIAL_V1.floor.roughness,roughnessMap:roughnessFrom(floorBumpTex),metalness:0});
     m.map=floorTex.clone();m.map.needsUpdate=true;m.map.colorSpace=THREE.SRGBColorSpace;m.map.wrapS=m.map.wrapT=THREE.RepeatWrapping;
-    m.bumpMap=floorBumpTex.clone();m.bumpMap.needsUpdate=true;m.bumpMap.wrapS=m.bumpMap.wrapT=THREE.RepeatWrapping;m.bumpScale=.003;
-    // Physical board size 810 x 325 mm. Shape UVs are local-normalized; repeat to approximate actual scale.
-    const width=Math.max(.5,bounds.width), depth=Math.max(.5,bounds.depth);
-    m.map.repeat.set(width/.81,depth/.325);m.bumpMap.repeat.copy(m.map.repeat);
+    m.bumpMap=floorBumpTex.clone();m.bumpMap.needsUpdate=true;m.bumpMap.wrapS=m.bumpMap.wrapT=THREE.RepeatWrapping;m.bumpScale=MATERIAL_V1.floor.bumpMeters;
+    // ExtrudeGeometry top UVs already contain the shape's meter coordinates.
+    // Multiplying by room dimensions again shrinks boards and breaks room continuity.
+    m.map.repeat.set(1/MATERIAL_V1.floor.boardMeters[0],1/MATERIAL_V1.floor.boardMeters[1]);m.bumpMap.repeat.copy(m.map.repeat);m.roughnessMap.repeat.copy(m.map.repeat);
+    m.userData.materialId=MATERIAL_V1.floor.id;
     return m;
   }
 
+  wall.userData.materialId=MATERIAL_V1.wall.id;film.userData.materialId=MATERIAL_V1.film.id;
   return {info:FINISH_INFO,wall,film,glass,ceiling,floorMaterial};
 }
 

@@ -85,3 +85,10 @@
 ## Design principle
 구조는 잠그고, 인테리어는 레이어에서 발전시킨다.
 AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리', '직선화', '최적화', '재해석'하는 것을 금지한다.
+
+## Editable layer progress — material stage 2
+- 확정 마감재의 texture scale / bump / roughness만 조정. Baseline은 V7.5 그대로 유지.
+- 바닥 810×325mm 물리 스케일 및 벽/문 면별 반복 적용.
+- 304ac57 대비 구조·고정 요소·가구·천장·조명·카메라 보호 검사: tools/check-material-stage2.mjs.
+- 실행 확인은 Canvas3D 환경. WebGL 질감/광택 시각 검증은 미완료.
+- 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
