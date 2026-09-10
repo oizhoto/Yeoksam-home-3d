@@ -1,0 +1,35 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import {compileGeometry,containsPoint,entranceFrame,validate} from './dist/plan-core.js';
+const raw=fs.readFileSync('dist/BASE_GEOMETRY_V1.json'),base=JSON.parse(raw),c=structuredClone(base);
+assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),'8d3cd8d89bc01608b20613d10c9790578b34d5bbc9f0a737d397063a493193c1');
+const svg=fs.readFileSync('dist/yeoksam_DIMENSION_AUDIT.svg','utf8');
+const polys=[...svg.matchAll(/<polygon class="([^"]+)" points="([^"]+)"/g)].map(m=>({type:m[1],polygon:m[2].split(' ').map(s=>s.split(',').map((v,i)=>Math.round((Number(v)-(i?90:95))/.074)))}));
+const ids=['bed3','kitchen','bed2','bath1','bath2','living','bed1','entry','living-extension','bal1'];
+assert.equal(polys.length,11);
+c.geometryRevision='INTERIOR_V2_SVG_EXPANSION';
+c.sourceReference={file:'yeoksam_DIMENSION_AUDIT.svg',scale:.074,offset:[95,90],status:'USER_SUPPLIED_CONCEPT',note:'표기 mm 경계 우선. SVG 좌표 반올림 오차 최대 0.07mm. 내력 여부·문창 세부는 ASSUMED.'};
+c.rooms=c.rooms.filter(r=>!['bal2','bal3'].includes(r.id));
+for(let i=0;i<10;i++){const r=c.rooms.find(r=>r.id===ids[i]);if(!r)continue;r.polygon=polys[i].polygon;r.rect=[Math.min(...r.polygon.map(p=>p[0])),Math.min(...r.polygon.map(p=>p[1])),Math.max(...r.polygon.map(p=>p[0])),Math.max(...r.polygon.map(p=>p[1]))];}
+c.rooms.find(r=>r.id==='bal1').name='안방 베란다';
+// Exact union of living polygon and adjoining extension; no common edge remains.
+const living=c.rooms.find(r=>r.id==='living');living.polygon=living.polygon.map(p=>p[1]===9555?[p[0],11205]:p);living.rect[3]=11205;
+c.floorPolygons=c.rooms.map(r=>({id:'floor-'+r.id,roomId:r.id,polygon:r.polygon,status:'SVG_REFERENCE_ASSUMED',level:0,levelStatus:'ASSUMED'}));
+c.balconies=[{id:'bal1',polygon:c.rooms.find(r=>r.id==='bal1').polygon,floorId:'floor-bal1',status:'RETAINED'}];
+const remove=['bal1-living','bal2-kitchen','bal2-bed2','bal3-inner'];
+c.walls=c.walls.filter(w=>!remove.includes(w.id));
+c.walls.push({id:'kitchen-bed2-expanded-divider',a:[2700,0],b:[2700,1325],thickness:150,openings:[],kind:'wall',note:'첨부 SVG의 주방/침실2 확장부 분리선. 두께 ASSUMED.'});
+const divider=c.walls.find(w=>w.id==='bal1-divider');
+divider.openings=[{id:'door-private-balcony',type:'door',start:175,width:900,hinge:'start',swing:90,open:true,status:'ASSUMED',note:'첨부 SVG에서 환산. 거실에서 베란다 안쪽으로 열림. 폭/높이 실측 전.'}];
+c.structureReview={status:'UNRESOLVED',polygon:polys[10].polygon,positionStatus:'MATCHES_BASE',structuralStatus:'UNCONFIRMED',note:'SVG 흰색 박스는 BASE와 동일한 X4550~5900 / Y1250~1785 (1350×535mm). 구조 도면 부재로 내력벽 확정·철거 판정 불가. BASE의 박스 벽과 바닥 빈 영역 유지.'};
+c.changeLog=[...remove.map(id=>({id,action:'REMOVE',basis:'USER_SVG_EXPANSION',note:'첨부 확장안의 연속 공간 반영. 실제 철거 승인 아님.'})),{id:divider.id,action:'ADD_DOOR',basis:'USER_SVG'},{id:'kitchen-bed2-expanded-divider',action:'ADD_DIVIDER',basis:'USER_SVG'},{id:'floor-polygons',action:'MERGE_BY_SVG',basis:'USER_SVG'}];
+validate(c);const g=compileGeometry(c);
+assert(entranceFrame(c).livingLeft);
+assert(!g.floors.some(f=>containsPoint(f.polygon,[5000,1500])));
+assert.deepEqual(c.structureReview.polygon,[[5900,1250],[4550,1250],[4550,1785],[5900,1785]]);
+for(const id of ['west','bed3-east','bed3-south','spine','bed2-south','bath-divider','bed1-north','bed1-west','bal1-bed1','shaft-top','shaft-bottom','shaft-right','north-step'])assert.deepEqual(c.walls.find(w=>w.id===id),base.walls.find(w=>w.id===id));
+assert(remove.every(id=>!g.parts.some(p=>p.wallId===id)&&!g.colliders.some(p=>p.wallId===id)&&!g.openings.some(p=>p.wallId===id)));
+assert.equal(g.openings.find(o=>o.id==='door-private-balcony').leaf[0],2900);
+fs.writeFileSync('dist/INTERIOR_V2_SVG_EXPANSION.json',JSON.stringify(c,null,2));
+console.log('PASS: BASE hash, SVG inverse coordinates, protected walls, structural void, balcony door inward, removal across render/collision/openings, entrance orientation');

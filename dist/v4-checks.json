@@ -1,0 +1,101 @@
+{
+  "checks": [
+    {
+      "name": "BASE_GEOMETRY_V1 hash unchanged",
+      "pass": true
+    },
+    {
+      "name": "V4 created",
+      "pass": true
+    },
+    {
+      "name": "protected entry unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bath1 unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bath2 unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bed3-east unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bed3-south unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected spine unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bed2-south unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bath-divider unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bed1-north unchanged",
+      "pass": true
+    },
+    {
+      "name": "protected bed1-west unchanged",
+      "pass": true
+    },
+    {
+      "name": "침실1 발코니 floor preserved",
+      "pass": true
+    },
+    {
+      "name": "침실3 BASE preserved",
+      "pass": true
+    },
+    {
+      "name": "bal1-living glazing/frame removed",
+      "pass": true
+    },
+    {
+      "name": "bal2-kitchen glazing/frame removed",
+      "pass": true
+    },
+    {
+      "name": "bal2-bed2 glazing/frame removed",
+      "pass": true
+    },
+    {
+      "name": "outer windows preserved",
+      "pass": true
+    },
+    {
+      "name": "bed1 separation preserved",
+      "pass": true
+    },
+    {
+      "name": "no duplicate generated segments",
+      "pass": true
+    },
+    {
+      "name": "no tiny generated segments",
+      "pass": true
+    },
+    {
+      "name": "entry living left",
+      "pass": true
+    },
+    {
+      "name": "2D/3D same V4 source",
+      "pass": true
+    }
+  ],
+  "unresolved": [
+    "침실1 베란다 창호의 정확한 개폐방식·분할",
+    "침실3 발코니 확장 가능 여부",
+    "각 벽끝/설비박스의 구조체 여부"
+  ]
+}

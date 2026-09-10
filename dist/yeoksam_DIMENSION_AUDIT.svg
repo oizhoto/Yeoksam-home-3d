@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1049" viewBox="0 0 1080 1049">
+<rect width="100%" height="100%" fill="#fff"/>
+<style>
+.room{fill:#f5f1e8;stroke:#24323c;stroke-width:3}
+.bath{fill:#e6f1f5;stroke:#24323c;stroke-width:3}
+.entry{fill:#e8f2e7;stroke:#24323c;stroke-width:3}
+.expand{fill:#e9f6e5;stroke:#24323c;stroke-width:3}
+.bal{fill:#eee9f6;stroke:#24323c;stroke-width:3}
+.struct{fill:#fff;stroke:#24323c;stroke-width:4}
+.label{font:600 16px system-ui,sans-serif;fill:#22323d;text-anchor:middle;dominant-baseline:middle}
+.small{font:600 13px system-ui,sans-serif;fill:#55666f;text-anchor:middle;dominant-baseline:middle}
+.title{font:700 22px system-ui,sans-serif;fill:#1f2f39}
+.note{font:13px system-ui,sans-serif;fill:#667985}
+.window{stroke:#2089c9;stroke-width:7;stroke-linecap:butt}
+.window2{stroke:#b7e0f4;stroke-width:2}
+.doorleaf{stroke:#8a4bbd;stroke-width:4;fill:none;stroke-linecap:round}
+.doorarc{stroke:#8a4bbd;stroke-width:2;fill:none}
+.hinge{fill:#8a4bbd}
+.wall{stroke:#24323c;stroke-width:3;fill:none}
+</style>
+<text x="55" y="32" class="title">확장안 · 확정 기준 정리</text>
+<text x="55" y="55" class="note">침실2/주방/침실3은 각 확장부와 통합 · 중앙 흰색 내력벽은 별도 구조체로 유지</text>
+<polygon class="room" points="683.30,112.20 531.60,112.20 531.60,222.09 487.20,222.09 487.20,446.68 683.30,446.68"/><polygon class="room" points="531.60,90.00 294.80,90.00 294.80,482.20 487.20,482.20 487.20,222.09 431.70,222.09 431.70,182.50 531.60,182.50"/><polygon class="room" points="294.80,90.00 146.80,90.00 146.80,110.35 95.00,110.35 95.00,358.62 294.80,358.62"/><polygon class="bath" points="294.80,358.62 95.00,358.62 95.00,481.46 294.80,481.46"/><polygon class="bath" points="294.80,481.46 95.00,481.46 95.00,587.28 294.80,587.28"/><polygon class="room" points="576.00,446.68 487.20,446.68 487.20,482.20 294.80,482.20 294.80,587.28 376.20,587.28 376.20,797.07 683.30,797.07 683.30,563.60 576.00,563.60"/><polygon class="room" points="376.20,587.28 95.00,587.28 95.00,826.67 376.20,826.67"/><polygon class="entry" points="683.30,446.68 576.00,446.68 576.00,563.60 683.30,563.60"/><polygon class="expand" points="683.30,797.07 376.20,797.07 376.20,919.17 683.30,919.17"/><polygon class="bal" points="376.20,826.67 95.00,826.67 95.00,919.17 376.20,919.17"/><line x1="294.80" y1="482.20" x2="487.20" y2="482.20" stroke="#f5f1e8" stroke-width="8"/><polygon class="struct" points="531.60,182.50 431.70,182.50 431.70,222.09 531.60,222.09"/><text class="small" x="481.65" y="202.29">내력벽</text><line class="wall" x1="294.80" y1="90.00" x2="294.80" y2="188.05"/><line class="wall" x1="531.60" y1="90.00" x2="531.60" y2="182.50"/><line class="window" x1="431.70" y1="90.00" x2="302.20" y2="90.00"/><line class="window2" x1="431.70" y1="90.00" x2="302.20" y2="90.00"/><line class="window" x1="661.10" y1="919.17" x2="402.10" y2="919.17"/><line class="window2" x1="661.10" y1="919.17" x2="402.10" y2="919.17"/><line class="window" x1="365.10" y1="919.17" x2="150.50" y2="919.17"/><line class="window2" x1="365.10" y1="919.17" x2="150.50" y2="919.17"/><line class="window" x1="339.20" y1="826.67" x2="158.64" y2="826.67"/><line class="window2" x1="339.20" y1="826.67" x2="158.64" y2="826.67"/><circle class="hinge" cx="683.30" cy="478.50" r="3.5"/><line class="doorleaf" x1="683.30" y1="478.50" x2="757.30" y2="478.50"/><path class="doorarc" d="M 683.30,552.50 A 74.00,74.00 0 0 0 757.30,478.50"/><circle class="hinge" cx="490.90" cy="446.68" r="3.5"/><line class="doorleaf" x1="490.90" y1="446.68" x2="490.90" y2="372.68"/><path class="doorarc" d="M 564.90,446.68 A 74.00,74.00 0 0 0 490.90,372.68"/><circle class="hinge" cx="294.80" cy="356.40" r="3.5"/><line class="doorleaf" x1="294.80" y1="356.40" x2="231.90" y2="356.40"/><path class="doorarc" d="M 294.80,293.50 A 62.90,62.90 0 0 0 231.90,356.40"/><circle class="hinge" cx="294.80" cy="479.98" r="3.5"/><line class="doorleaf" x1="294.80" y1="479.98" x2="246.70" y2="479.98"/><path class="doorarc" d="M 294.80,431.88 A 48.10,48.10 0 0 0 246.70,479.98"/><circle class="hinge" cx="368.80" cy="587.28" r="3.5"/><line class="doorleaf" x1="368.80" y1="587.28" x2="368.80" y2="657.58"/><path class="doorarc" d="M 298.50,587.28 A 70.30,70.30 0 0 0 368.80,657.58"/><circle class="hinge" cx="167.52" cy="587.28" r="3.5"/><line class="doorleaf" x1="167.52" y1="587.28" x2="167.52" y2="539.18"/><path class="doorarc" d="M 119.42,587.28 A 48.10,48.10 0 0 1 167.52,539.18"/><circle class="hinge" cx="376.20" cy="839.62" r="3.5"/><line class="doorleaf" x1="376.20" y1="839.62" x2="309.60" y2="839.62"/><path class="doorarc" d="M 376.20,906.22 A 66.60,66.60 0 0 1 309.60,839.62"/><text class="label" x="587.10" y="308.30">침실 3</text><text class="label" x="387.30" y="334.20">주방 / 식당</text><text class="label" x="194.90" y="245.40">침실 2</text><text class="label" x="194.90" y="420.04">욕실 1</text><text class="label" x="194.90" y="534.37">욕실 2</text><text class="label" x="531.60" y="665.35">거실</text><text class="label" x="235.60" y="706.94">침실 1</text><text class="label" x="629.65" y="522.90">현관</text><text class="small" x="531.60" y="863.30">거실 확장</text><text class="small" x="235.60" y="874.40">안방 발코니</text><text class="small" x="413.20" y="138.10">주방 확장 · 세탁/건조</text><rect x="95.00" y="90.00" width="588.30" height="829.17" fill="none" stroke="#111" stroke-width="4"/>
+<style>
+.dim { stroke:#596b75; stroke-width:1.4; fill:none; }
+.dimtxt { font:600 12px system-ui,sans-serif; fill:#43545d; text-anchor:middle; }
+.dimtxtv { font:600 11px system-ui,sans-serif; fill:#43545d; text-anchor:middle; }
+.tick { stroke:#596b75; stroke-width:1.4; }
+.audit { font:600 13px system-ui,sans-serif; fill:#43545d; }
+</style>
+
+<line class="dim" x1="95.00" y1="964.17" x2="683.30" y2="964.17"/>
+<line class="tick" x1="95.00" y1="957.17" x2="95.00" y2="971.17"/>
+<line class="tick" x1="683.30" y1="957.17" x2="683.30" y2="971.17"/>
+<text class="dimtxt" x="389.15" y="956.17">7950 mm = 10750 − 2800</text>
+<line class="dim" x1="738.30" y1="90.00" x2="738.30" y2="919.17"/>
+<text class="dimtxtv" transform="translate(760.30,504.58) rotate(90)">11205 mm</text>
+<line class="tick" x1="731.30" y1="90.00" x2="745.30" y2="90.00"/>
+<text class="dimtxtv" x="785.30" y="143.03">1325</text>
+<line class="tick" x1="731.30" y1="188.05" x2="745.30" y2="188.05"/>
+<text class="dimtxtv" x="785.30" y="277.34">2305</text>
+<line class="tick" x1="731.30" y1="358.62" x2="745.30" y2="358.62"/>
+<text class="dimtxtv" x="785.30" y="424.04">1660</text>
+<line class="tick" x1="731.30" y1="481.46" x2="745.30" y2="481.46"/>
+<text class="dimtxtv" x="785.30" y="538.37">1430</text>
+<line class="tick" x1="731.30" y1="587.28" x2="745.30" y2="587.28"/>
+<text class="dimtxtv" x="785.30" y="710.97">3235</text>
+<line class="tick" x1="731.30" y1="826.67" x2="745.30" y2="826.67"/>
+<text class="dimtxtv" x="785.30" y="876.92">1250</text>
+<line class="tick" x1="731.30" y1="919.17" x2="745.30" y2="919.17"/>
+<line class="dim" x1="57.00" y1="90.00" x2="57.00" y2="919.17"/>
+<line class="tick" x1="50.00" y1="90.00" x2="64.00" y2="90.00"/>
+<text class="dimtxtv" x="37.00" y="160.05">1785</text>
+<line class="tick" x1="50.00" y1="222.09" x2="64.00" y2="222.09"/>
+<text class="dimtxtv" x="37.00" y="338.38">3035</text>
+<line class="tick" x1="50.00" y1="446.68" x2="64.00" y2="446.68"/>
+<text class="dimtxtv" x="37.00" y="625.88">4735</text>
+<line class="tick" x1="50.00" y1="797.07" x2="64.00" y2="797.07"/>
+<text class="dimtxtv" x="37.00" y="862.12">1650</text>
+<line class="tick" x1="50.00" y1="919.17" x2="64.00" y2="919.17"/>
+<text class="audit" x="770" y="120">치수 검증</text>
+<text class="audit" x="770" y="142">폭: 7950 = 10750−2800  ✓</text>
+<text class="audit" x="770" y="164">깊이: 11205  ✓</text>
+<text class="audit" x="770" y="186">우측 체인:</text>
+<text class="audit" x="770" y="208">1325+2305+1660+1430</text>
+<text class="audit" x="770" y="230">+3235+1250 = 11205  ✓</text>
+<text class="audit" x="770" y="252">좌측 체인:</text>
+<text class="audit" x="770" y="274">1785+3035+4735+1650</text>
+<text class="audit" x="770" y="296">= 11205  ✓</text>
+<text class="audit" x="770" y="318"></text>
+<text class="audit" x="770" y="340">주의:</text>
+<text class="audit" x="770" y="362">문·창 폭/위치, 일부 발코니</text>
+<text class="audit" x="770" y="384">단차·내력벽 박스 위치는</text>
+<text class="audit" x="770" y="406">원본 이미지 기반 추정값.</text>
+</svg>

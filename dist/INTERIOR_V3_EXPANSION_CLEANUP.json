@@ -1,0 +1,2860 @@
+{
+  "schemaVersion": 2,
+  "units": "mm",
+  "name": "역삼푸르지오 · 발코니 경계 segment 판정",
+  "settings": {
+    "ceilingHeight": 2300,
+    "eyeHeight": 1600,
+    "playerRadius": 180,
+    "speed": 1800,
+    "wallThickness": 150,
+    "externalWallThickness": 200,
+    "doorHeight": 2050,
+    "windowSill": 850,
+    "windowHeight": 1300,
+    "snap": 50,
+    "labelHeight": 1500,
+    "floorThickness": 90,
+    "doorThickness": 35,
+    "windowFrame": 35,
+    "verificationFov": 90
+  },
+  "sourceDimensions": {
+    "overallWidthIncludingCommon": 10750,
+    "commonWidth": 2800,
+    "upperSegments": [
+      2800,
+      2650,
+      2600,
+      2700
+    ],
+    "lowerSegments": [
+      2800,
+      4150,
+      3800
+    ],
+    "rightSegments": [
+      1325,
+      2305,
+      1660,
+      1430,
+      3235,
+      1250
+    ],
+    "totalDepth": 11205,
+    "leftSegments": [
+      1785,
+      3035,
+      4735,
+      1650
+    ]
+  },
+  "bounds": [
+    0,
+    0,
+    7950,
+    11205
+  ],
+  "spawn": [
+    6050,
+    7000
+  ],
+  "rooms": [
+    {
+      "id": "bed3",
+      "name": "침실 3",
+      "rect": [
+        5300,
+        1785,
+        7950,
+        4820
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          7950,
+          1785
+        ],
+        [
+          5300,
+          1785
+        ],
+        [
+          5300,
+          4820
+        ],
+        [
+          7950,
+          4820
+        ]
+      ],
+      "labelPosition": [
+        6625,
+        3292.5
+      ],
+      "local": {
+        "origin": [
+          7950,
+          1785
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "kitchen",
+      "name": "주방 / 식당",
+      "rect": [
+        2700,
+        1785,
+        5300,
+        5300
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          5300,
+          1785
+        ],
+        [
+          2700,
+          1785
+        ],
+        [
+          2700,
+          5300
+        ],
+        [
+          5300,
+          5300
+        ]
+      ],
+      "labelPosition": [
+        4000,
+        3542.5
+      ],
+      "local": {
+        "origin": [
+          5300,
+          1785
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "bed2",
+      "name": "침실 2",
+      "rect": [
+        0,
+        1325,
+        2700,
+        3630
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          2700,
+          1325
+        ],
+        [
+          0,
+          1325
+        ],
+        [
+          0,
+          3630
+        ],
+        [
+          2700,
+          3630
+        ]
+      ],
+      "labelPosition": [
+        1350,
+        2477.5
+      ],
+      "local": {
+        "origin": [
+          2700,
+          1325
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "bath1",
+      "name": "욕실 1",
+      "rect": [
+        0,
+        3630,
+        2700,
+        5290
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          2700,
+          3630
+        ],
+        [
+          0,
+          3630
+        ],
+        [
+          0,
+          5290
+        ],
+        [
+          2700,
+          5290
+        ]
+      ],
+      "labelPosition": [
+        1350,
+        4460
+      ],
+      "local": {
+        "origin": [
+          2700,
+          3630
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "bath2",
+      "name": "욕실 2",
+      "rect": [
+        0,
+        5290,
+        2700,
+        6720
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          2700,
+          5290
+        ],
+        [
+          0,
+          5290
+        ],
+        [
+          0,
+          6720
+        ],
+        [
+          2700,
+          6720
+        ]
+      ],
+      "labelPosition": [
+        1350,
+        6005
+      ],
+      "local": {
+        "origin": [
+          2700,
+          5290
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "living",
+      "name": "거실",
+      "rect": [
+        3800,
+        6000,
+        7950,
+        9555
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          6500,
+          4820
+        ],
+        [
+          5300,
+          4820
+        ],
+        [
+          5300,
+          5300
+        ],
+        [
+          2700,
+          5300
+        ],
+        [
+          2700,
+          6720
+        ],
+        [
+          3800,
+          6720
+        ],
+        [
+          3800,
+          9555
+        ],
+        [
+          7950,
+          9555
+        ],
+        [
+          7950,
+          6400
+        ],
+        [
+          6500,
+          6400
+        ]
+      ],
+      "labelPosition": [
+        5875,
+        7775
+      ],
+      "local": {
+        "origin": [
+          7950,
+          6000
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "bed1",
+      "name": "침실 1",
+      "rect": [
+        0,
+        6720,
+        3800,
+        9955
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          3800,
+          6720
+        ],
+        [
+          0,
+          6720
+        ],
+        [
+          0,
+          9955
+        ],
+        [
+          3800,
+          9955
+        ]
+      ],
+      "labelPosition": [
+        1900,
+        8337.5
+      ],
+      "local": {
+        "origin": [
+          3800,
+          6720
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "entry",
+      "name": "현관",
+      "rect": [
+        6500,
+        5300,
+        7950,
+        6400
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          7950,
+          4820
+        ],
+        [
+          6500,
+          4820
+        ],
+        [
+          6500,
+          6400
+        ],
+        [
+          7950,
+          6400
+        ]
+      ],
+      "labelPosition": [
+        7225,
+        5850
+      ],
+      "local": {
+        "origin": [
+          7950,
+          5300
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED"
+    },
+    {
+      "id": "bal3",
+      "name": "확장 실내 3",
+      "rect": [
+        5900,
+        300,
+        7950,
+        1785
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          7950,
+          300
+        ],
+        [
+          5900,
+          300
+        ],
+        [
+          5900,
+          1785
+        ],
+        [
+          7950,
+          1785
+        ]
+      ],
+      "labelPosition": [
+        6925,
+        1142.5
+      ],
+      "local": {
+        "origin": [
+          7950,
+          300
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED",
+      "originalName": "발코니 3",
+      "usage": "interior",
+      "expanded": true,
+      "structureStatus": "STRUCTURE_UNCONFIRMED"
+    },
+    {
+      "id": "bal2",
+      "name": "확장 실내 2",
+      "rect": [
+        0,
+        0,
+        4550,
+        1325
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          5900,
+          0
+        ],
+        [
+          700,
+          0
+        ],
+        [
+          700,
+          275
+        ],
+        [
+          0,
+          275
+        ],
+        [
+          0,
+          1325
+        ],
+        [
+          2700,
+          1325
+        ],
+        [
+          2700,
+          1785
+        ],
+        [
+          4550,
+          1785
+        ],
+        [
+          4550,
+          1250
+        ],
+        [
+          5900,
+          1250
+        ]
+      ],
+      "labelPosition": [
+        2275,
+        662.5
+      ],
+      "local": {
+        "origin": [
+          4550,
+          0
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED",
+      "originalName": "발코니 2",
+      "usage": "interior",
+      "expanded": true,
+      "structureStatus": "STRUCTURE_UNCONFIRMED"
+    },
+    {
+      "id": "bal1",
+      "name": "확장 실내 1",
+      "rect": [
+        0,
+        9955,
+        7950,
+        11205
+      ],
+      "evidence": "label-zone-estimated",
+      "note": "벽 경계를 따른 검토용 room polygon. 미실측 추정 구간 포함.",
+      "polygon": [
+        [
+          7950,
+          9555
+        ],
+        [
+          3800,
+          9555
+        ],
+        [
+          3800,
+          9955
+        ],
+        [
+          0,
+          9955
+        ],
+        [
+          0,
+          11205
+        ],
+        [
+          7950,
+          11205
+        ]
+      ],
+      "labelPosition": [
+        3975,
+        10580
+      ],
+      "local": {
+        "origin": [
+          7950,
+          9955
+        ],
+        "u": [
+          -1,
+          0
+        ],
+        "v": [
+          0,
+          1
+        ]
+      },
+      "status": "ASSUMED",
+      "originalName": "발코니 1",
+      "usage": "interior",
+      "expanded": true,
+      "structureStatus": "STRUCTURE_UNCONFIRMED"
+    }
+  ],
+  "walls": [
+    {
+      "id": "west",
+      "name": "현관측 외벽",
+      "a": [
+        7950,
+        300
+      ],
+      "b": [
+        7950,
+        11205
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "wall",
+      "evidence": "image-estimated",
+      "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+      "openings": [
+        {
+          "id": "entry",
+          "type": "door",
+          "start": 4950,
+          "width": 1000,
+          "hinge": "start",
+          "swing": -90,
+          "open": true,
+          "evidence": "image-estimated",
+          "symbolEvidence": "visible",
+          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "status": "ASSUMED"
+        }
+      ],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "north-bed3",
+      "name": "발코니3 외측 기준",
+      "a": [
+        7950,
+        300
+      ],
+      "b": [
+        5900,
+        300
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "unresolved",
+      "evidence": "image-estimated",
+      "note": "원본 상단 선이 창호/난간인지 구별 불충분. 외측 기준선 후보.",
+      "openings": [],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "north",
+      "name": "발코니2 외측 기준",
+      "a": [
+        5900,
+        0
+      ],
+      "b": [
+        700,
+        0
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "unresolved",
+      "evidence": "image-estimated",
+      "note": "주방측 외창 기호만 반영. 침실2 발코니 외측은 난간/창호 구분 불충분하여 개구부를 생성하지 않음.",
+      "openings": [
+        {
+          "id": "w-kitchen-out",
+          "type": "window",
+          "start": 1350,
+          "width": 1750,
+          "evidence": "image-estimated",
+          "note": "유리/창호 기호 위치 추정. 창틀 분할·열림 방식 미확인. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "sourcePixelRange": [
+            [
+              244,
+              65
+            ],
+            [
+              290,
+              65
+            ]
+          ],
+          "status": "ASSUMED"
+        }
+      ],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "north-east-step",
+      "name": "우측 상단 단차",
+      "a": [
+        700,
+        0
+      ],
+      "b": [
+        700,
+        275
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "wall",
+      "evidence": "image-estimated",
+      "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+      "openings": [],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "north-east",
+      "name": "우측 상단 짧은 외벽",
+      "a": [
+        700,
+        275
+      ],
+      "b": [
+        0,
+        275
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "wall",
+      "evidence": "image-estimated",
+      "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+      "openings": [],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "east",
+      "name": "반대측 외벽",
+      "a": [
+        0,
+        275
+      ],
+      "b": [
+        0,
+        11205
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "wall",
+      "evidence": "dimension-constrained",
+      "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+      "openings": [],
+      "positionStatus": "PRINTED_CONSTRAINED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "south",
+      "name": "발코니1 외측 기준",
+      "a": [
+        7950,
+        11205
+      ],
+      "b": [
+        0,
+        11205
+      ],
+      "external": true,
+      "thickness": 200,
+      "kind": "unresolved",
+      "evidence": "image-estimated",
+      "note": "표기 11205 끝점 기준. 거실 앞 곡선 돌출은 반지름/치수 미상으로 아직 미모델링.",
+      "openings": [
+        {
+          "id": "w-living-out",
+          "type": "window",
+          "start": 300,
+          "width": 3500,
+          "evidence": "image-estimated",
+          "note": "유리/창호 기호 위치 추정. 창틀 분할·열림 방식 미확인. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "status": "ASSUMED"
+        },
+        {
+          "id": "w-bed1-out",
+          "type": "window",
+          "start": 4300,
+          "width": 2900,
+          "evidence": "image-estimated",
+          "note": "유리/창호 기호 위치 추정. 창틀 분할·열림 방식 미확인. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "sourcePixelRange": [
+            [
+              268,
+              358
+            ],
+            [
+              344,
+              358
+            ]
+          ],
+          "status": "ASSUMED"
+        }
+      ],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "bed3-east",
+      "name": "침실3 동측 벽",
+      "a": [
+        5300,
+        1785
+      ],
+      "b": [
+        5300,
+        5300
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "image-estimated",
+      "note": "기존 동측 문 제거. 주방 하부장 선은 벽으로 추가하지 않음.",
+      "openings": [],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "bed3-south",
+      "name": "침실3 거실측 벽",
+      "a": [
+        7950,
+        4820
+      ],
+      "b": [
+        5300,
+        4820
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "image-estimated",
+      "note": "문은 남측 우단. z4800은 이미지 추정이며 표기 치수 아님.",
+      "openings": [
+        {
+          "id": "door-bed3",
+          "type": "door",
+          "start": 1600,
+          "width": 1000,
+          "hinge": "end",
+          "swing": -90,
+          "open": true,
+          "evidence": "image-estimated",
+          "symbolEvidence": "visible",
+          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "status": "ASSUMED"
+        }
+      ],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "spine",
+      "name": "침실2·욕실1·욕실2 주방측 벽",
+      "a": [
+        2700,
+        1325
+      ],
+      "b": [
+        2700,
+        6720
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "dimension-constrained",
+      "note": "X=2650+2600. 욕실2 서측 문 제거. 시작 z1325는 상단 발코니 경계.",
+      "openings": [
+        {
+          "id": "door-bed2",
+          "type": "door",
+          "start": 1425,
+          "width": 850,
+          "hinge": "end",
+          "swing": -90,
+          "open": true,
+          "evidence": "image-estimated",
+          "symbolEvidence": "visible",
+          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "status": "ASSUMED"
+        },
+        {
+          "id": "door-bath1",
+          "type": "door",
+          "start": 3295,
+          "width": 650,
+          "hinge": "end",
+          "swing": -90,
+          "open": true,
+          "evidence": "image-estimated",
+          "symbolEvidence": "visible",
+          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "status": "ASSUMED"
+        }
+      ],
+      "positionStatus": "PRINTED_CONSTRAINED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "bed2-south",
+      "name": "침실2 / 욕실1 경계",
+      "a": [
+        2700,
+        3630
+      ],
+      "b": [
+        0,
+        3630
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "dimension-constrained",
+      "note": "z=1325+2305",
+      "openings": [],
+      "positionStatus": "PRINTED_CONSTRAINED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "bath-divider",
+      "name": "욕실1 / 욕실2 경계",
+      "a": [
+        2700,
+        5290
+      ],
+      "b": [
+        0,
+        5290
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "dimension-constrained",
+      "note": "z=1325+2305+1660",
+      "openings": [],
+      "positionStatus": "PRINTED_CONSTRAINED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "bed1-north",
+      "name": "침실1 거실·욕실2측 벽",
+      "a": [
+        3800,
+        6720
+      ],
+      "b": [
+        0,
+        6720
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "dimension-constrained",
+      "note": "욕실2는 침실1에서 진입. 욕실2 북향 개방 회전호 식별. 두 문 간 잔여 벽 길이 실측 필요.",
+      "openings": [
+        {
+          "id": "door-bed1",
+          "type": "door",
+          "start": 100,
+          "width": 950,
+          "hinge": "start",
+          "swing": -90,
+          "open": true,
+          "evidence": "image-estimated",
+          "symbolEvidence": "visible",
+          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
+          "status": "ASSUMED"
+        },
+        {
+          "id": "door-bath2",
+          "type": "door",
+          "start": 2820,
+          "width": 650,
+          "hinge": "start",
+          "swing": 90,
+          "open": true,
+          "evidence": "image-estimated",
+          "symbolEvidence": "visible",
+          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준. 회전호 x338–355px 및 힌지 x338px 재판독.",
+          "status": "ASSUMED",
+          "sourcePixelRange": [
+            [
+              338,
+              241
+            ],
+            [
+              355,
+              241
+            ]
+          ]
+        }
+      ],
+      "positionStatus": "PRINTED_CONSTRAINED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "bed1-west",
+      "name": "침실1 거실측 벽",
+      "a": [
+        3800,
+        6720
+      ],
+      "b": [
+        3800,
+        9955
+      ],
+      "external": false,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "dimension-constrained",
+      "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+      "openings": [],
+      "positionStatus": "PRINTED_CONSTRAINED",
+      "thicknessStatus": "ASSUMED"
+    },
+    {
+      "id": "north-step-exterior-return",
+      "name": "발코니3/2 단차",
+      "a": [
+        5900,
+        0
+      ],
+      "b": [
+        5900,
+        300
+      ],
+      "external": true,
+      "thickness": 150,
+      "kind": "wall",
+      "evidence": "image-estimated",
+      "note": "기존 외곽 0~300mm만 보존. 내력 여부 확정 아님.",
+      "openings": [],
+      "positionStatus": "ASSUMED",
+      "thicknessStatus": "ASSUMED"
+    }
+  ],
+  "extensions": [],
+  "orientation": "line2-mirrored-x",
+  "stage": "발코니 확장 검토",
+  "geometryStatus": "calibrated-to-source-not-surveyed",
+  "fixtures": [],
+  "review": {
+    "mirrorAxisX": 3975,
+    "mirrorFormula": "x_new = 7950 - x_old",
+    "sourceImage": {
+      "file": "floorplan.png",
+      "width": 538,
+      "height": 435
+    },
+    "overlay": {
+      "scale": 38.1,
+      "offsetX": -6642.3,
+      "offsetY": -2476.5,
+      "rotation": 0,
+      "opacity": 0.45
+    },
+    "notes": [
+      "벽 중심선 기준 해석. 도면 치수선이 내측/외측/중심선인지 미확인.",
+      "2호 라인 방향은 사용자 확인. 실제 시공 일치 여부는 미확인.",
+      "확장 전 원본 경계 복원 후보. 확장 설계는 STEP 3에서 검토.",
+      "균일 배율만 사용. 이미지 왜곡을 geometry 변경으로 맞추지 않음.",
+      "하단 발코니 곡면과 상단 창호 상세는 미확정. 직선 기준선을 점선으로 표시."
+    ],
+    "checks": [
+      {
+        "id": "door-bed3",
+        "space": "침실3",
+        "before": "동측 벽에 임의 문",
+        "sourceLine1": "남측 벽 우단 / 침실 안쪽으로 열림",
+        "result": "원본 회전호 식별",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      },
+      {
+        "id": "door-bed2",
+        "space": "침실2",
+        "before": "서측 출입",
+        "sourceLine1": "서측 하단 / 침실 안쪽으로 열림",
+        "result": "위치·회전호 식별",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      },
+      {
+        "id": "door-bath1",
+        "space": "욕실1",
+        "before": "서측 중앙 출입",
+        "sourceLine1": "서측 하단 / 욕실 안쪽으로 열림",
+        "result": "위치·회전호 식별",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      },
+      {
+        "id": "door-bath2",
+        "space": "욕실2",
+        "before": "서측 주방에서 출입",
+        "sourceLine1": "남측 / 침실1에서 진입, 욕실 안쪽 열림",
+        "result": "출입 관계 교정",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      },
+      {
+        "id": "door-bed1",
+        "space": "침실1",
+        "before": "상측 좌단 출입",
+        "sourceLine1": "상측 좌단 / 침실 안쪽 열림",
+        "result": "위치·회전호 식별",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      },
+      {
+        "id": "entry",
+        "space": "현관",
+        "before": "닫힌 개구부만 표현",
+        "sourceLine1": "서측 / 공용 전실로 열림",
+        "result": "회전호 식별",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      },
+      {
+        "id": "kitchen-open",
+        "space": "주방 / 식당",
+        "before": "거실과 개방 연결",
+        "sourceLine1": "독립 여닫이문 기호 없음 / 추가하지 않음",
+        "result": "개방 유지",
+        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "confirmed": false
+      }
+    ]
+  },
+  "dimensionEvidence": [
+    {
+      "id": "D01",
+      "kind": "printed-derived",
+      "value": 7950,
+      "formula": "10750 - 2800 = 7950",
+      "meaning": "세대 가로 기준폭",
+      "status": "도면 표기에서 계산 / 실측 아님"
+    },
+    {
+      "id": "D02",
+      "kind": "printed-chain",
+      "value": 11205,
+      "formula": "1325 + 2305 + 1660 + 1430 + 3235 + 1250 = 11205",
+      "meaning": "오른쪽 세로 치수 체인",
+      "status": "원본 표기 / 실측 아님"
+    },
+    {
+      "id": "D03",
+      "kind": "printed-chain",
+      "value": [
+        2650,
+        2600,
+        2700
+      ],
+      "meaning": "상단 가로 구간(공용부 제외)"
+    },
+    {
+      "id": "D04",
+      "kind": "printed-chain",
+      "value": [
+        4150,
+        3800
+      ],
+      "meaning": "하단 거실·침실1 가로 구간"
+    },
+    {
+      "id": "D05",
+      "kind": "printed-chain",
+      "value": [
+        1785,
+        3035,
+        4735,
+        1650
+      ],
+      "formula": "1785 + 3035 = 4820; + 4735 = 9555; + 1650 = 11205",
+      "meaning": "왼쪽 세로 치수 체인",
+      "status": "원본 표기 / 실측 아님"
+    }
+  ],
+  "floorPolygons": [
+    {
+      "id": "continuous-interior-floor-0",
+      "polygon": [
+        [
+          0,
+          275
+        ],
+        [
+          700,
+          275
+        ],
+        [
+          700,
+          0
+        ],
+        [
+          5900,
+          0
+        ],
+        [
+          5900,
+          300
+        ],
+        [
+          7950,
+          300
+        ],
+        [
+          7950,
+          11205
+        ],
+        [
+          0,
+          11205
+        ]
+      ],
+      "holes": [
+        [
+          [
+            4550,
+            1250
+          ],
+          [
+            4550,
+            1785
+          ],
+          [
+            5900,
+            1785
+          ],
+          [
+            5900,
+            1250
+          ]
+        ]
+      ],
+      "level": 0,
+      "levelStatus": "ASSUMED",
+      "mergedFrom": [
+        "floor-bed3",
+        "floor-kitchen",
+        "floor-bed2",
+        "floor-bath1",
+        "floor-bath2",
+        "floor-living",
+        "floor-bed1",
+        "floor-entry",
+        "floor-bal3",
+        "floor-bal2",
+        "floor-bal1"
+      ],
+      "status": "ASSUMED"
+    }
+  ],
+  "balconies": [
+    {
+      "id": "bal3",
+      "polygon": [
+        [
+          7950,
+          300
+        ],
+        [
+          5900,
+          300
+        ],
+        [
+          5900,
+          1785
+        ],
+        [
+          7950,
+          1785
+        ]
+      ],
+      "floorId": "floor-bal3",
+      "status": "EXPANDED_INTERIOR_CONCEPT",
+      "structureStatus": "STRUCTURE_UNCONFIRMED"
+    },
+    {
+      "id": "bal2",
+      "polygon": [
+        [
+          5900,
+          0
+        ],
+        [
+          700,
+          0
+        ],
+        [
+          700,
+          275
+        ],
+        [
+          0,
+          275
+        ],
+        [
+          0,
+          1325
+        ],
+        [
+          2700,
+          1325
+        ],
+        [
+          2700,
+          1785
+        ],
+        [
+          4550,
+          1785
+        ],
+        [
+          4550,
+          1250
+        ],
+        [
+          5900,
+          1250
+        ]
+      ],
+      "floorId": "floor-bal2",
+      "status": "EXPANDED_INTERIOR_CONCEPT",
+      "structureStatus": "STRUCTURE_UNCONFIRMED"
+    },
+    {
+      "id": "bal1",
+      "polygon": [
+        [
+          7950,
+          9555
+        ],
+        [
+          3800,
+          9555
+        ],
+        [
+          3800,
+          9955
+        ],
+        [
+          0,
+          9955
+        ],
+        [
+          0,
+          11205
+        ],
+        [
+          7950,
+          11205
+        ]
+      ],
+      "floorId": "floor-bal1",
+      "status": "EXPANDED_INTERIOR_CONCEPT",
+      "structureStatus": "STRUCTURE_UNCONFIRMED"
+    }
+  ],
+  "entrance": {
+    "openingId": "entry",
+    "inward": [
+      -1,
+      0
+    ],
+    "outsideDistance": 450,
+    "approachDepth": 1400,
+    "approachWidth": 1800
+  },
+  "geometryRevision": "INTERIOR_V3_EXPANSION_CLEANUP",
+  "baseGeometryId": "BASE_GEOMETRY_V1",
+  "calibration": {
+    "baselineId": "BASE_GEOMETRY_V1",
+    "date": "2026-09-07",
+    "method": "Visual comparison against reflected original; printed dimensions preserved; existing openings adjusted only.",
+    "sourceImage": "floorplan.png",
+    "sourcePixelOriginLine1": [
+      155,
+      65
+    ],
+    "mmPerPixel": 38.1,
+    "rotation": 0,
+    "pixelReadingUncertainty": 2,
+    "approximateMmReadingUncertainty": 76.2,
+    "changes": [
+      {
+        "id": "left-dimension-chain",
+        "status": "PRINTED_DERIVED",
+        "before": [
+          4800,
+          9550
+        ],
+        "after": [
+          4820,
+          9555
+        ],
+        "basis": "1785 + 3035 = 4820; 4820 + 4735 = 9555. Printed dimensions take priority over pixel residuals."
+      },
+      {
+        "id": "north-bed3",
+        "before": {
+          "id": "north-bed3",
+          "name": "발코니3 외측 기준",
+          "a": [
+            0,
+            500
+          ],
+          "b": [
+            2050,
+            500
+          ],
+          "external": true,
+          "thickness": 200,
+          "kind": "unresolved",
+          "evidence": "image-estimated",
+          "note": "원본 상단 선이 창호/난간인지 구별 불충분. 외측 기준선 후보.",
+          "openings": []
+        },
+        "after": {
+          "id": "north-bed3",
+          "name": "발코니3 외측 기준",
+          "a": [
+            0,
+            300
+          ],
+          "b": [
+            2050,
+            300
+          ],
+          "external": true,
+          "thickness": 200,
+          "kind": "unresolved",
+          "evidence": "image-estimated",
+          "note": "원본 상단 선이 창호/난간인지 구별 불충분. 외측 기준선 후보.",
+          "openings": []
+        },
+        "status": "ASSUMED",
+        "basis": "Visible top balcony boundary near source y=73 px; (73-65)*38.1≈305 mm. No new opening inferred."
+      },
+      {
+        "id": "west",
+        "before": {
+          "id": "west",
+          "name": "현관측 외벽",
+          "a": [
+            0,
+            500
+          ],
+          "b": [
+            0,
+            11205
+          ],
+          "external": true,
+          "thickness": 200,
+          "kind": "wall",
+          "evidence": "image-estimated",
+          "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+          "openings": [
+            {
+              "id": "entry",
+              "type": "door",
+              "start": 4750,
+              "width": 1150,
+              "hinge": "start",
+              "swing": 90,
+              "open": true,
+              "evidence": "image-estimated",
+              "symbolEvidence": "visible",
+              "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정."
+            }
+          ]
+        },
+        "after": {
+          "id": "west",
+          "name": "현관측 외벽",
+          "a": [
+            0,
+            300
+          ],
+          "b": [
+            0,
+            11205
+          ],
+          "external": true,
+          "thickness": 200,
+          "kind": "wall",
+          "evidence": "image-estimated",
+          "note": "중심선 위치는 표기 치수와 이미지 대조. 세부 치수는 미실측.",
+          "openings": [
+            {
+              "id": "entry",
+              "type": "door",
+              "start": 4950,
+              "width": 1000,
+              "hinge": "start",
+              "swing": 90,
+              "open": true,
+              "evidence": "image-estimated",
+              "symbolEvidence": "visible",
+              "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정."
+            }
+          ]
+        },
+        "status": "ASSUMED",
+        "basis": "Keep door top z=5250; visible source doorway y≈203–229 px, width≈991mm rounded to1000. North wall endpoint follows visible boundary."
+      },
+      {
+        "id": "glaze-bed1",
+        "status": "ASSUMED",
+        "before": {
+          "start": 180,
+          "width": 3300
+        },
+        "after": {
+          "start": 500,
+          "width": 2440
+        },
+        "sourcePixelRange": [
+          [
+            277,
+            328
+          ],
+          [
+            341,
+            328
+          ]
+        ],
+        "basis": "Visible glazing between solid wall returns; old opening overlapped solid end walls. X starts at 4150+500 mm; pixel-derived width rounded to10mm. Printed wall location z=9955 retained."
+      },
+      {
+        "id": "w-kitchen-out",
+        "status": "ASSUMED",
+        "before": {
+          "start": 1150,
+          "width": 1850
+        },
+        "after": {
+          "start": 1350,
+          "width": 1750
+        },
+        "sourcePixelRange": [
+          [
+            244,
+            65
+          ],
+          [
+            290,
+            65
+          ]
+        ],
+        "basis": "Top glazing break visible in the source. Pixel-derived horizontal range; not a new opening."
+      },
+      {
+        "id": "w-bed1-out",
+        "status": "ASSUMED",
+        "before": {
+          "start": 4550,
+          "width": 3050
+        },
+        "after": {
+          "start": 4300,
+          "width": 2900
+        },
+        "sourcePixelRange": [
+          [
+            268,
+            358
+          ],
+          [
+            344,
+            358
+          ]
+        ],
+        "basis": "Existing lower outer glazing fitted between visible posts. Straight reference retained; no new curved contour."
+      },
+      {
+        "id": "door-bath2",
+        "status": "ASSUMED",
+        "coordinateFrame": "line2",
+        "before": {
+          "start": 2050,
+          "width": 650,
+          "hinge": "end",
+          "swing": -90
+        },
+        "after": {
+          "start": 2820,
+          "width": 650,
+          "hinge": "start",
+          "swing": 90
+        },
+        "sourcePixelRange": [
+          [
+            338,
+            241
+          ],
+          [
+            355,
+            241
+          ]
+        ],
+        "basis": "Visible quarter-circle lies at source x338–355 with hinge x338. Previous location followed adjacent white fixture. Correct location and hinge together."
+      }
+    ],
+    "unresolved": [
+      "Wall dimension reference face/center is not specified.",
+      "Wall thickness, all opening widths/offsets and glazing type/height remain ASSUMED.",
+      "Lower curved balcony outline and unclear upper boundary remain unresolved; no new spaces/openings added.",
+      "Printed-constrained lines may differ from image by a few pixels; no nonuniform image distortion applied."
+    ],
+    "futurePolicy": "Keep BASE_GEOMETRY_V1.json immutable. Derive interior working copies with baseGeometryId; do not overwrite the baseline."
+  },
+  "baseSha256": "8d3cd8d89bc01608b20613d10c9790578b34d5bbc9f0a737d397063a493193c1",
+  "expansion": {
+    "status": "CONCEPT_STRUCTURE_PENDING",
+    "scope": [
+      "bal1",
+      "bal2",
+      "bal3"
+    ],
+    "policy": "미확인 부재는 검토 데이터에만 보존. 일반 렌더·충돌에는 없음. 실제 철거 가능 판정 아님. KEEP_STRUCTURE 확정 근거 없음.",
+    "removedGlazing": [
+      "glaze-bed3",
+      "glaze-kitchen",
+      "glaze-bed2",
+      "glaze-living",
+      "glaze-bed1"
+    ],
+    "retainedStructure": [
+      "north-step",
+      "bal1-divider",
+      "bal3-inner",
+      "shaft-bottom",
+      "shaft-top",
+      "shaft-right",
+      "bal2-kitchen",
+      "bal2-bed2",
+      "bal1-living",
+      "bal1-bed1"
+    ],
+    "floorLevelAssumption": "ASSUMED: 실제 단차 자료 없음. 기존 모든 실내/발코니 바닥을 0mm 동일 높이의 연속 면으로 합침. 원본 바닥 합집합 밖은 추가하지 않음."
+  },
+  "unknownStructureDisplay": "review-only",
+  "boundaryAssessment": {
+    "status": "DRAWING_REVIEW_NOT_DEMOLITION_APPROVAL",
+    "legend": {
+      "REMOVE_FOR_EXPANSION": "#d52d32",
+      "KEEP_STRUCTURE": "#111111",
+      "STRUCTURE_UNCONFIRMED": "#e78a19"
+    },
+    "note": "미확인 부재는 검토 데이터에만 보존. 일반 렌더·충돌에는 없음. 실제 철거 가능 판정 아님. KEEP_STRUCTURE 확정 근거 없음.",
+    "boundaries": [
+      {
+        "id": "north-step",
+        "name": "발코니3/2 단차",
+        "segments": [
+          {
+            "id": "north-step-segment-1",
+            "wallId": "north-step",
+            "a": [
+              5900,
+              300
+            ],
+            "b": [
+              5900,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가. 외곽 0~300mm는 확장 경계에서 제외하여 보존.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "bal1-divider",
+        "name": "발코니1 중간 경계",
+        "segments": [
+          {
+            "id": "bal1-divider-segment-1",
+            "wallId": "bal1-divider",
+            "a": [
+              3800,
+              9955
+            ],
+            "b": [
+              3800,
+              11205
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "bal3-inner",
+        "name": "침실3 ↔ 발코니3",
+        "segments": [
+          {
+            "id": "bal3-inner-segment-1",
+            "wallId": "bal3-inner",
+            "a": [
+              7950,
+              1785
+            ],
+            "b": [
+              7850,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal3-inner-segment-2",
+            "wallId": "bal3-inner",
+            "a": [
+              7850,
+              1785
+            ],
+            "b": [
+              6000,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 850,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "하부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed3",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal3-inner-segment-3",
+            "wallId": "bal3-inner",
+            "a": [
+              7850,
+              1785
+            ],
+            "b": [
+              6000,
+              1785
+            ],
+            "thickness": 150,
+            "y": 850,
+            "height": 1300,
+            "kind": "glass",
+            "classification": "REMOVE_FOR_EXPANSION",
+            "component": "창호",
+            "evidence": "원본의 얇은 평행 창호선. 기존 창호 범위만 모델에서 제외. 철거 승인 판단 아님.",
+            "sourceKind": "VISIBLE_GLAZING",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed3",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal3-inner-segment-4",
+            "wallId": "bal3-inner",
+            "a": [
+              7850,
+              1785
+            ],
+            "b": [
+              6000,
+              1785
+            ],
+            "thickness": 150,
+            "y": 2150,
+            "height": 150,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "상부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed3",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal3-inner-segment-5",
+            "wallId": "bal3-inner",
+            "a": [
+              6000,
+              1785
+            ],
+            "b": [
+              5900,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "shaft-bottom",
+        "name": "상단 박스 하단",
+        "segments": [
+          {
+            "id": "shaft-bottom-segment-1",
+            "wallId": "shaft-bottom",
+            "a": [
+              5900,
+              1785
+            ],
+            "b": [
+              4550,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "shaft-top",
+        "name": "상단 박스 상단",
+        "segments": [
+          {
+            "id": "shaft-top-segment-1",
+            "wallId": "shaft-top",
+            "a": [
+              5900,
+              1250
+            ],
+            "b": [
+              4550,
+              1250
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "shaft-right",
+        "name": "상단 박스 우측",
+        "segments": [
+          {
+            "id": "shaft-right-segment-1",
+            "wallId": "shaft-right",
+            "a": [
+              4550,
+              1250
+            ],
+            "b": [
+              4550,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "bal2-kitchen",
+        "name": "주방 ↔ 발코니2",
+        "segments": [
+          {
+            "id": "bal2-kitchen-segment-1",
+            "wallId": "bal2-kitchen",
+            "a": [
+              4550,
+              1785
+            ],
+            "b": [
+              4500,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-kitchen-segment-2",
+            "wallId": "bal2-kitchen",
+            "a": [
+              4500,
+              1785
+            ],
+            "b": [
+              2750,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 850,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "하부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-kitchen",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-kitchen-segment-3",
+            "wallId": "bal2-kitchen",
+            "a": [
+              4500,
+              1785
+            ],
+            "b": [
+              2750,
+              1785
+            ],
+            "thickness": 150,
+            "y": 850,
+            "height": 1300,
+            "kind": "glass",
+            "classification": "REMOVE_FOR_EXPANSION",
+            "component": "창호",
+            "evidence": "원본의 얇은 평행 창호선. 기존 창호 범위만 모델에서 제외. 철거 승인 판단 아님.",
+            "sourceKind": "VISIBLE_GLAZING",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-kitchen",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-kitchen-segment-4",
+            "wallId": "bal2-kitchen",
+            "a": [
+              4500,
+              1785
+            ],
+            "b": [
+              2750,
+              1785
+            ],
+            "thickness": 150,
+            "y": 2150,
+            "height": 150,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "상부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-kitchen",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-kitchen-segment-5",
+            "wallId": "bal2-kitchen",
+            "a": [
+              2750,
+              1785
+            ],
+            "b": [
+              2700,
+              1785
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "bal2-bed2",
+        "name": "침실2 ↔ 발코니2",
+        "segments": [
+          {
+            "id": "bal2-bed2-segment-1",
+            "wallId": "bal2-bed2",
+            "a": [
+              2700,
+              1325
+            ],
+            "b": [
+              2550,
+              1325
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-bed2-segment-2",
+            "wallId": "bal2-bed2",
+            "a": [
+              2550,
+              1325
+            ],
+            "b": [
+              200,
+              1325
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 850,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "하부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed2",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-bed2-segment-3",
+            "wallId": "bal2-bed2",
+            "a": [
+              2550,
+              1325
+            ],
+            "b": [
+              200,
+              1325
+            ],
+            "thickness": 150,
+            "y": 850,
+            "height": 1300,
+            "kind": "glass",
+            "classification": "REMOVE_FOR_EXPANSION",
+            "component": "창호",
+            "evidence": "원본의 얇은 평행 창호선. 기존 창호 범위만 모델에서 제외. 철거 승인 판단 아님.",
+            "sourceKind": "VISIBLE_GLAZING",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed2",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-bed2-segment-4",
+            "wallId": "bal2-bed2",
+            "a": [
+              2550,
+              1325
+            ],
+            "b": [
+              200,
+              1325
+            ],
+            "thickness": 150,
+            "y": 2150,
+            "height": 150,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "상부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed2",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal2-bed2-segment-5",
+            "wallId": "bal2-bed2",
+            "a": [
+              200,
+              1325
+            ],
+            "b": [
+              0,
+              1325
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "bal1-living",
+        "name": "거실 ↔ 발코니1",
+        "segments": [
+          {
+            "id": "bal1-living-segment-1",
+            "wallId": "bal1-living",
+            "a": [
+              7950,
+              9555
+            ],
+            "b": [
+              7850,
+              9555
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-living-segment-2",
+            "wallId": "bal1-living",
+            "a": [
+              7850,
+              9555
+            ],
+            "b": [
+              3900,
+              9555
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 850,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "하부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-living",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-living-segment-3",
+            "wallId": "bal1-living",
+            "a": [
+              7850,
+              9555
+            ],
+            "b": [
+              3900,
+              9555
+            ],
+            "thickness": 150,
+            "y": 850,
+            "height": 1300,
+            "kind": "glass",
+            "classification": "REMOVE_FOR_EXPANSION",
+            "component": "창호",
+            "evidence": "원본의 얇은 평행 창호선. 기존 창호 범위만 모델에서 제외. 철거 승인 판단 아님.",
+            "sourceKind": "VISIBLE_GLAZING",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-living",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-living-segment-4",
+            "wallId": "bal1-living",
+            "a": [
+              7850,
+              9555
+            ],
+            "b": [
+              3900,
+              9555
+            ],
+            "thickness": 150,
+            "y": 2150,
+            "height": 150,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "상부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-living",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-living-segment-5",
+            "wallId": "bal1-living",
+            "a": [
+              3900,
+              9555
+            ],
+            "b": [
+              3800,
+              9555
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      },
+      {
+        "id": "bal1-bed1",
+        "name": "안방 ↔ 발코니1",
+        "segments": [
+          {
+            "id": "bal1-bed1-segment-1",
+            "wallId": "bal1-bed1",
+            "a": [
+              3800,
+              9955
+            ],
+            "b": [
+              3300,
+              9955
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-bed1-segment-2",
+            "wallId": "bal1-bed1",
+            "a": [
+              3300,
+              9955
+            ],
+            "b": [
+              860,
+              9955
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 850,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "하부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed1",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-bed1-segment-3",
+            "wallId": "bal1-bed1",
+            "a": [
+              3300,
+              9955
+            ],
+            "b": [
+              860,
+              9955
+            ],
+            "thickness": 150,
+            "y": 850,
+            "height": 1300,
+            "kind": "glass",
+            "classification": "REMOVE_FOR_EXPANSION",
+            "component": "창호",
+            "evidence": "원본의 얇은 평행 창호선. 기존 창호 범위만 모델에서 제외. 철거 승인 판단 아님.",
+            "sourceKind": "VISIBLE_GLAZING",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed1",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-bed1-segment-4",
+            "wallId": "bal1-bed1",
+            "a": [
+              3300,
+              9955
+            ],
+            "b": [
+              860,
+              9955
+            ],
+            "thickness": 150,
+            "y": 2150,
+            "height": 150,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "상부벽 가정",
+            "evidence": "BASE가 공통 windowSill/windowHeight로 자동 생성. 도면에서 실재와 높이 확인 불가.",
+            "sourceKind": "GENERATED_HEIGHT_ASSUMPTION",
+            "heightStatus": "ASSUMED",
+            "openingId": "glaze-bed1",
+            "geometryExists": false,
+            "collisionExists": false
+          },
+          {
+            "id": "bal1-bed1-segment-5",
+            "wallId": "bal1-bed1",
+            "a": [
+              860,
+              9955
+            ],
+            "b": [
+              0,
+              9955
+            ],
+            "thickness": 150,
+            "y": 0,
+            "height": 2300,
+            "kind": "wall",
+            "classification": "STRUCTURE_UNCONFIRMED",
+            "component": "벽체/벽끝 구간",
+            "evidence": "원본의 벽체 또는 경계선. 구조재/비구조재 구분과 철거 가능 여부 확인 불가.",
+            "sourceKind": "DRAWING_BOUNDARY_UNCONFIRMED",
+            "heightStatus": "ASSUMED",
+            "openingId": null,
+            "geometryExists": false,
+            "collisionExists": false
+          }
+        ]
+      }
+    ]
+  },
+  "parentRevision": "INTERIOR_V2",
+  "sourceFloorZones": [
+    {
+      "id": "floor-bed3",
+      "roomId": "bed3",
+      "polygon": [
+        [
+          7950,
+          1785
+        ],
+        [
+          5300,
+          1785
+        ],
+        [
+          5300,
+          4820
+        ],
+        [
+          7950,
+          4820
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-kitchen",
+      "roomId": "kitchen",
+      "polygon": [
+        [
+          5300,
+          1785
+        ],
+        [
+          2700,
+          1785
+        ],
+        [
+          2700,
+          5300
+        ],
+        [
+          5300,
+          5300
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-bed2",
+      "roomId": "bed2",
+      "polygon": [
+        [
+          2700,
+          1325
+        ],
+        [
+          0,
+          1325
+        ],
+        [
+          0,
+          3630
+        ],
+        [
+          2700,
+          3630
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-bath1",
+      "roomId": "bath1",
+      "polygon": [
+        [
+          2700,
+          3630
+        ],
+        [
+          0,
+          3630
+        ],
+        [
+          0,
+          5290
+        ],
+        [
+          2700,
+          5290
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-bath2",
+      "roomId": "bath2",
+      "polygon": [
+        [
+          2700,
+          5290
+        ],
+        [
+          0,
+          5290
+        ],
+        [
+          0,
+          6720
+        ],
+        [
+          2700,
+          6720
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-living",
+      "roomId": "living",
+      "polygon": [
+        [
+          6500,
+          4820
+        ],
+        [
+          5300,
+          4820
+        ],
+        [
+          5300,
+          5300
+        ],
+        [
+          2700,
+          5300
+        ],
+        [
+          2700,
+          6720
+        ],
+        [
+          3800,
+          6720
+        ],
+        [
+          3800,
+          9555
+        ],
+        [
+          7950,
+          9555
+        ],
+        [
+          7950,
+          6400
+        ],
+        [
+          6500,
+          6400
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-bed1",
+      "roomId": "bed1",
+      "polygon": [
+        [
+          3800,
+          6720
+        ],
+        [
+          0,
+          6720
+        ],
+        [
+          0,
+          9955
+        ],
+        [
+          3800,
+          9955
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-entry",
+      "roomId": "entry",
+      "polygon": [
+        [
+          7950,
+          4820
+        ],
+        [
+          6500,
+          4820
+        ],
+        [
+          6500,
+          6400
+        ],
+        [
+          7950,
+          6400
+        ]
+      ],
+      "status": "ASSUMED"
+    },
+    {
+      "id": "floor-bal3",
+      "roomId": "bal3",
+      "polygon": [
+        [
+          7950,
+          300
+        ],
+        [
+          5900,
+          300
+        ],
+        [
+          5900,
+          1785
+        ],
+        [
+          7950,
+          1785
+        ]
+      ],
+      "status": "ASSUMED",
+      "usage": "interior",
+      "level": 0,
+      "levelStatus": "ASSUMED"
+    },
+    {
+      "id": "floor-bal2",
+      "roomId": "bal2",
+      "polygon": [
+        [
+          5900,
+          0
+        ],
+        [
+          700,
+          0
+        ],
+        [
+          700,
+          275
+        ],
+        [
+          0,
+          275
+        ],
+        [
+          0,
+          1325
+        ],
+        [
+          2700,
+          1325
+        ],
+        [
+          2700,
+          1785
+        ],
+        [
+          4550,
+          1785
+        ],
+        [
+          4550,
+          1250
+        ],
+        [
+          5900,
+          1250
+        ]
+      ],
+      "status": "ASSUMED",
+      "usage": "interior",
+      "level": 0,
+      "levelStatus": "ASSUMED"
+    },
+    {
+      "id": "floor-bal1",
+      "roomId": "bal1",
+      "polygon": [
+        [
+          7950,
+          9555
+        ],
+        [
+          3800,
+          9555
+        ],
+        [
+          3800,
+          9955
+        ],
+        [
+          0,
+          9955
+        ],
+        [
+          0,
+          11205
+        ],
+        [
+          7950,
+          11205
+        ]
+      ],
+      "status": "ASSUMED",
+      "usage": "interior",
+      "level": 0,
+      "levelStatus": "ASSUMED"
+    }
+  ],
+  "viewpoints": {
+    "living": {
+      "position": [
+        6000,
+        1600,
+        8000
+      ],
+      "target": [
+        6000,
+        1600,
+        11205
+      ]
+    },
+    "kitchen": {
+      "position": [
+        3700,
+        1600,
+        3400
+      ],
+      "target": [
+        3700,
+        1600,
+        0
+      ]
+    }
+  }
+}

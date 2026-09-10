@@ -1,23 +1,19 @@
-import {planSvg,validate} from './plan-core.js';
+import {assessmentSvg} from './assessment.js';
+import {planSvg,validate,entranceFrame,compileGeometry} from './plan-core.js';
 import {createShared3D} from './shared-3d.js';
-import {createFurnitureEditor} from './furniture-editor.js';
-import {drawEntryLayer} from './entry-layer.js';
-const $=s=>document.querySelector(s);const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
-const [baseRaw,expandedRaw,furnitureData,entryData]=await Promise.all([load('BASE_GEOMETRY_V1.json'),load('INTERIOR_V2_SVG_EXPANSION.json'),load('FURNITURE_V1.json'),load('ENTRY_INTERIOR_V1.json')]);
-const base=validate(baseRaw),expanded=validate(expandedRaw);let original=false,view='plan';const layers={entry:false,furniture:false};const viewer=createShared3D($('#scene'));let editor;
-const source=()=>original?base:expanded;const activeFurniture=()=>!original&&layers.furniture?(editor?editor.items():furnitureData.items):[];const activeEntry=()=>!original&&layers.entry?entryData.objects:[];
-function label(){if(original)return '원본';const on=[];if(layers.entry)on.push('중문');if(layers.furniture)on.push('가구');return on.length?`확장안 + ${on.join(' + ')}`:'확장안';}
-function drawPlan(){const src=source();$('#plan').innerHTML=planSvg(src,{showImage:false,orientationLabel:original?'BASE_GEOMETRY_V1 · 2호 라인':'INTERIOR_V2_SVG_EXPANSION · 2호 라인'});if(!original&&layers.entry)drawEntryLayer($('#plan'),entryData,{enabled:true});if(!original&&layers.furniture)editor?.draw();}
-function model(){viewer.update(source());viewer.setEntry(activeEntry());viewer.setFurniture(activeFurniture());}
-function refreshUI(){document.querySelectorAll('.layer-toggle').forEach(b=>b.classList.toggle('active',layers[b.dataset.layer]&&!original));$('#originalToggle').classList.toggle('active',original);$('#finalPreset').classList.toggle('active',!original&&layers.entry&&layers.furniture);const edit=!original&&layers.furniture;['rotateFurniture','resetFurniture','exportFurniture'].forEach(id=>$('#'+id).hidden=!edit);$('#furnitureInfo').hidden=!edit;const vn=view==='plan'?'2D':view==='overview'?'3D':'워크스루';$('#viewTitle').textContent=`${label()} · ${vn}`;$('#viewSubtitle').textContent=original?'BASE_GEOMETRY_V1':'INTERIOR_V2_SVG_EXPANSION';$('#active').textContent=`${label()} · ${vn}`;$('#note').textContent=original?'비교용 원본입니다. 설계 레이어는 잠시 숨깁니다.':layers.entry&&layers.furniture?'확장 geometry + 중문/현관 + 가구 레이어를 함께 표시합니다.':layers.entry?'확장 geometry 위에 중문·현관 수납 레이어를 표시합니다.':layers.furniture?'확장 geometry 위에 가구·가전 레이어를 표시합니다.':'확정된 확장 geometry만 표시합니다.';}
-function render(){drawPlan();model();refreshUI();}
-function setView(v){const changed=view!==v;view=v;document.querySelectorAll('.view').forEach(b=>b.classList.toggle('active',b.dataset.view===v));$('#plan').hidden=v!=='plan';$('#scene').hidden=v==='plan';render();if(changed){if(view==='overview')viewer.whole();if(view==='entry')viewer.entrance();}}
-document.querySelectorAll('.layer-toggle').forEach(b=>b.onclick=()=>{original=false;layers[b.dataset.layer]=!layers[b.dataset.layer];render();});
-$('#finalPreset').onclick=()=>{original=false;layers.entry=true;layers.furniture=true;render();};
-$('#originalToggle').onclick=()=>{original=!original;render();};
-document.querySelectorAll('.view').forEach(b=>b.onclick=()=>setView(b.dataset.view));
-$('#saveView').onclick=()=>{if(view==='plan'){const svg=$('#plan svg');if(!svg)return;const u=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml'}));const a=document.createElement('a');a.href=u;a.download=`${label()}-2D.svg`;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}else{const a=document.createElement('a');a.href=viewer.screenshot();a.download=`${label()}-${view}.png`;a.click();}};
-editor=createFurnitureEditor({host:$('#plan'),baseItems:furnitureData.items,onChange:items=>{if(!original&&layers.furniture)viewer.setFurniture(items);}});$('#rotateFurniture').onclick=()=>editor.rotate();$('#resetFurniture').onclick=()=>editor.reset();$('#exportFurniture').onclick=()=>editor.download();
-$('#evidence').textContent='중문 V1은 사용자가 제공한 레퍼런스의 구성(반투명 슬림 프레임 중문, 천장형 수납장, 오픈 니치, 전신거울)을 현재 현관 공간에 맞춘 1차안입니다. 정확한 제작 치수는 현장 실측 전까지 설계값입니다.';
-for(const id of ['shaft-bottom','shaft-top','shaft-right']){const w=expanded.walls.find(x=>x.id===id);if(w){const li=document.createElement('li');li.textContent=`${w.name||id} — 내력벽/구조체 유지`;$('#structures').append(li);}}
-setView('plan');
+const $=s=>document.querySelector(s);
+const [base,interior]=await Promise.all(['BASE_GEOMETRY_V1.json','INTERIOR_V2.json'].map(async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error('모델을 읽지 못했습니다.');return validate(await r.json());}));
+$('#planBefore').innerHTML=planSvg(base,{showImage:false,orientationLabel:'BASE_GEOMETRY_V1'});
+$('#planAfter').innerHTML=planSvg(interior,{showImage:false,orientationLabel:'INTERIOR_V2 · 황색 구조 미확인'});
+let left,right,syncing=false;
+function sync(to,s){if(!to||syncing)return;syncing=true;to.setCamera(s);syncing=false;}
+try{left=createShared3D($('#sceneBefore'),{onCameraChange:s=>sync(right,s)});right=createShared3D($('#sceneAfter'),{onCameraChange:s=>sync(left,s)});left.update(base);right.update(interior);left.whole();right.setCamera(left.cameraState());}catch(e){$('#evidence').textContent='3D 실행 실패: '+e.message;throw e;}
+let active='after';
+function single(){ $('#pair').classList.add('single');$('#before').hidden=active!=='before';$('#after').hidden=active!=='after';$('#active').textContent=active==='before'?'BEFORE · 원본 기준':'AFTER · 확장 검토';$('#toggle').textContent=active==='before'?'확장 후로 전환':'확장 전으로 전환';}
+$('#toggle').onclick=()=>{active=active==='after'?'before':'after';single();};
+$('#compare').onclick=()=>{$('#pair').classList.remove('single');$('#before').hidden=false;$('#after').hidden=false;$('#active').textContent='BEFORE / AFTER 나란히 비교';};
+$('#overview').onclick=()=>{left.whole();right.setCamera(left.cameraState());};$('#entry').onclick=()=>{left.entrance();right.setCamera(left.cameraState());};
+$('#assessmentPlan').innerHTML=assessmentSvg(interior);
+for(const boundary of interior.boundaryAssessment.boundaries){const removed=boundary.segments.filter(s=>s.classification==='REMOVE_FOR_EXPANSION'),unknown=boundary.segments.filter(s=>s.classification==='STRUCTURE_UNCONFIRMED');if(removed.length){const row=document.createElement('tr');for(const value of [boundary.name,'창호 '+removed.length+'구간',unknown.length+'개 segment 미확인 (벽끝·상부·하부 분리)']){const td=document.createElement('td');td.textContent=value;row.append(td);}$('#assessmentRows').append(row);}for(const s of boundary.segments){const li=document.createElement('li');li.textContent=boundary.name+' / '+s.component+' / '+s.classification+' — '+s.evidence+' [높이 '+s.y+'~'+(s.y+s.height)+'mm, ASSUMED]';$('#structures').append(li);}}
+$('#evidence').textContent='BASE_GEOMETRY_V1 원본 보존 · INTERIOR_V2 동일 좌표 · 내부 창호 5개 segment 제외 · 미확인 벽체는 윤곽선과 충돌 유지 · KEEP_STRUCTURE 확정 0건';
+$('#exportPair').onclick=async()=>{$('#compare').click();await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));const imgs=await Promise.all([left,right].map(v=>new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(i);i.src=v.screenshot();})));const c=document.createElement('canvas');c.width=1600;c.height=660;const x=c.getContext('2d');x.fillStyle='white';x.fillRect(0,0,1600,660);x.fillStyle='#243746';x.font='24px sans-serif';x.fillText('BEFORE · BASE_GEOMETRY_V1',20,35);x.fillText('AFTER · INTERIOR_V2',820,35);imgs.forEach((i,n)=>x.drawImage(i,n*800,55,800,550));x.font='18px sans-serif';x.fillText('동일 카메라 · 황색 선 STRUCTURE_UNCONFIRMED · 실측/구조 확인 전 검토',20,640);const a=document.createElement('a');a.href=c.toDataURL('image/png');a.download='INTERIOR_V2-3D-BEFORE-AFTER.png';a.click();};

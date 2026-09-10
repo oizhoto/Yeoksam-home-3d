@@ -1,0 +1,76 @@
+{
+  "revision": "INTERIOR_V3_EXPANSION_CLEANUP",
+  "checks": [
+    {
+      "name": "BASE_GEOMETRY_V1 unchanged",
+      "pass": true
+    },
+    {
+      "name": "INTERIOR_V3 created",
+      "pass": true
+    },
+    {
+      "name": "발코니1 floor merged",
+      "pass": true
+    },
+    {
+      "name": "발코니2 floor merged",
+      "pass": true
+    },
+    {
+      "name": "발코니3 floor merged",
+      "pass": true
+    },
+    {
+      "name": "Floor union preserves original area and hole",
+      "pass": true
+    },
+    {
+      "name": "제거 대상 내부 창호 frame 0개",
+      "pass": true
+    },
+    {
+      "name": "제거 대상 collision 0개",
+      "pass": true
+    },
+    {
+      "name": "duplicate wall segment 0개",
+      "pass": true
+    },
+    {
+      "name": "duplicate window/frame segment 0개",
+      "pass": true
+    },
+    {
+      "name": "collinear overlap / mixed-type duplicates 0개",
+      "pass": true
+    },
+    {
+      "name": "zero-length / tiny segment 0개 (1mm 이하)",
+      "pass": true
+    },
+    {
+      "name": "일반 AFTER 3D에서 STRUCTURE_UNCONFIRMED 가상 벽 0개",
+      "pass": true
+    },
+    {
+      "name": "외곽 창호는 유지",
+      "pass": true
+    },
+    {
+      "name": "현관 기준 거실 왼쪽 유지",
+      "pass": true
+    },
+    {
+      "name": "2D와 3D 동일 source geometry",
+      "pass": true
+    },
+    {
+      "name": "거실·주방 1600mm 시점 충돌 없음",
+      "pass": true
+    }
+  ],
+  "overlaps": [],
+  "parts": 45,
+  "openings": 9
+}
