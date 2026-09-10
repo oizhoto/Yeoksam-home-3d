@@ -7,15 +7,16 @@ import {drawKitchenLayer} from './kitchen-layer.js';
 const $=s=>document.querySelector(s);
 const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
 
-const [expandedRaw,furnitureData,fixedData]=await Promise.all([
+const [expandedRaw,furnitureData,fixedData,designData]=await Promise.all([
   load('INTERIOR_V2_SVG_EXPANSION.json'),
   load('FURNITURE_V1.json'),
-  load('FIXED_INTERIOR_V1.json')
+  load('FIXED_INTERIOR_V1.json'),load('DESIGN_V1.json')
 ]);
 
 const expanded=validate(expandedRaw);
 let view='plan';
 let furnitureOn=false;
+let designOn=false;
 const viewer=createShared3D($('#scene'));
 let editor;
 
@@ -35,6 +36,7 @@ function model(){
   viewer.setEntry(fixedData.entryObjects);
   viewer.setKitchen(fixedData.kitchenObjects);
   viewer.setFurniture(activeFurniture());
+  viewer.setDesign(designData,designOn);
 }
 
 function refreshUI(){
@@ -64,6 +66,9 @@ function setView(v){
 }
 
 $('#furnitureToggle').onclick=()=>{furnitureOn=!furnitureOn;render();};
+$('#designToggle').onclick=()=>{designOn=!designOn;$('#designToggle').classList.toggle('active',designOn);$('#designControls').hidden=!designOn;if(designOn)setView('overview');else render();};
+document.querySelectorAll('[data-design-camera]').forEach(b=>b.onclick=()=>{setView('entry');viewer.designCamera(designData.cameras[b.dataset.designCamera]);});
+$('#designLight').onchange=e=>viewer.setLightMode(e.target.value==='warm');
 document.querySelectorAll('.view').forEach(b=>b.onclick=()=>setView(b.dataset.view));
 
 $('#saveView').onclick=()=>{

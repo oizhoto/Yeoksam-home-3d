@@ -1,0 +1,24 @@
+{
+  "id": "DESIGN_V1_VIDEO_1521",
+  "baseline": "V7.5 BASELINE LOCKED",
+  "units": "mm",
+  "status": "PROVISIONAL_INTERIOR_ONLY",
+  "reference": "1521.mp4 (48.26s); visual interpretation, not measured construction drawings",
+  "notes": ["모든 설비 치수·위치는 시안이며 구조/배관/전기/점검공간 검토 전입니다.", "천장고 2300mm 원본 유지. 실링팬 날개 하단 여유는 제품별 설치기준 검토가 필요합니다.", "영상의 다른 집 구조 및 아일랜드는 복사하지 않습니다."],
+  "palette": {"ceiling":"#f2f1ec","upholstery":"#8d785c","curtain":"#aaa49a","metal":"#afb2b2","glass":"#cbdad8"},
+  "fans": [{"id":"fan-living","position":[6000,2160,8450],"radius":560}],
+  "airConditioners": [
+    {"id":"ac-living","position":[5900,2275,10250],"size":[1050,50,420]},
+    {"id":"ac-bed1","position":[1850,2275,9430],"size":[950,50,380]},
+    {"id":"ac-bed2","position":[1350,2275,650],"size":[950,50,380]},
+    {"id":"ac-bed3","position":[6800,2275,950],"size":[950,50,380]}
+  ],
+  "downlights": [[4400,2285,7150],[7450,2285,7150],[4400,2285,9600],[7450,2285,9600],[3350,2285,2300],[3350,2285,4250],[7150,2285,5610]],
+  "curtainBoxes": [{"id":"curtain-living","position":[5900,2260,10820],"size":[3850,80,180]}],
+  "cove": {"position":[7800,2200,8640],"size":[80,80,4100]},
+  "cameras": {
+    "living": {"position":[7500,1600,10450],"target":[5200,1200,7400],"fov":75},
+    "kitchen": {"position":[5600,1600,7100],"target":[3900,1300,3300],"fov":70},
+    "entry": {"position":[6250,1600,5550],"target":[6200,1300,8500],"fov":80}
+  }
+}

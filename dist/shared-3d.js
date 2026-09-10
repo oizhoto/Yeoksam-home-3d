@@ -3,6 +3,7 @@ import {CanvasRenderer} from './canvas-renderer.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
 import {compileGeometry,entranceFrame,blocked} from './plan-core.js';
 import {createFinishLibrary} from './materials.js';
+import {createDesignLayer} from './design-layer.js';
 export function createShared3D(host,{onCameraChange}={}){
 const scene=new THREE.Scene();scene.background=new THREE.Color('#e7edf0');let renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});host.dataset.renderer='WebGL';}catch{renderer=new CanvasRenderer();host.dataset.renderer='Canvas3D';}renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;if('toneMapping' in renderer){renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;}host.append(renderer.domElement);
 const finishes=createFinishLibrary(renderer);
@@ -92,5 +93,9 @@ function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;
 function cameraState(){return {position:camera.position.toArray(),quaternion:camera.quaternion.toArray(),target:orbit.target.toArray(),fov:camera.fov,mode,ceilingVisible:ceiling.visible};}
 function setCamera(s){if(JSON.stringify(cameraState())===JSON.stringify(s))return;mode=s.mode;orbit.enabled=mode==='overview';camera.position.fromArray(s.position);camera.quaternion.fromArray(s.quaternion);orbit.target.fromArray(s.target);camera.fov=s.fov;ceiling.visible=s.ceilingVisible;camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;dirtyCamera=true;}
 let lastCamera='';
-return {update,setFurniture,setEntry,setKitchen,entrance,whole,cameraState,setCamera,source:()=>config,compiled:()=>compiled,screenshot:()=>renderer.domElement.toDataURL('image/png')};
+let design;
+function setDesign(data,enabled=true){if(!design)design=createDesignLayer(scene,data);design.setVisible(enabled);labels.visible=!enabled;host.dataset.designEnabled=String(enabled);dirtyCamera=true;}
+function designCamera(p){mode='entry';orbit.enabled=false;document.exitPointerLock?.();camera.position.set(...p.position.map(mm));camera.lookAt(...p.target.map(mm));camera.fov=p.fov;ceiling.visible=true;camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;dirtyCamera=true;}
+function setLightMode(warm){design?.setWarm(warm);sun.color.set(warm?'#ffe0b0':'#ffffff');fill.color.set(warm?'#fff0db':'#edf4ff');host.dataset.lightMode=warm?'warm':'day';dirtyCamera=true;}
+return {update,setFurniture,setEntry,setKitchen,setDesign,designCamera,setLightMode,entrance,whole,cameraState,setCamera,source:()=>config,compiled:()=>compiled,screenshot:()=>renderer.domElement.toDataURL('image/png')};
 }
