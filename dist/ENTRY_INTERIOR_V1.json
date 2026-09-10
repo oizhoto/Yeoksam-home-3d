@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "units": "mm",
-  "name": "ENTRY_INTERIOR_V3",
+  "name": "FIXED_INTERIOR_V4",
   "basis": "INTERIOR_V2_SVG_EXPANSION",
-  "note": "Reference-inspired vestibule layer. Adds a full-height living-room-side solid wall behind the entry mirror, while keeping the screen door, side partition and cabinet. Does not modify BASE or expansion geometry.",
+  "note": "Existing entry layer extended with laundry turning door and master-bedroom wardrobe. Geometry remains unchanged. Laundry door follows the confirmed structural-block edge provisionally; wardrobe uses the 600 mm residual depth implied by the image-estimated bath2 door position.",
   "objects": [
     {
       "id": "entry-screen",
@@ -93,6 +93,47 @@
       ],
       "rotationY": 0,
       "style": "wall-mounted full-height mirror on vestibule-facing side of entry/living partition"
+    },
+    {
+      "id": "laundry-turning-door",
+      "type": "turningDoor",
+      "name": "워시타워 터닝도어",
+      "position": [
+        3625,
+        0,
+        1250
+      ],
+      "size": [
+        50,
+        2200,
+        1750
+      ],
+      "rotationY": 90,
+      "style": "slim insulated glazed turning door; provisional opening across kitchen-to-laundry passage",
+      "status": "ASSUMED",
+      "evidence": "geometry-derived-provisional",
+      "note": "Confirmed structural block begins at x=4550,z=1250. Door spans the adjacent passage x=2750..4500 along z=1250; verify visually before final lock."
+    },
+    {
+      "id": "master-wardrobe",
+      "type": "wardrobe",
+      "name": "안방 붙박이장",
+      "position": [
+        300,
+        0,
+        8337.5
+      ],
+      "size": [
+        600,
+        2300,
+        3235
+      ],
+      "rotationY": 0,
+      "style": "Livart-inspired flat matte-white full-height built-in wardrobe",
+      "brandReference": "Hyundai Livart style reference; simplified parametric model, not vendor 3D asset",
+      "status": "ASSUMED",
+      "evidence": "user-intent-plus-door-derived-depth",
+      "note": "Depth 600 mm equals the image-estimated residual wall depth from the corrected bath2 door end to the room-side wall. Run fills the x=0 side wall from z=6720 to z=9955."
     }
   ]
 }

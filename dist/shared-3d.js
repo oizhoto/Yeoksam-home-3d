@@ -37,7 +37,7 @@ function renderEntry(){
  clear(entryLayer);
  for(const o of entryItems){
   const [w,h,d]=o.size,[x,y,z]=o.position;
-  if(o.type==='screenDoor'){
+  if(o.type==='screenDoor'||o.type==='turningDoor'){
    const frameMat=new THREE.MeshStandardMaterial({color:'#e8ecec',roughness:.55,metalness:.18});
    const glassMat=new THREE.MeshPhysicalMaterial({color:'#dfecee',transparent:true,opacity:.42,roughness:.78,metalness:0,side:THREE.DoubleSide});
    const group=new THREE.Group();
@@ -45,11 +45,16 @@ function renderEntry(){
    const bar=34;
    for(const zz of [-d/2+bar/2,d/2-bar/2]){const m=new THREE.Mesh(new THREE.BoxGeometry(mm(w+18),mm(h),mm(bar)),frameMat);m.position.set(0,mm(h/2),mm(zz));group.add(m);}
    for(const yy of [bar/2,h-bar/2]){const m=new THREE.Mesh(new THREE.BoxGeometry(mm(w+18),mm(bar),mm(d)),frameMat);m.position.set(0,mm(yy),0);group.add(m);}
-   group.position.set(mm(x),mm(y),mm(z));entryLayer.add(group);
+   group.position.set(mm(x),mm(y),mm(z));group.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);entryLayer.add(group);
   }else if(o.type==='cabinet'){
    const mat=new THREE.MeshStandardMaterial({color:'#e9e7e1',roughness:.82});
    const mesh=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(d)),mat);mesh.position.set(mm(x),mm(y+h/2),mm(z));mesh.castShadow=true;mesh.receiveShadow=true;entryLayer.add(mesh);
    if(o.niche){const nm=new THREE.MeshStandardMaterial({color:'#c9c2b6',roughness:.88});const niche=new THREE.Mesh(new THREE.BoxGeometry(mm(w*.82),mm(o.niche.height),mm(d+8)),nm);niche.position.set(mm(x),mm(o.niche.y+o.niche.height/2),mm(z+d*.02));entryLayer.add(niche);}
+  }else if(o.type==='wardrobe'){
+   const mat=new THREE.MeshStandardMaterial({color:'#efede7',roughness:.8});
+   const mesh=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(d)),mat);mesh.position.set(mm(x),mm(y+h/2),mm(z));mesh.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);mesh.castShadow=true;mesh.receiveShadow=true;entryLayer.add(mesh);
+   const panels=Math.max(2,Math.round(d/600));
+   for(let i=1;i<panels;i++){const seam=new THREE.Mesh(new THREE.BoxGeometry(mm(w+4),mm(h*.96),.008),new THREE.MeshStandardMaterial({color:'#aaa59d',roughness:.9}));seam.position.set(0,0,mm(-d/2+d*i/panels));mesh.add(seam);}
   }else if(o.type==='partitionWall'){
    const mat=finishes.wall.clone();mat.userData.owned=true;
    const mesh=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(d)),mat);mesh.position.set(mm(x),mm(y+h/2),mm(z));mesh.castShadow=true;mesh.receiveShadow=true;entryLayer.add(mesh);
