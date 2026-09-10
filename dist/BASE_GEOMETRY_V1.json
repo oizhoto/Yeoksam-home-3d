@@ -954,28 +954,28 @@
         {
           "id": "door-bed2",
           "type": "door",
-          "start": 1425,
+          "start": 1375,
           "width": 850,
           "hinge": "end",
           "swing": -90,
           "open": true,
-          "evidence": "image-estimated",
+          "evidence": "user-reviewed-overlay-confirmed",
           "symbolEvidence": "visible",
-          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
-          "status": "ASSUMED"
+          "note": "V7.5 baseline 확정: 사용자 overlay 검토 완료. 침실2 문은 기존 start=1425에서 도면 좌표 기준 50mm 위로 이동하여 start=1375. 별도 사용자 지시 없이는 수정 금지.",
+          "status": "BASELINE_LOCKED"
         },
         {
           "id": "door-bath1",
           "type": "door",
-          "start": 3295,
+          "start": 3195,
           "width": 650,
           "hinge": "end",
           "swing": -90,
           "open": true,
-          "evidence": "image-estimated",
+          "evidence": "user-reviewed-overlay-confirmed",
           "symbolEvidence": "visible",
-          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
-          "status": "ASSUMED"
+          "note": "V7.5 baseline 확정: 사용자 overlay 검토 완료. start=3195, width=650, hinge=end, swing=-90. 별도 사용자 지시 없이는 수정 금지.",
+          "status": "BASELINE_LOCKED"
         }
       ],
       "positionStatus": "PRINTED_CONSTRAINED",
@@ -1054,15 +1054,15 @@
         {
           "id": "door-bath2",
           "type": "door",
-          "start": 2550,
+          "start": 2150,
           "width": 650,
-          "hinge": "start",
-          "swing": 90,
+          "hinge": "end",
+          "swing": -90,
           "open": true,
-          "evidence": "image-estimated-user-reviewed",
+          "evidence": "user-reviewed-overlay-confirmed",
           "symbolEvidence": "visible",
-          "note": "원본 평면 overlay 재검토 후 욕실2 문을 외벽에서 더 이격되도록 보정. bed1-north 벽 a=(3800,6720)→b=(0,6720) 기준 start=2550, width=650으로 개구부 끝에서 x=0측 벽까지 약 600mm가 남도록 설정. 실측 전 추정값.",
-          "status": "ASSUMED",
+          "note": "V7.5 baseline 확정: 사용자 overlay 검토 완료. start=2150, width=650, hinge=end, swing=-90. 별도 사용자 지시 없이는 수정 금지.",
+          "status": "BASELINE_LOCKED",
           "sourcePixelRange": [
             [
               338,
@@ -1342,7 +1342,7 @@
   "extensions": [],
   "orientation": "line2-mirrored-x",
   "stage": "평면·3D 동일 geometry 검증",
-  "geometryStatus": "calibrated-to-source-not-surveyed-user-reviewed",
+  "geometryStatus": "calibrated-to-source-not-surveyed-R2",
   "fixtures": [],
   "review": {
     "mirrorAxisX": 3975,
@@ -1906,7 +1906,7 @@
     "approachDepth": 1400,
     "approachWidth": 1800
   },
-  "geometryRevision": "BASE_GEOMETRY_V1_R1_BATH2_DOOR",
+  "geometryRevision": "BASELINE_V7_5_LOCKED",
   "baseGeometryId": "BASE_GEOMETRY_V1",
   "calibration": {
     "baselineId": "BASE_GEOMETRY_V1",
@@ -2129,6 +2129,32 @@
           "swing": 90
         },
         "basis": "Source-plan overlay review showed the prior opening too close to the x=0 side wall. Adjusted so the opening end leaves approximately 600 mm to the side wall; not survey-measured."
+      },
+      {
+        "id": "door-bath1-R2",
+        "status": "ASSUMED",
+        "before": {
+          "start": 3295,
+          "width": 650
+        },
+        "after": {
+          "start": 3195,
+          "width": 650
+        },
+        "basis": "사용자 overlay 검토: 공용욕실 출입문을 화면 기준 약간 위로. 100 mm 임시 보정."
+      },
+      {
+        "id": "door-bath2-R2",
+        "status": "ASSUMED",
+        "before": {
+          "start": 2550,
+          "width": 650
+        },
+        "after": {
+          "start": 2450,
+          "width": 650
+        },
+        "basis": "사용자 overlay 검토: 안방욕실 출입문을 화면 기준 약간 오른쪽으로. 100 mm 임시 보정."
       }
     ],
     "unresolved": [
@@ -2137,6 +2163,12 @@
       "Lower curved balcony outline and unclear upper boundary remain unresolved; no new spaces/openings added.",
       "Printed-constrained lines may differ from image by a few pixels; no nonuniform image distortion applied."
     ],
-    "futurePolicy": "BASE geometry may be corrected when source-plan overlay review identifies an error. Only evidence-backed corrections should be applied; unrelated geometry remains unchanged."
+    "futurePolicy": "BASE는 기준 geometry이지만 overlay 검증으로 오류가 확인되면 해당 요소만 보정한다. 관련 없는 geometry는 유지한다.",
+    "revision": "R2"
+  },
+  "baselinePolicy": {
+    "locked": true,
+    "lockedAtVersion": "V7.5",
+    "rule": "Geometry/expansion/fixed architectural elements are immutable unless the user explicitly requests a structural change."
   }
 }

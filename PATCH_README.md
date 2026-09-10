@@ -1,20 +1,14 @@
-# V7.4 문 위치 검토 후보
+# V7.5 BASELINE LOCK PATCH
 
-V7.3 유지 + 침실2 문만 도면 geometry 기준 50 mm 위로 이동.
+이 패치는 V7.4 overlay 검토 결과를 실제 geometry source에 확정 반영하고 baseline을 잠급니다.
 
-침실2:
-- door-bed2 start 1425 -> 1375
-- width 850 유지
-- hinge=end 유지
-- swing=-90 유지
-- 여기서 50 mm는 화면 픽셀이 아니라 모델/도면 좌표계의 실제 50 mm.
+변경:
+- 침실2 문 start=1375 확정
+- 욕실1 문 start=3195 확정
+- 욕실2 문 start=2150, hinge=end, swing=-90 확정
+- BASE / apartment.config / expansion에 동일하게 동기화
+- review.js의 임시 runtime door override 제거
+- PROJECT_STATE.md 추가
+- geometry/확장/중문/터닝도어/확정 문은 사용자 명시 요청 없이는 수정 금지
 
-욕실1:
-- start 3195 유지
-
-욕실2:
-- start 2150 유지
-- hinge=end / swing=-90 유지
-
-원본 geometry JSON은 아직 확정 수정하지 않음.
-검증 화면 revision: DOOR_REVIEW_CANDIDATE_V7_4
+이후 Astra/ChatGPT 모두 GitHub main + PROJECT_STATE.md를 기준으로 작업합니다.

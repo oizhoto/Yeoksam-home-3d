@@ -856,28 +856,28 @@
         {
           "id": "door-bed2",
           "type": "door",
-          "start": 1425,
+          "start": 1375,
           "width": 850,
           "hinge": "end",
           "swing": -90,
           "open": true,
-          "evidence": "image-estimated",
+          "evidence": "user-reviewed-overlay-confirmed",
           "symbolEvidence": "visible",
-          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
-          "status": "ASSUMED"
+          "note": "V7.5 baseline 확정: 사용자 overlay 검토 완료. 침실2 문은 기존 start=1425에서 도면 좌표 기준 50mm 위로 이동하여 start=1375. 별도 사용자 지시 없이는 수정 금지.",
+          "status": "BASELINE_LOCKED"
         },
         {
           "id": "door-bath1",
           "type": "door",
-          "start": 3295,
+          "start": 3195,
           "width": 650,
           "hinge": "end",
           "swing": -90,
           "open": true,
-          "evidence": "image-estimated",
+          "evidence": "user-reviewed-overlay-confirmed",
           "symbolEvidence": "visible",
-          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준.",
-          "status": "ASSUMED"
+          "note": "V7.5 baseline 확정: 사용자 overlay 검토 완료. start=3195, width=650, hinge=end, swing=-90. 별도 사용자 지시 없이는 수정 금지.",
+          "status": "BASELINE_LOCKED"
         }
       ],
       "positionStatus": "PRINTED_CONSTRAINED",
@@ -956,15 +956,15 @@
         {
           "id": "door-bath2",
           "type": "door",
-          "start": 2550,
+          "start": 2150,
           "width": 650,
-          "hinge": "start",
-          "swing": 90,
+          "hinge": "end",
+          "swing": -90,
           "open": true,
-          "evidence": "image-estimated",
+          "evidence": "user-reviewed-overlay-confirmed",
           "symbolEvidence": "visible",
-          "note": "출입 방향·문 폭은 기존값 유지. 사용자 제공 원본 평면 재검토에 따라 벽 끝에 과도하게 붙어 보이던 위치만 보정. bed1-north 선상 반대측 끝까지 약 600mm 잔여벽을 두는 image-estimated 값이며 실측 전 ASSUMED.",
-          "status": "ASSUMED"
+          "note": "V7.5 baseline 확정: 사용자 overlay 검토 완료. start=2150, width=650, hinge=end, swing=-90. 별도 사용자 지시 없이는 수정 금지.",
+          "status": "BASELINE_LOCKED"
         }
       ],
       "positionStatus": "PRINTED_CONSTRAINED",
@@ -1141,7 +1141,7 @@
   "extensions": [],
   "orientation": "line2-mirrored-x",
   "stage": "평면·3D 동일 geometry 검증",
-  "geometryStatus": "calibrated-to-source-not-surveyed",
+  "geometryStatus": "expanded-from-BASE-R2-not-surveyed",
   "fixtures": [],
   "review": {
     "mirrorAxisX": 3975,
@@ -1599,7 +1599,7 @@
     "approachDepth": 1400,
     "approachWidth": 1800
   },
-  "geometryRevision": "INTERIOR_V2_SVG_EXPANSION",
+  "geometryRevision": "BASELINE_V7_5_LOCKED",
   "baseGeometryId": "BASE_GEOMETRY_V1",
   "calibration": {
     "baselineId": "BASE_GEOMETRY_V1",
@@ -1916,5 +1916,10 @@
       "action": "MERGE_BY_SVG",
       "basis": "USER_SVG"
     }
-  ]
+  ],
+  "baselinePolicy": {
+    "locked": true,
+    "lockedAtVersion": "V7.5",
+    "rule": "Geometry/expansion/fixed architectural elements are immutable unless the user explicitly requests a structural change."
+  }
 }

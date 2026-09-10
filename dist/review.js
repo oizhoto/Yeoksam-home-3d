@@ -4,53 +4,11 @@ const $=s=>document.querySelector(s);let config,previous,assumptions;
 try{[config,previous,assumptions]=await Promise.all(['apartment.config.json','previous.config.json','assumptions.json'].map(async f=>{const r=await fetch(f,{cache:"no-store"});if(!r.ok)throw Error('설정 파일을 읽지 못했습니다.');return r.json();}));validate(config);}catch(e){$('#drawing').textContent=e.message;throw e;}
 
 /*
- * V7.1 TEMPORARY DOOR REVIEW CANDIDATE
- * 원본 JSON 자체는 아직 확정 수정하지 않는다.
- * review 화면에서만 사용자 캡처 기준 후보 좌표를 적용하고,
- * overlay 확인 후 OK를 받으면 원본 geometry에 최종 반영한다.
+ * V7.5 BASELINE LOCKED
+ * 문 위치 후보 runtime override는 제거했다.
+ * review 화면은 apartment.config.json의 확정 baseline 좌표를 그대로 사용한다.
+ * geometry/확장/고정 건축요소는 사용자 명시 지시 없이는 수정하지 않는다.
  */
-function applyDoorReviewCandidate(c){
-  const bed2Wall=c.walls.find(w=>w.id==='spine');
-  const bed2=bed2Wall?.openings.find(o=>o.id==='door-bed2');
-  if(bed2){
-    // spine에서 start 감소 = 도면 좌표 z 감소 = 화면 위쪽으로 50 mm
-    bed2.start=1375;
-    bed2.evidence='user-reviewed-image-estimated';
-    bed2.status='ASSUMED';
-    bed2.note='V7.4 검토 후보: 침실2 문을 도면 geometry 기준 50mm 위로 이동. 기존 start=1425 -> 1375. 폭/힌지/열림 방향 유지.';
-  }
-  const bath1Wall=c.walls.find(w=>w.id==='spine');
-  const bath1=bath1Wall?.openings.find(o=>o.id==='door-bath1');
-  if(bath1){
-    // spine: z가 아래로 증가하므로 start 감소 = 화면에서 위쪽 이동
-    bath1.start=3195;
-    bath1.width=650;
-    bath1.hinge='end';
-    bath1.swing=-90;
-    bath1.evidence='user-reviewed-image-estimated';
-    bath1.status='ASSUMED';
-    bath1.note='V7.1 검토 후보: 원본 overlay 기준 욕실1 문을 기존보다 약 100mm 위로 이동. 폭/힌지/열림 방향은 유지. 실측 전.';
-  }
-
-  const bath2Wall=c.walls.find(w=>w.id==='bed1-north');
-  const bath2=bath2Wall?.openings.find(o=>o.id==='door-bath2');
-  if(bath2){
-    // bed1-north: a=(3800,6720) -> b=(0,6720).
-    // start 감소 = 화면 오른쪽(x 증가)으로 이동.
-    bath2.start=2150;
-    bath2.width=650;
-    // 사용자 지시: 좌우반전
-    bath2.hinge='end';
-    bath2.swing=-90;
-    bath2.evidence='user-reviewed-image-estimated';
-    bath2.status='ASSUMED';
-    bath2.note='V7.1 검토 후보: 욕실2 문을 화면 오른쪽으로 추가 약 150mm 이동하고 좌우반전 유지. bed1-north 기준 start=2150, hinge=end, swing=-90. 실측 전.';
-  }
-
-  c.geometryRevision='DOOR_REVIEW_CANDIDATE_V7_4';
-  return c;
-}
-config=applyDoorReviewCandidate(config);
 validate(config);
 
 let scene3d;try{scene3d=createShared3D($('#shared3d'));$('#threeLoading').hidden=true;}catch(e){$('#threeLoading').textContent='WebGL 실행 실패: '+e.message;}
