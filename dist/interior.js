@@ -49,7 +49,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.23 · 실제 싱크 상판 타공 + 디테일 하부장/식세기 + 욕실2 수건 + 벽 1/2 보기 옵션이 적용됩니다.';
+  $('#note').textContent='V8.24 · 확정 마감재 질감 개선 검토안 · 기존 V8.23 구조와 인테리어 배치 유지.';
 }
 
 function render(){drawPlan();model();refreshUI();}

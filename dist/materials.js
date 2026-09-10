@@ -34,110 +34,73 @@ function seeded(seed=1){
   return ()=>((s=(1664525*s+1013904223)>>>0)/4294967296);
 }
 
-function canvasTexture(size, draw){
-  const c=document.createElement('canvas'); c.width=c.height=size;
-  const ctx=c.getContext('2d'); draw(ctx,size);
-  const t=new THREE.CanvasTexture(c);
-  t.colorSpace=THREE.SRGBColorSpace;
-  t.wrapS=t.wrapT=THREE.RepeatWrapping;
-  t.anisotropy=4;
-  return t;
+
+// Seamless, seeded mineral fields. Coordinates are in meters, not screen pixels.
+// This is a restrained procedural approximation, not measured manufacturer PBR.
+function periodicNoise(seed, nx, ny){
+  const random=seeded(seed), values=Array.from({length:nx*ny},()=>random()*2-1);
+  return (u,v)=>{
+    const x=u*nx,y=v*ny,ix=Math.floor(x),iy=Math.floor(y);
+    const sx=x-ix,sy=y-iy,tx=sx*sx*(3-2*sx),ty=sy*sy*(3-2*sy);
+    const at=(a,b)=>values[((b%ny+ny)%ny)*nx+(a%nx+nx)%nx];
+    const a=at(ix,iy)*(1-tx)+at(ix+1,iy)*tx;
+    const b=at(ix,iy+1)*(1-tx)+at(ix+1,iy+1)*tx;
+    return a*(1-ty)+b*ty;
+  };
 }
 
-function grayTexture(size, draw){
-  const c=document.createElement('canvas'); c.width=c.height=size;
-  const ctx=c.getContext('2d'); draw(ctx,size);
-  const t=new THREE.CanvasTexture(c);
-  t.wrapS=t.wrapT=THREE.RepeatWrapping;
-  t.anisotropy=4;
-  return t;
-}
-
-function wallpaperMap(){
-  // Slightly warm neutral grey derived from the supplied installed-room reference,
-  // lifted to account for photographic exposure and warm indoor lighting.
-  return canvasTexture(512,(ctx,n)=>{
-    const rnd=seeded(210213);
-    ctx.fillStyle='#deddd7'; ctx.fillRect(0,0,n,n);
-    // very low-contrast plaster mottling
-    for(let i=0;i<1800;i++){
-      const a=.012+rnd()*.028, v=195+Math.round(rnd()*42);
-      ctx.fillStyle=`rgba(${v},${v},${Math.max(180,v-4)},${a})`;
-      const r=.8+rnd()*4.5; ctx.beginPath(); ctx.arc(rnd()*n,rnd()*n,r,0,Math.PI*2); ctx.fill();
-    }
-    // soft irregular trowel streaks, no sparkle/pearl
-    ctx.lineWidth=1;
-    for(let i=0;i<95;i++){
-      const y=rnd()*n; ctx.strokeStyle=`rgba(120,120,116,${.015+rnd()*.018})`;
-      ctx.beginPath(); ctx.moveTo(rnd()*n*.2,y); ctx.bezierCurveTo(n*.3,y+rnd()*10-5,n*.7,y+rnd()*10-5,n,y+rnd()*7-3.5); ctx.stroke();
-    }
+function finishMaps(kind){
+  const floor=kind==='floor',film=kind==='film';
+  const n=floor?1024:512,base=floor?[216,213,204]:film?[236,235,230]:[222,221,215];
+  const seed=floor?325810:film?4542:210213;
+  const broad=periodicNoise(seed,floor?12:8,floor?5:8);
+  const medium=periodicNoise(seed+1,floor?60:48,floor?24:48);
+  const grain=periodicNoise(seed+2,192,192);
+  const channels=['color','height','roughness'].map(()=>{
+    const canvas=document.createElement('canvas');canvas.width=canvas.height=n;
+    const ctx=canvas.getContext('2d');return {canvas,ctx,pixels:ctx.createImageData(n,n)};
   });
+  const smooth=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+    const u=(x+.5)/n,v=(y+.5)/n,b=broad(u,v),m=medium(u,v),g=grain(u,v);
+    // Four aligned 810x325mm boards in a 1620x650mm atlas. Preserve laying direction.
+    const bx=(u*2)%1,by=(v*2)%1;
+    const edge=floor?Math.min(Math.min(bx,1-bx)*.81,Math.min(by,1-by)*.325):1;
+    // A 1.1mm core with soft edge shading remains sampled along the long atlas axis.
+    const joint=floor?1-smooth(.00055,.0011,edge):0;
+    const bevel=floor?1-smooth(.0006,.0016,edge):0;
+    const board=floor?[-1.1,.7,.2,-.4][Math.floor(v*2)*2+Math.floor(u*2)]:0;
+    const tone=floor?7*b+2.8*m+.7*g+board-26*joint-4*bevel:
+      film?2.4*b+1.2*m+.5*g:6*b+2.8*m+.8*g;
+    const height=floor?155+9*m+4*g-95*bevel:film?128+9*m+7*g:128+27*m+22*g+9*b;
+    const rough=floor?226+13*b+10*bevel:film?232+8*m:242+10*m;
+    const i=(y*n+x)*4;
+    for(let c=0;c<3;c++){
+      channels[0].pixels.data[i+c]=base[c]+tone;
+      channels[1].pixels.data[i+c]=height;
+      channels[2].pixels.data[i+c]=rough;
+    }
+    for(const channel of channels)channel.pixels.data[i+3]=255;
+  }
+  const textures=channels.map(({canvas,ctx,pixels},i)=>{
+    ctx.putImageData(pixels,0,0);const t=new THREE.CanvasTexture(canvas);
+    t.wrapS=t.wrapT=THREE.RepeatWrapping;t.colorSpace=i===0?THREE.SRGBColorSpace:THREE.NoColorSpace;
+    t.minFilter=THREE.LinearMipmapLinearFilter;t.magFilter=THREE.LinearFilter;
+    return t;
+  });
+  return {color:textures[0],height:textures[1],roughness:textures[2]};
 }
 
-function wallpaperBump(){
-  return grayTexture(256,(ctx,n)=>{
-    const rnd=seeded(9917); ctx.fillStyle='#808080';ctx.fillRect(0,0,n,n);
-    for(let i=0;i<2200;i++){
-      const v=110+Math.round(rnd()*70); ctx.fillStyle=`rgb(${v},${v},${v})`;
-      const r=.5+rnd()*2.1;ctx.beginPath();ctx.arc(rnd()*n,rnd()*n,r,0,Math.PI*2);ctx.fill();
-    }
-  });
-}
-
-function floorMap(){
-  return canvasTexture(1024,(ctx,n)=>{
-    const rnd=seeded(325810);
-    ctx.fillStyle='#d8d5cc';ctx.fillRect(0,0,n,n);
-    // calm mineral variation; intentionally low contrast
-    for(let i=0;i<320;i++){
-      const x=rnd()*n,y=rnd()*n,rx=20+rnd()*120,ry=7+rnd()*42;
-      const g=ctx.createRadialGradient(x,y,0,x,y,rx);
-      const warm=rnd()>.5 ? '152,148,138' : '236,234,226';
-      g.addColorStop(0,`rgba(${warm},${.025+rnd()*.04})`);g.addColorStop(1,`rgba(${warm},0)`);
-      ctx.fillStyle=g;ctx.save();ctx.translate(x,y);ctx.scale(1,ry/rx);ctx.beginPath();ctx.arc(0,0,rx,0,Math.PI*2);ctx.fill();ctx.restore();
-    }
-    // board joints represented as fine, warm-grey lines.
-    ctx.strokeStyle='rgba(112,108,102,.28)';ctx.lineWidth=2;
-    ctx.strokeRect(1,1,n-2,n-2);
-  });
-}
-
-function floorBump(){
-  return grayTexture(512,(ctx,n)=>{
-    const rnd=seeded(881);ctx.fillStyle='#808080';ctx.fillRect(0,0,n,n);
-    for(let i=0;i<850;i++){
-      const v=120+Math.round(rnd()*30);ctx.strokeStyle=`rgba(${v},${v},${v},.12)`;ctx.lineWidth=.5+rnd()*1.5;
-      ctx.beginPath();ctx.moveTo(rnd()*n,rnd()*n);ctx.quadraticCurveTo(rnd()*n,rnd()*n,rnd()*n,rnd()*n);ctx.stroke();
-    }
-  });
-}
-
-function filmMap(){
-  return canvasTexture(768,(ctx,n)=>{
-    const rnd=seeded(4542);ctx.fillStyle='#ecebe6';ctx.fillRect(0,0,n,n);
-    // Fine low-contrast stone emboss approximation; no invented long marble veins.
-    for(let i=0;i<9000;i++){
-      const v=170+Math.floor(rnd()*65);ctx.fillStyle=`rgba(${v},${v},${v-3},.085)`;
-      ctx.fillRect(rnd()*n,rnd()*n,.5+rnd()*2,.5+rnd()*2);
-    }
-  });
-}
 
 export const MATERIAL_V1=Object.freeze({
-  appVersion:'V8.23',
-  revision:'MATERIAL_STAGE2',
-  wall:{id:'LX_DIAMANT_PR002_13',tileMeters:.25,roughness:.94,bumpMeters:.00025},
-  floor:{id:'DONGWHA_NATUSJIN_GRANDE_EMOTION_BLANC',boardMeters:[.81,.325],roughness:.76,bumpMeters:.00018},
-  film:{id:'YOUNGLIM_LUCA_WHITE_PX454_2',tileMeters:.4,roughness:.62,bumpMeters:.00008},
+  appVersion:'V8.24',
+  revision:'MATERIAL_VISUAL_REFINEMENT',
+  wall:{id:'LX_DIAMANT_PR002_13',tileMeters:.25,roughness:.96,bumpMeters:.00065},
+  floor:{id:'DONGWHA_NATUSJIN_GRANDE_EMOTION_BLANC',boardMeters:[.81,.325],atlasBoards:[2,2],roughness:.73,bumpMeters:.00065},
+  film:{id:'YOUNGLIM_LUCA_WHITE_PX454_2',tileMeters:.4,roughness:.55,bumpMeters:.00010},
   note:'Procedural visual approximation. Color, relief and gloss are not measured manufacturer PBR data.'
 });
 
-function roughnessFrom(height){
-  const c=document.createElement('canvas');c.width=height.image.width;c.height=height.image.height;
-  const ctx=c.getContext('2d');ctx.drawImage(height.image,0,0);const px=ctx.getImageData(0,0,c.width,c.height);
-  for(let i=0;i<px.data.length;i+=4){const v=230+Math.round(px.data[i]/255*25);px.data[i]=px.data[i+1]=px.data[i+2]=v;}
-  ctx.putImageData(px,0,0);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.colorSpace=THREE.NoColorSpace;return t;
-}
 
 // BoxGeometry UVs are normalized; only UV/material state is altered, never vertices.
 export function materialForBox(source,width,height,depth,tileMeters){
@@ -149,19 +112,19 @@ export function materialForBox(source,width,height,depth,tileMeters){
 }
 
 export function createFinishLibrary(renderer){
-  const wallTex=wallpaperMap(), wallBump=wallpaperBump();
-  const floorTex=floorMap(), floorBumpTex=floorBump();
-  const filmTex=filmMap();
+  const wallMaps=finishMaps('wall'),floorMaps=finishMaps('floor'),filmMaps=finishMaps('film');
+  const wallTex=wallMaps.color,wallBump=wallMaps.height;
+  const floorTex=floorMaps.color,floorBumpTex=floorMaps.height,filmTex=filmMaps.color;
   const maxAniso=renderer?.capabilities?.getMaxAnisotropy?.()||4;
-  [wallTex,wallBump,floorTex,floorBumpTex,filmTex].forEach(t=>t.anisotropy=Math.min(8,maxAniso));
+  [wallMaps,floorMaps,filmMaps].flatMap(m=>Object.values(m)).forEach(t=>t.anisotropy=Math.min(8,maxAniso));
 
   const wall=new THREE.MeshStandardMaterial({
     color:'#ffffff', map:wallTex, bumpMap:wallBump, bumpScale:MATERIAL_V1.wall.bumpMeters,
-    roughness:MATERIAL_V1.wall.roughness, roughnessMap:roughnessFrom(wallBump), metalness:0
+    roughness:MATERIAL_V1.wall.roughness, roughnessMap:wallMaps.roughness, metalness:0
   });
   const film=new THREE.MeshStandardMaterial({
-    color:'#ffffff', map:filmTex,bumpMap:wallBump.clone(),bumpScale:MATERIAL_V1.film.bumpMeters,
-    roughness:MATERIAL_V1.film.roughness,roughnessMap:roughnessFrom(wallBump),metalness:0
+    color:'#ffffff', map:filmTex,bumpMap:filmMaps.height,bumpScale:MATERIAL_V1.film.bumpMeters,
+    roughness:MATERIAL_V1.film.roughness,roughnessMap:filmMaps.roughness,metalness:0
   });
   const glass=new THREE.MeshPhysicalMaterial({
     color:'#d6edf4',transparent:true,opacity:.26,roughness:.08,metalness:0,
@@ -176,12 +139,12 @@ export function createFinishLibrary(renderer){
     if(roomId==='bath1'||roomId==='bath2') return bathroom;
     if(roomId==='entry') return entry;
     if(roomId?.startsWith('bal')) return balcony;
-    const m=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:MATERIAL_V1.floor.roughness,roughnessMap:roughnessFrom(floorBumpTex),metalness:0});
+    const m=new THREE.MeshStandardMaterial({color:'#ffffff',roughness:MATERIAL_V1.floor.roughness,roughnessMap:floorMaps.roughness.clone(),metalness:0});
     m.map=floorTex.clone();m.map.needsUpdate=true;m.map.colorSpace=THREE.SRGBColorSpace;m.map.wrapS=m.map.wrapT=THREE.RepeatWrapping;
     m.bumpMap=floorBumpTex.clone();m.bumpMap.needsUpdate=true;m.bumpMap.wrapS=m.bumpMap.wrapT=THREE.RepeatWrapping;m.bumpScale=MATERIAL_V1.floor.bumpMeters;
     // ExtrudeGeometry top UVs already contain the shape's meter coordinates.
     // Multiplying by room dimensions again shrinks boards and breaks room continuity.
-    m.map.repeat.set(1/MATERIAL_V1.floor.boardMeters[0],1/MATERIAL_V1.floor.boardMeters[1]);m.bumpMap.repeat.copy(m.map.repeat);m.roughnessMap.repeat.copy(m.map.repeat);
+    m.map.repeat.set(1/(MATERIAL_V1.floor.boardMeters[0]*MATERIAL_V1.floor.atlasBoards[0]),1/(MATERIAL_V1.floor.boardMeters[1]*MATERIAL_V1.floor.atlasBoards[1]));m.bumpMap.repeat.copy(m.map.repeat);m.roughnessMap.repeat.copy(m.map.repeat);
     m.userData.materialId=MATERIAL_V1.floor.id;
     return m;
   }

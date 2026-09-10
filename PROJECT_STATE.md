@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.23 — KITCHEN DETAIL / HALF-WALL VIEW**
-- Last updated: **2026-09-11 00:13 KST**
+- Project version: **V8.24 — MATERIAL VISUAL REFINEMENT (REVIEW CANDIDATE)**
+- Last updated: **2026-09-11 06:15 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,14 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.24 — Material Visual Refinement — 2026-09-11 06:15 KST
+- V8.23 main c57742bed8efeb90008fade715fceb4f6a3ae80c 기준의 별도 검토 패치. GitHub/main 배포는 사용자가 Sol 검토 후 처리.
+- 바닥 810×325mm 판재를 2×2 atlas로 표현. 물리 폭의 이음선/미세 bevel height, 서로 대응하는 석재 color/height/roughness map 적용.
+- 벽지 PR002-13은 seamless 다중 스케일 회벽 얼룩/미세 요철, 필름 PX454-2는 별도 미세 표면과 낮은 roughness. 색상 기준은 기존 마감재 유지, 가짜 대리석 vein 추가 없음.
+- 구조/확장/문/중문/터닝도어, DESIGN, 가구, 욕실·주방 상세, 카메라·조명 및 UV geometry 변경 없음.
+- WebGL 비활성 환경: 실제 GPU 3D의 동일 카메라 전후 시각 검증은 미완료. 시각 개선 완료로 간주하지 말고 WebGL 환경에서 검토 필요.
+- 검사 및 병합 안내: docs/MATERIAL_VISUAL_REFINEMENT_V824.md, tools/check-material-refinement.mjs.
 
 ### V8.23 — Kitchen Detail / Half-Wall View — 2026-09-11 00:13 KST
 - 욕실2 수건걸이와 수건을 **변기 정면 맞은편 남측 벽, 변기 x축에 맞춰** 재배치.
