@@ -2,6 +2,48 @@ import {createShared3D} from './shared-3d.js';
 import {planSvg,validate,openingPoints,mirrorConfig,entranceFrame} from './plan-core.js';
 const $=s=>document.querySelector(s);let config,previous,assumptions;
 try{[config,previous,assumptions]=await Promise.all(['apartment.config.json','previous.config.json','assumptions.json'].map(async f=>{const r=await fetch(f,{cache:"no-store"});if(!r.ok)throw Error('설정 파일을 읽지 못했습니다.');return r.json();}));validate(config);}catch(e){$('#drawing').textContent=e.message;throw e;}
+
+/*
+ * V7.1 TEMPORARY DOOR REVIEW CANDIDATE
+ * 원본 JSON 자체는 아직 확정 수정하지 않는다.
+ * review 화면에서만 사용자 캡처 기준 후보 좌표를 적용하고,
+ * overlay 확인 후 OK를 받으면 원본 geometry에 최종 반영한다.
+ */
+function applyDoorReviewCandidate(c){
+  const bath1Wall=c.walls.find(w=>w.id==='spine');
+  const bath1=bath1Wall?.openings.find(o=>o.id==='door-bath1');
+  if(bath1){
+    // spine: z가 아래로 증가하므로 start 감소 = 화면에서 위쪽 이동
+    bath1.start=3195;
+    bath1.width=650;
+    bath1.hinge='end';
+    bath1.swing=-90;
+    bath1.evidence='user-reviewed-image-estimated';
+    bath1.status='ASSUMED';
+    bath1.note='V7.1 검토 후보: 원본 overlay 기준 욕실1 문을 기존보다 약 100mm 위로 이동. 폭/힌지/열림 방향은 유지. 실측 전.';
+  }
+
+  const bath2Wall=c.walls.find(w=>w.id==='bed1-north');
+  const bath2=bath2Wall?.openings.find(o=>o.id==='door-bath2');
+  if(bath2){
+    // bed1-north: a=(3800,6720) -> b=(0,6720).
+    // start 감소 = 화면 오른쪽(x 증가)으로 이동.
+    bath2.start=2450;
+    bath2.width=650;
+    // 사용자 지시: 좌우반전
+    bath2.hinge='end';
+    bath2.swing=-90;
+    bath2.evidence='user-reviewed-image-estimated';
+    bath2.status='ASSUMED';
+    bath2.note='V7.1 검토 후보: 욕실2 문을 화면 오른쪽으로 약 100mm 이동하고 좌우반전. bed1-north 기준 start=2450, hinge=end, swing=-90. 실측 전.';
+  }
+
+  c.geometryRevision='DOOR_REVIEW_CANDIDATE_V7_1';
+  return c;
+}
+config=applyDoorReviewCandidate(config);
+validate(config);
+
 let scene3d;try{scene3d=createShared3D($('#shared3d'));$('#threeLoading').hidden=true;}catch(e){$('#threeLoading').textContent='WebGL 실행 실패: '+e.message;}
 const defaults=structuredClone(config.review.overlay),history=[];let selected=config.walls[0].id,dirty=false,view=[-1000,-900,9950,13200];
 function toast(s){$('#toast').textContent=s;$('#toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').style.display='none',4000);}
@@ -10,7 +52,7 @@ function resolve(id){for(const w of config.walls){if(w.id===id)return {w};const 
 function render(){const source1=mirrorConfig(config);$('#sourceDrawing').innerHTML=planSvg(source1,{showImage:false,orientationLabel:'1호 라인'});scene3d?.update(config);const f=entranceFrame(config);$('#directionCheck').textContent=f.livingLeft?'← 거실 · 현관에서 집 안을 보는 기준':'거실 방향 검증 실패';$('#sharedEvidence').textContent='2D / 3D 데이터: '+config.geometryRevision+' · 동일 객체 '+(scene3d?.source()===config?'YES':'NO')+' · 현관 기준 거실 왼쪽 '+(f.livingLeft?'YES':'NO'); $('#drawing').innerHTML=planSvg(config,{showImage:$('#showImage').checked,showOld:$('#showOld').checked,previous,selected,roomNames:$('#names').checked,viewBox:view.join(' ')}); }
 function fillOverlay(){for(const k of ['scale','rotation','offsetX','offsetY','opacity'])$('#'+k).value=config.review.overlay[k];$('#opacityValue').textContent=Math.round(config.review.overlay.opacity*100)+'%';}
 function fillSelect(){const s=$('#element');s.replaceChildren();for(const w of config.walls){s.add(new Option(w.name,w.id));for(const o of w.openings)s.add(new Option('　'+(o.type==='door'?'문':'창/유리')+' · '+o.id,o.id));}s.value=selected;}
-function fillElement(){const {w,o}=resolve(selected);$('#wallFields').hidden=!!o;$('#openingFields').hidden=!o;$('#elementNote').textContent=((o??w).status??w.positionStatus??'ASSUMED')+' · '+(o??w).note+' / '+({'dimension-constrained':'표기 치수로 구속','image-estimated':'이미지 추정','user-edited':'사용자 수정 · 미실측'}[(o??w).evidence]??'확인 필요');if(o){$('#start').value=o.start;$('#width').value=o.width;$('#doorFields').hidden=o.type!=='door';if(o.type==='door'){$('#hinge').value=o.hinge;$('#swing').value=o.swing;}const p=openingPoints(w,o);$('#openingCoords').textContent=`양 끝점 (${p.a.map(Math.round).join(', ')}) → (${p.b.map(Math.round).join(', ')}) mm`; }else{for(const [id,value] of Object.entries({ax:w.a[0],az:w.a[1],bx:w.b[0],bz:w.b[1],thickness:w.thickness}))$('#'+id).value=value;$('#wallLength').textContent='벽 길이 '+Math.round(Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1])).toLocaleString()+' mm';}$('#element').value=selected;}
+function fillElement(){const {w,o}=resolve(selected);$('#wallFields').hidden=!!o;$('#openingFields').hidden=!o;$('#elementNote').textContent=((o??w).status??w.positionStatus??'ASSUMED')+' · '+(o??w).note+' / '+({'dimension-constrained':'표기 치수로 구속','image-estimated':'이미지 추정','user-edited':'사용자 수정 · 미실측','user-reviewed-image-estimated':'사용자 캡처 검토 · 미실측'}[(o??w).evidence]??'확인 필요');if(o){$('#start').value=o.start;$('#width').value=o.width;$('#doorFields').hidden=o.type!=='door';if(o.type==='door'){$('#hinge').value=o.hinge;$('#swing').value=o.swing;}const p=openingPoints(w,o);$('#openingCoords').textContent=`양 끝점 (${p.a.map(Math.round).join(', ')}) → (${p.b.map(Math.round).join(', ')}) mm`; }else{for(const [id,value] of Object.entries({ax:w.a[0],az:w.a[1],bx:w.b[0],bz:w.b[1],thickness:w.thickness}))$('#'+id).value=value;$('#wallLength').textContent='벽 길이 '+Math.round(Math.hypot(w.b[0]-w.a[0],w.b[1]-w.a[1])).toLocaleString()+' mm';}$('#element').value=selected;}
 function choose(id){selected=id;fillElement();render();}
 function fillAudit(){$('#audit').replaceChildren();for(const a of config.review.checks){const tr=document.createElement('tr');for(const t of [a.space,a.before,a.sourceLine1]){const td=document.createElement('td');td.textContent=t;tr.append(td);}const td=document.createElement('td'),input=document.createElement('input');input.placeholder='틀린 위치 / 수정할 치수';input.value=a.userNote??'';input.setAttribute('aria-label',a.space+' 검토 메모');input.onchange=()=>{checkpoint();config.review.checks.find(v=>v.id===a.id).userNote=input.value;};td.append(input);tr.append(td);$('#audit').append(tr);}}
 for(const d of config.dimensionEvidence){const p=document.createElement('p'),b=document.createElement('b');b.textContent=d.id+' · '+d.meaning;p.append(b,document.createTextNode(d.formula??JSON.stringify(d.value)+' mm'));$('#evidence').append(p);}
