@@ -1,5 +1,10 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
+## Current project version
+- Project version: **V7.7 — MATERIAL STAGE 2**
+- Baseline version: **V7.5 BASELINE LOCKED**
+- Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
+
 ## Current baseline
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Units: **mm**
@@ -73,6 +78,48 @@
 2. baseline을 변경하지 않았는지 diff로 확인한다.
 3. 작업 상태가 달라졌다면 이 문서의 editable/project-progress 부분만 갱신한다.
 4. baseline 변경은 반드시 사용자가 명시적으로 요청한 경우에만 한다.
+
+
+## VERSION MANAGEMENT — ChatGPT / Astra 공통 영구 규칙
+
+모든 후속 작업은 아래 규칙을 반드시 따른다.
+
+1. **작업 시작 전 버전 확인**
+   - GitHub `main`의 최신 `PROJECT_STATE.md`를 먼저 읽고 현재 **Project version**을 확인한다.
+   - 이미 사용한 버전 번호를 임의로 재사용하지 않는다.
+   - 새 코드/디자인/재질/UI 변경이 생기면 다음 project version으로 올린다.
+   - 구조 baseline이 수정되지 않는 한 **Baseline version은 V7.5 BASELINE LOCKED로 유지**한다.
+
+2. **앱 화면에 버전 표시**
+   - 현재 project version을 사용자가 실행 화면에서 항상 확인할 수 있게 표시한다.
+   - 최소한 3D 화면 host에는 `Vx.x` 버전 배지를 유지한다.
+   - 내부적으로도 `data-app-version` 또는 동등한 metadata에 현재 버전을 기록한다.
+
+3. **PROJECT_STATE.md 기록**
+   - 문서 상단의 `Current project version`을 새 버전으로 갱신한다.
+   - 해당 버전에서 실제 변경한 범위와 검증 상태를 progress 섹션에 기록한다.
+   - baseline lock 내용은 사용자의 명시적 구조 변경 요청이 없는 한 수정하지 않는다.
+
+4. **Git commit 규칙**
+   - commit message는 반드시 버전 번호로 시작한다.
+   - 형식 예: `V7.7: refine confirmed finish materials`
+   - 한 버전의 변경은 가능한 한 하나의 목적에 한정한다.
+
+5. **패치 ZIP 규칙**
+   - 파일명은 반드시 소문자 `yeoksam`으로 시작한다.
+   - 형식: `yeoksam-vX.X-작업명-patch.zip`
+   - 예: `yeoksam-v7.7-material-stage2-patch.zip`
+   - 대문자 `Yeoksam`, 다른 prefix, 임의 파일명은 사용하지 않는다.
+   - ZIP 내부 경로는 **Git 저장소 root 기준 상대경로**를 유지한다.
+   - 프로젝트 전체를 다시 포장하지 말고 원칙적으로 **변경된 파일만** 포함한다.
+   - 기존 동일 경로 파일은 updater가 덮어쓰고 Git이 modified로 추적하도록 한다.
+
+6. **작업 종료 검증**
+   - 코드 syntax / 실행 여부를 확인한다.
+   - baseline geometry, 확장, 문, 중문, 터닝도어가 변경되지 않았는지 diff/check script로 확인한다.
+   - 화면에 표시되는 버전, `PROJECT_STATE.md`, commit message, ZIP 파일명의 버전이 서로 동일해야 한다.
+
+이 규칙은 Astra와 ChatGPT 어느 쪽에서 작업하더라도 동일하게 적용한다.
 
 ## Important source files
 - `dist/apartment.config.json` — original/baseline geometry

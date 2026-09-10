@@ -1,5 +1,10 @@
 # 마감재 2단계 패치
 
+- Project version: **V7.7 — MATERIAL STAGE 2**
+- Locked structural baseline: **V7.5 BASELINE LOCKED**
+- Patch filename convention: `yeoksam-vX.X-작업명-patch.zip`
+- This patch: `yeoksam-v7.7-material-stage2-patch.zip`
+
 적용 기준: GitHub main 304ac57b249fb4712d44b466eccbb7ab703cacee / V7.5 BASELINE LOCKED.
 
 ## 변경

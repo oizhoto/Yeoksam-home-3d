@@ -4,7 +4,25 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {compileGeometry,entranceFrame,blocked} from './plan-core.js';
 import {createFinishLibrary,materialForBox,MATERIAL_V1} from './materials.js';
 import {createDesignLayer} from './design-layer.js';
+export const APP_VERSION='V7.7';
 export function createShared3D(host,{onCameraChange}={}){
+host.dataset.appVersion=APP_VERSION;
+if(!host.querySelector('[data-yeoksam-version-badge]')){
+ const badge=document.createElement('div');
+ badge.dataset.yeoksamVersionBadge='true';
+ badge.textContent=APP_VERSION;
+ Object.assign(badge.style,{
+  position:'absolute',right:'10px',top:'10px',zIndex:'20',
+  padding:'4px 8px',borderRadius:'7px',
+  background:'rgba(20,24,28,.68)',color:'#fff',
+  font:'600 12px/1.2 system-ui,-apple-system,sans-serif',
+  letterSpacing:'.02em',pointerEvents:'none',
+  backdropFilter:'blur(4px)'
+ });
+ const pos=getComputedStyle(host).position;
+ if(pos==='static')host.style.position='relative';
+ host.append(badge);
+}
 const scene=new THREE.Scene();scene.background=new THREE.Color('#e7edf0');let renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});host.dataset.renderer='WebGL';}catch{renderer=new CanvasRenderer();host.dataset.renderer='Canvas3D';}renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;if('toneMapping' in renderer){renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;}host.append(renderer.domElement);
 const finishes=createFinishLibrary(renderer);
 // Neutral daylight-biased lighting so material comparison is not excessively yellow.
