@@ -1,9 +1,10 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "units": "mm",
-  "name": "FIXED_INTERIOR_V4",
+  "name": "FIXED_INTERIOR_V5",
   "basis": "INTERIOR_V2_SVG_EXPANSION",
-  "note": "Existing entry layer extended with laundry turning door and master-bedroom wardrobe. Geometry remains unchanged. Laundry door follows the confirmed structural-block edge provisionally; wardrobe uses the 600 mm residual depth implied by the image-estimated bath2 door position.",
+  "buildVersion": "V6.1",
+  "note": "Display/rendering correction only for fixed interior objects. Geometry remains unchanged. Laundry turning door is represented with the existing screenDoor renderer and master wardrobe with the existing cabinet renderer so both appear consistently in 2D and 3D.",
   "objects": [
     {
       "id": "entry-screen",
@@ -96,7 +97,8 @@
     },
     {
       "id": "laundry-turning-door",
-      "type": "turningDoor",
+      "type": "screenDoor",
+      "subtype": "turningDoor",
       "name": "워시타워 터닝도어",
       "position": [
         3625,
@@ -104,19 +106,20 @@
         1250
       ],
       "size": [
-        50,
+        1750,
         2200,
-        1750
+        50
       ],
-      "rotationY": 90,
-      "style": "slim insulated glazed turning door; provisional opening across kitchen-to-laundry passage",
+      "rotationY": 0,
+      "style": "insulated turning door; simplified with existing screen-door renderer",
       "status": "ASSUMED",
       "evidence": "geometry-derived-provisional",
-      "note": "Confirmed structural block begins at x=4550,z=1250. Door spans the adjacent passage x=2750..4500 along z=1250; verify visually before final lock."
+      "note": "Door line runs horizontally along z=1250 from x=2750 to x=4500, immediately before the confirmed structural block beginning at x=4550. Verify visually before final lock."
     },
     {
       "id": "master-wardrobe",
-      "type": "wardrobe",
+      "type": "cabinet",
+      "subtype": "wardrobe",
       "name": "안방 붙박이장",
       "position": [
         300,
@@ -133,7 +136,7 @@
       "brandReference": "Hyundai Livart style reference; simplified parametric model, not vendor 3D asset",
       "status": "ASSUMED",
       "evidence": "user-intent-plus-door-derived-depth",
-      "note": "Depth 600 mm equals the image-estimated residual wall depth from the corrected bath2 door end to the room-side wall. Run fills the x=0 side wall from z=6720 to z=9955."
+      "note": "Depth 600 mm. Run fills the x=0 side wall from z=6720 to z=9955."
     }
   ]
 }
