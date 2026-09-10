@@ -59,7 +59,7 @@ function fridgeWall(obj){
   g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));return g;
 }
 export function buildBathroomKitchenLayer(data){
-  const root=new THREE.Group();root.name='V8.2-bathroom-detail-correction';
+  const root=new THREE.Group();root.name='V8.21-bathroom-clearance-fix';
 
   function genericPlaced(o, materialType='white'){
     return place(box(o.size,materialType),o.position,o.rotationY,o.size);

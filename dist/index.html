@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>역삼푸르지오 · Digital Twin</title><link rel="stylesheet" href="interior.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head><body>
-<div class="version-bar">Yeoksam Digital Twin · V8.2 · 업데이트 2026-09-10 23:55 KST</div>
+<div class="version-bar">Yeoksam Digital Twin · V8.21 · 업데이트 2026-09-10 23:59 KST</div>
 <header><div><h1>역삼푸르지오 · Digital Twin</h1><p>24평 2호 라인 · 장기 인테리어 설계</p></div><a href="review.html">원본 도면 검증</a></header>
 <nav class="control-bar"><div class="control-strip">
   <div class="layer-tabs"><button class="layer-toggle" id="furnitureToggle">가구</button><button class="layer-toggle" id="designToggle">인테리어 시안</button></div>
@@ -9,7 +9,7 @@
   <span id="active">확장안 · 2D</span>
 </div></nav>
 <p class="note" id="note"></p>
-<section id="designControls" hidden style="padding:12px 20px"><strong>인테리어 시안 · Project V8.2 · Baseline V7.5 LOCKED</strong><p>천장 설비·커튼박스는 제안 배치입니다. 팬 설치 이격·에어컨 매립 깊이·배관은 현장 검토 전입니다.</p><button data-design-camera="living">거실 전체</button><button data-design-camera="kitchen">거실 → 주방</button><button data-design-camera="entry">현관 → 거실</button><label>조명 <select id="designLight"><option value="day">주간 중성광</option><option value="warm">저녁 따뜻한 조명</option></select></label><p>기존 2D/3D/워크스루와 가구 이동은 그대로 사용할 수 있습니다.</p></section>
+<section id="designControls" hidden style="padding:12px 20px"><strong>인테리어 시안 · Project V8.21 · Baseline V7.5 LOCKED</strong><p>천장 설비·커튼박스는 제안 배치입니다. 팬 설치 이격·에어컨 매립 깊이·배관은 현장 검토 전입니다.</p><button data-design-camera="living">거실 전체</button><button data-design-camera="kitchen">거실 → 주방</button><button data-design-camera="entry">현관 → 거실</button><label>조명 <select id="designLight"><option value="day">주간 중성광</option><option value="warm">저녁 따뜻한 조명</option></select></label><p>기존 2D/3D/워크스루와 가구 이동은 그대로 사용할 수 있습니다.</p></section>
 <div id="furnitureExportDialog" class="furniture-export-dialog" hidden><div class="furniture-export-card" role="dialog" aria-modal="true" aria-labelledby="furnitureExportTitle"><div class="furniture-export-head"><h2 id="furnitureExportTitle">가구 좌표 JSON</h2><button id="closeFurnitureExport" aria-label="닫기">✕</button></div><p>현재 배치를 소스코드에 반영하려면 아래 JSON을 복사해 ChatGPT에 보내세요.</p><textarea id="furnitureExportJson" readonly spellcheck="false"></textarea><div class="furniture-export-actions"><button id="copyFurnitureExport" class="primary">JSON 복사</button><span id="copyFurnitureStatus" aria-live="polite"></span></div></div></div>
 <main class="viewer"><section class="view-card"><h2><span id="viewTitle">확장안 · 2D</span> <small id="viewSubtitle">INTERIOR_V2_SVG_EXPANSION</small></h2>
 <div class="plan" id="plan"></div>

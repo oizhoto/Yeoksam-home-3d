@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "id": "BATHROOM_KITCHEN_V1",
-  "projectVersion": "V8.2",
+  "projectVersion": "V8.21",
   "baselineVersion": "V7.5 BASELINE LOCKED",
-  "updatedAt": "2026-09-10 23:55 KST",
+  "updatedAt": "2026-09-10 23:59 KST",
   "layoutBasis": {
     "bath1Rect": [
       0,
@@ -69,7 +69,7 @@
           "position": [
             1250,
             0,
-            3885
+            4140
           ],
           "size": [
             800,
@@ -130,7 +130,7 @@
           "position": [
             1250,
             895,
-            3905
+            4145
           ],
           "size": [
             520,
@@ -145,14 +145,15 @@
           "position": [
             1250,
             940,
-            3775
+            3970
           ],
           "size": [
             40,
             300,
             180
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "note": "deck-mounted on vanity top; clear of rear ledge"
         },
         {
           "id": "bath1-paper-holder",
@@ -221,7 +222,7 @@
           "position": [
             1450,
             0,
-            5480
+            5700
           ],
           "size": [
             760,
@@ -234,16 +235,17 @@
           "id": "bath2-toilet",
           "type": "toilet",
           "position": [
-            2240,
+            2200,
             0,
-            5900
+            5580
           ],
           "size": [
             380,
             730,
             690
           ],
-          "rotationY": 90
+          "rotationY": 180,
+          "note": "rotated clockwise 90deg from V8.2 and pushed to north/ledge wall"
         },
         {
           "id": "bath2-ledge",
@@ -312,7 +314,7 @@
           "position": [
             1450,
             895,
-            5520
+            5705
           ],
           "size": [
             500,
@@ -327,14 +329,15 @@
           "position": [
             1450,
             940,
-            5395
+            5535
           ],
           "size": [
             40,
             300,
             180
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "note": "deck-mounted on vanity top; clear of rear ledge"
         },
         {
           "id": "bath2-shower-fixed-panel",

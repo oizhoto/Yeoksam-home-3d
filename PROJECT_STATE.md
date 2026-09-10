@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.2 — BATHROOM DETAIL CORRECTION**
-- Last updated: **2026-09-10 23:55 KST**
+- Project version: **V8.21 — BATHROOM CLEARANCE FIX**
+- Last updated: **2026-09-10 23:59 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,15 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.21 — Bathroom Clearance Fix — 2026-09-10 23:59 KST
+- 욕실1 세면대/세면볼/수전 세트를 젠다이에서 **방 안쪽으로 분리 이동**해 서로 겹치지 않도록 수정.
+- 욕실2 세면대/세면볼/수전도 동일하게 **젠다이 앞쪽으로 분리 이동**해 수전이 젠다이를 뚫고 나오는 현상 수정.
+- 두 욕실 모두 수전은 세면대의 평평한 상판 위에 남도록 상대 위치 유지.
+- 욕실2 변기는 V8.2 기준에서 **시계방향 90° 추가 회전**하고, 위쪽/젠다이 벽 쪽으로 붙여 배치.
+- V8.2의 욕조, 샤워부스, 수납장 4칸, 수건/휴지걸이 구성은 유지.
+- V7.5 baseline geometry는 수정하지 않음.
+
 
 ### V8.2 — Bathroom Detail Correction — 2026-09-10 23:55 KST
 - 욕실1에도 젠다이를 추가하고, 욕실1·2 모두 젠다이/세면대 상판에 **매립형 세면볼 + 데크형 수전**을 명확하게 구현.

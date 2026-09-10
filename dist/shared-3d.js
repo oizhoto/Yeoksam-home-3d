@@ -5,7 +5,7 @@ import {compileGeometry,entranceFrame,blocked} from './plan-core.js';
 import {createFinishLibrary,materialForBox,MATERIAL_V1} from './materials.js';
 import {createDesignLayer} from './design-layer.js';
 import {buildBathroomKitchenLayer} from './bathroom-kitchen-layer.js';
-export const APP_VERSION='V8.2';
+export const APP_VERSION='V8.21';
 export function createShared3D(host,{onCameraChange}={}){
 host.dataset.appVersion=APP_VERSION;
 if(!host.querySelector('[data-yeoksam-version-badge]')){
