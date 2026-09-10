@@ -1,13 +1,29 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "BATHROOM_KITCHEN_V1",
-  "projectVersion": "V8.0",
+  "projectVersion": "V8.1",
   "baselineVersion": "V7.5 BASELINE LOCKED",
-  "updatedAt": "2026-09-10 23:38 KST",
+  "updatedAt": "2026-09-10 23:49 KST",
+  "layoutBasis": {
+    "bath1Rect": [
+      0,
+      3630,
+      2700,
+      5290
+    ],
+    "bath2Rect": [
+      0,
+      5290,
+      2700,
+      6720
+    ],
+    "note": "Fixture relationships follow user directions. Baseline room/door geometry is unchanged."
+  },
   "bathrooms": [
     {
       "id": "bath1",
       "name": "공용욕실",
+      "entryLogic": "east-door-facing-west",
       "concept": "bathtub-no-glass-partition",
       "tile": {
         "size": [
@@ -21,14 +37,14 @@
           "id": "bath1-tub",
           "type": "bathtub",
           "position": [
-            1650,
+            390,
             0,
-            4000
+            4460
           ],
           "size": [
-            1500,
+            700,
             520,
-            700
+            1450
           ],
           "rotationY": 0
         },
@@ -36,83 +52,114 @@
           "id": "bath1-toilet",
           "type": "toilet",
           "position": [
-            450,
+            2150,
             0,
-            4700
+            4050
           ],
           "size": [
             380,
             730,
             690
           ],
-          "rotationY": 90
+          "rotationY": 0
         },
         {
           "id": "bath1-vanity",
           "type": "vanity",
           "position": [
-            2080,
+            1250,
             0,
-            4950
+            3885
           ],
           "size": [
-            780,
+            800,
             850,
             460
           ],
-          "rotationY": 0
-        },
-        {
-          "id": "bath1-mirror",
-          "type": "mirrorCabinet",
-          "position": [
-            2080,
-            1050,
-            5190
-          ],
-          "size": [
-            780,
-            720,
-            130
-          ],
-          "rotationY": 0
+          "rotationY": 90
         },
         {
           "id": "bath1-basin-faucet",
           "type": "faucet",
           "position": [
-            2080,
+            1250,
             850,
-            4740
+            3745
           ],
           "size": [
             40,
             300,
             180
           ],
+          "rotationY": 90
+        },
+        {
+          "id": "bath1-long-upper-cabinet",
+          "type": "wallCabinet",
+          "position": [
+            1700,
+            1300,
+            3715
+          ],
+          "size": [
+            1700,
+            700,
+            150
+          ],
           "rotationY": 0
         },
         {
-          "id": "bath1-bath-faucet",
-          "type": "faucet",
+          "id": "bath1-shower",
+          "type": "showerSet",
           "position": [
-            1650,
-            650,
-            3645
+            330,
+            0,
+            3745
           ],
           "size": [
-            50,
-            350,
-            220
+            120,
+            1900,
+            120
+          ],
+          "rotationY": 90
+        },
+        {
+          "id": "bath1-towel-bar",
+          "type": "towelBar",
+          "position": [
+            1280,
+            1050,
+            5205
+          ],
+          "size": [
+            600,
+            40,
+            80
           ],
           "rotationY": 0
+        },
+        {
+          "id": "bath1-paper-holder",
+          "type": "paperHolder",
+          "position": [
+            1810,
+            650,
+            4290
+          ],
+          "size": [
+            180,
+            90,
+            100
+          ],
+          "rotationY": 90
         }
       ]
     },
     {
       "id": "bath2",
       "name": "안방욕실",
-      "concept": "compact-shower-no-glass-yet",
+      "entryLogic": "south-door-facing-north",
+      "concept": "front-vanity-right-toilet-left-shower-booth",
       "tile": {
         "size": [
           600,
@@ -122,12 +169,42 @@
       },
       "objects": [
         {
+          "id": "bath2-vanity",
+          "type": "vanity",
+          "position": [
+            1450,
+            0,
+            5480
+          ],
+          "size": [
+            760,
+            850,
+            430
+          ],
+          "rotationY": 0
+        },
+        {
+          "id": "bath2-basin-faucet",
+          "type": "faucet",
+          "position": [
+            1450,
+            850,
+            5390
+          ],
+          "size": [
+            40,
+            300,
+            180
+          ],
+          "rotationY": 0
+        },
+        {
           "id": "bath2-toilet",
           "type": "toilet",
           "position": [
-            500,
+            2240,
             0,
-            5950
+            5900
           ],
           "size": [
             380,
@@ -137,42 +214,57 @@
           "rotationY": 90
         },
         {
-          "id": "bath2-vanity",
-          "type": "vanity",
+          "id": "bath2-ledge",
+          "type": "ledge",
           "position": [
-            2150,
+            1850,
+            900,
+            5380
+          ],
+          "size": [
+            1500,
+            120,
+            180
+          ],
+          "rotationY": 0
+        },
+        {
+          "id": "bath2-long-upper-cabinet",
+          "type": "wallCabinet",
+          "position": [
+            1850,
+            1250,
+            5370
+          ],
+          "size": [
+            1500,
+            720,
+            150
+          ],
+          "rotationY": 0
+        },
+        {
+          "id": "bath2-shower-tray",
+          "type": "showerTray",
+          "position": [
+            480,
             0,
-            6350
+            5950
           ],
           "size": [
-            700,
-            850,
-            430
+            820,
+            60,
+            900
           ],
           "rotationY": 0
         },
         {
-          "id": "bath2-mirror",
-          "type": "mirrorCabinet",
-          "position": [
-            2150,
-            1050,
-            6640
-          ],
-          "size": [
-            700,
-            650,
-            130
-          ],
-          "rotationY": 0
-        },
-        {
-          "id": "bath2-shower",
+          "id": "bath2-shower-set",
           "type": "showerSet",
           "position": [
-            1450,
+            180,
             0,
-            5480
+            5660
           ],
           "size": [
             120,
@@ -180,12 +272,42 @@
             120
           ],
           "rotationY": 0
+        },
+        {
+          "id": "bath2-shower-glass-front",
+          "type": "glassPanel",
+          "position": [
+            900,
+            0,
+            5950
+          ],
+          "size": [
+            12,
+            2000,
+            900
+          ],
+          "rotationY": 0
+        },
+        {
+          "id": "bath2-shower-glass-side",
+          "type": "glassPanel",
+          "position": [
+            480,
+            0,
+            6410
+          ],
+          "size": [
+            820,
+            2000,
+            12
+          ],
+          "rotationY": 0
         }
       ]
     }
   ],
   "kitchen": {
-    "concept": "reference-photo-linear-kitchen",
+    "concept": "reference-photo-linear-kitchen-opposite-fridge-wall",
     "objects": [
       {
         "id": "kitchen-sink-bowl",
@@ -236,25 +358,25 @@
         "id": "fridge-wall",
         "type": "fridgeWall",
         "position": [
-          3650,
+          3050,
           0,
-          650
+          1050
         ],
         "size": [
           1950,
           2300,
           700
         ],
-        "rotationY": 0,
+        "rotationY": 90,
         "modules": [
           650,
           650,
           650
         ],
         "upperStorageHeight": 430,
-        "note": "원도어 3대 병렬 계획 envelope + 상부수납. 정확한 제품 확정 시 폭 재조정."
+        "note": "기존 일자형 조리대 반대편 x=2700 벽에 밀착. 창가(z≈0) 쪽부터 배치. 원도어 3대 병렬 + 상부수납 계획."
       }
     ]
   },
-  "note": "V8.0 is an editable fixture/detail layer. Baseline walls/doors/expansion are untouched."
+  "note": "V8.1 corrects fixture placement only. V7.5 baseline geometry remains untouched."
 }

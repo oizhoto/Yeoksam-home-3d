@@ -59,32 +59,87 @@ function fridgeWall(obj){
   g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));return g;
 }
 export function buildBathroomKitchenLayer(data){
-  const root=new THREE.Group();root.name='V8.0-bathroom-kitchen-detail';
+  const root=new THREE.Group();root.name='V8.1-bathroom-kitchen-detail';
+
+  function genericPlaced(o, materialType='white'){
+    return place(box(o.size,materialType),o.position,o.rotationY,o.size);
+  }
+  function wallCabinet(o){
+    const g=new THREE.Group();
+    const carcass=box(o.size,'cabinet');
+    carcass.position.y=mm(o.size[1]/2);
+    g.add(carcass);
+    const doorCount=Math.max(2,Math.round(o.size[0]/500));
+    for(let i=1;i<doorCount;i++){
+      const seam=box([4,o.size[1]-20,o.size[2]+4],'black');
+      seam.position.set(mm(-o.size[0]/2 + o.size[0]*i/doorCount),mm(o.size[1]/2),mm(2));
+      g.add(seam);
+    }
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+    return g;
+  }
+  function towelBar(o){
+    const g=new THREE.Group(),chrome=mat('chrome');
+    const rail=new THREE.Mesh(new THREE.CylinderGeometry(mm(10),mm(10),mm(o.size[0]),18),chrome);
+    rail.rotation.z=Math.PI/2;rail.position.y=0;g.add(rail);
+    for(const sx of [-1,1]){
+      const post=new THREE.Mesh(new THREE.CylinderGeometry(mm(8),mm(8),mm(70),16),chrome);
+      post.rotation.x=Math.PI/2;post.position.set(mm(sx*(o.size[0]/2-30)),0,mm(35));g.add(post);
+    }
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);return g;
+  }
+  function paperHolder(o){
+    const g=new THREE.Group(),chrome=mat('chrome');
+    const arm=new THREE.Mesh(new THREE.CylinderGeometry(mm(8),mm(8),mm(150),16),chrome);
+    arm.rotation.z=Math.PI/2;g.add(arm);
+    const roll=new THREE.Mesh(new THREE.CylinderGeometry(mm(55),mm(55),mm(105),24),mat('white'));
+    roll.rotation.z=Math.PI/2;roll.position.x=mm(30);g.add(roll);
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);return g;
+  }
+  function showerSet(o){
+    const g=new THREE.Group(),chrome=mat('chrome');
+    const rail=new THREE.Mesh(new THREE.CylinderGeometry(mm(14),mm(14),mm(1750),20),chrome);
+    rail.position.y=mm(950);g.add(rail);
+    const head=new THREE.Mesh(new THREE.CylinderGeometry(mm(120),mm(120),mm(18),28),chrome);
+    head.rotation.x=Math.PI/2;head.position.set(0,mm(1770),mm(80));g.add(head);
+    const mixer=box([220,80,70],'chrome');mixer.position.set(0,mm(900),mm(45));g.add(mixer);
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);return g;
+  }
+
   for(const room of data.bathrooms||[]){
     for(const o of room.objects||[]){
       let mesh;
       if(o.type==='bathtub') mesh=tub(o);
       else if(o.type==='toilet') mesh=toilet(o);
       else if(o.type==='faucet') mesh=faucet(o,false);
-      else if(o.type==='showerSet'){
-        mesh=new THREE.Group();
-        const rail=new THREE.Mesh(new THREE.CylinderGeometry(mm(14),mm(14),mm(1750),20),mat('chrome'));rail.position.y=mm(950);mesh.add(rail);
-        const head=new THREE.Mesh(new THREE.CylinderGeometry(mm(120),mm(120),mm(18),28),mat('chrome'));head.rotation.x=Math.PI/2;head.position.set(0,mm(1770),mm(80));mesh.add(head);
-        mesh.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
-      } else {
+      else if(o.type==='showerSet') mesh=showerSet(o);
+      else if(o.type==='wallCabinet') mesh=wallCabinet(o);
+      else if(o.type==='towelBar') mesh=towelBar(o);
+      else if(o.type==='paperHolder') mesh=paperHolder(o);
+      else if(o.type==='glassPanel') mesh=genericPlaced(o,'glass');
+      else if(o.type==='showerTray') mesh=genericPlaced(o,'white');
+      else if(o.type==='ledge') mesh=genericPlaced(o,'tile');
+      else {
         const mt=o.type==='mirrorCabinet'?'glass':o.type==='vanity'?'cabinet':'white';
-        mesh=place(box(o.size,mt),o.position,o.rotationY,o.size);
+        mesh=genericPlaced(o,mt);
       }
       mesh.userData.fixtureId=o.id;root.add(mesh);
     }
   }
+
   for(const o of data.kitchen?.objects||[]){
     let mesh;
-    if(o.type==='fridgeWall') mesh=fridgeWall(o);
-    else if(o.type==='kitchenFaucet') mesh=faucet(o,true);
+    if(o.type==='fridgeWall') {
+      mesh=fridgeWall(o);
+      mesh.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+    } else if(o.type==='kitchenFaucet') mesh=faucet(o,true);
     else {
       const mt=o.type==='sinkBowl'?'steel':o.type==='induction'?'black':'white';
-      mesh=place(box(o.size,mt),o.position,o.rotationY,o.size);
+      mesh=genericPlaced(o,mt);
     }
     mesh.userData.fixtureId=o.id;root.add(mesh);
   }

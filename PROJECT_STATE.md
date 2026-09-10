@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.0 — BATHROOM / KITCHEN DETAIL**
-- Last updated: **2026-09-10 23:38 KST**
+- Project version: **V8.1 — BATHROOM / FRIDGE LAYOUT CORRECTION**
+- Last updated: **2026-09-10 23:49 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,18 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.1 — Bathroom / Fridge Layout Correction — 2026-09-10 23:49 KST
+- 냉장고장을 기존 조리대 **반대편 x=2700 벽**으로 이동하고 **창가(z≈0) 쪽에 밀착**. 원도어 3대 병렬 + 상부수납 구성 유지.
+- 욕실1: 동측 문에서 서쪽으로 진입하는 기준으로 **우측(북측) 변기 → 더 안쪽 우측 세면대**, 정면(서측)에 욕조의 긴 옆면이 보이도록 재배치.
+- 욕실1: 욕조 우측/북측 끝에 샤워기 배치.
+- 욕실1: 세면대 반대편 벽에 수건걸이, 변기 왼쪽 측면에 휴지걸이 추가.
+- 욕실1: **세면대와 변기 위를 함께 덮는 가로형 긴 상부 수납장** 추가.
+- 욕실2: 문에서 들어가면 정면(북측)에 세면대, 우측(동측)에 변기 배치.
+- 욕실2: 세면대+변기 뒤로 연속 젠다이, 그 위로 가로형 긴 수납장 추가.
+- 욕실2: 좌측/문 뒤쪽 영역을 **유리 샤워부스**로 구성하고 샤워트레이·샤워기·유리 패널 추가.
+- V7.5 baseline 벽/문/확장/중문/터닝도어 geometry는 수정하지 않음.
+
 
 ### V8.0 — Bathroom / Kitchen Detail — 2026-09-10 23:38 KST
 - 공용욕실은 **욕조 유지**, 유리 파티션은 미설치 상태로 구현. 추후 별도 레이어로 추가 가능.

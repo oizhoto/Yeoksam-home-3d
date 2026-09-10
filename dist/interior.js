@@ -48,7 +48,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.0 · 욕조형 공용욕실 + 욕실기구 + 싱크볼/인덕션 + 3열 냉장고장이 기본 적용됩니다.';
+  $('#note').textContent='V8.1 · 욕조형 공용욕실 + 욕실기구 + 싱크볼/인덕션 + 3열 냉장고장이 기본 적용됩니다.';
 }
 
 function render(){drawPlan();model();refreshUI();}
