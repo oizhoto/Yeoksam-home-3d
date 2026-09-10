@@ -10,6 +10,15 @@ try{[config,previous,assumptions]=await Promise.all(['apartment.config.json','pr
  * overlay 확인 후 OK를 받으면 원본 geometry에 최종 반영한다.
  */
 function applyDoorReviewCandidate(c){
+  const bed2Wall=c.walls.find(w=>w.id==='spine');
+  const bed2=bed2Wall?.openings.find(o=>o.id==='door-bed2');
+  if(bed2){
+    // spine에서 start 감소 = 도면 좌표 z 감소 = 화면 위쪽으로 50 mm
+    bed2.start=1375;
+    bed2.evidence='user-reviewed-image-estimated';
+    bed2.status='ASSUMED';
+    bed2.note='V7.4 검토 후보: 침실2 문을 도면 geometry 기준 50mm 위로 이동. 기존 start=1425 -> 1375. 폭/힌지/열림 방향 유지.';
+  }
   const bath1Wall=c.walls.find(w=>w.id==='spine');
   const bath1=bath1Wall?.openings.find(o=>o.id==='door-bath1');
   if(bath1){
@@ -38,7 +47,7 @@ function applyDoorReviewCandidate(c){
     bath2.note='V7.1 검토 후보: 욕실2 문을 화면 오른쪽으로 추가 약 150mm 이동하고 좌우반전 유지. bed1-north 기준 start=2150, hinge=end, swing=-90. 실측 전.';
   }
 
-  c.geometryRevision='DOOR_REVIEW_CANDIDATE_V7_3';
+  c.geometryRevision='DOOR_REVIEW_CANDIDATE_V7_4';
   return c;
 }
 config=applyDoorReviewCandidate(config);

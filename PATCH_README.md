@@ -1,19 +1,20 @@
-# V7.3 욕실문 overlay 검토 후보
+# V7.4 문 위치 검토 후보
 
-V7.2에서 욕실2 문을 오른쪽으로 150 mm 더 이동한 검증 패치입니다.
+V7.3 유지 + 침실2 문만 도면 geometry 기준 50 mm 위로 이동.
+
+침실2:
+- door-bed2 start 1425 -> 1375
+- width 850 유지
+- hinge=end 유지
+- swing=-90 유지
+- 여기서 50 mm는 화면 픽셀이 아니라 모델/도면 좌표계의 실제 50 mm.
 
 욕실1:
 - start 3195 유지
-- width 650
-- hinge=end
-- swing=-90
 
 욕실2:
-- start 2300 -> 2150
-- width 650 유지
-- hinge=end 유지
-- swing=-90 유지
-- 결과: V7.2 대비 화면에서 약 150 mm 더 오른쪽 이동
+- start 2150 유지
+- hinge=end / swing=-90 유지
 
-원본 geometry JSON은 아직 확정 수정하지 않습니다.
-검증 화면에서 `DOOR_REVIEW_CANDIDATE_V7_3`으로 확인 후 확정 반영 예정입니다.
+원본 geometry JSON은 아직 확정 수정하지 않음.
+검증 화면 revision: DOOR_REVIEW_CANDIDATE_V7_4
