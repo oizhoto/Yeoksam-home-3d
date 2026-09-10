@@ -28,17 +28,17 @@ function applyDoorReviewCandidate(c){
   if(bath2){
     // bed1-north: a=(3800,6720) -> b=(0,6720).
     // start 감소 = 화면 오른쪽(x 증가)으로 이동.
-    bath2.start=2450;
+    bath2.start=2300;
     bath2.width=650;
     // 사용자 지시: 좌우반전
     bath2.hinge='end';
     bath2.swing=-90;
     bath2.evidence='user-reviewed-image-estimated';
     bath2.status='ASSUMED';
-    bath2.note='V7.1 검토 후보: 욕실2 문을 화면 오른쪽으로 약 100mm 이동하고 좌우반전. bed1-north 기준 start=2450, hinge=end, swing=-90. 실측 전.';
+    bath2.note='V7.1 검토 후보: 욕실2 문을 화면 오른쪽으로 추가 약 150mm 이동하고 좌우반전 유지. bed1-north 기준 start=2300, hinge=end, swing=-90. 실측 전.';
   }
 
-  c.geometryRevision='DOOR_REVIEW_CANDIDATE_V7_1';
+  c.geometryRevision='DOOR_REVIEW_CANDIDATE_V7_2';
   return c;
 }
 config=applyDoorReviewCandidate(config);
