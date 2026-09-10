@@ -956,25 +956,15 @@
         {
           "id": "door-bath2",
           "type": "door",
-          "start": 2820,
+          "start": 2550,
           "width": 650,
           "hinge": "start",
           "swing": 90,
           "open": true,
           "evidence": "image-estimated",
           "symbolEvidence": "visible",
-          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준. 회전호 x338–355px 및 힌지 x338px 재판독.",
-          "status": "ASSUMED",
-          "sourcePixelRange": [
-            [
-              338,
-              241
-            ],
-            [
-              355,
-              241
-            ]
-          ]
+          "note": "출입 방향·문 폭은 기존값 유지. 사용자 제공 원본 평면 재검토에 따라 벽 끝에 과도하게 붙어 보이던 위치만 보정. bed1-north 선상 반대측 끝까지 약 600mm 잔여벽을 두는 image-estimated 값이며 실측 전 ASSUMED.",
+          "status": "ASSUMED"
         }
       ],
       "positionStatus": "PRINTED_CONSTRAINED",
