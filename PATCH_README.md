@@ -1,13 +1,13 @@
-# Yeoksam V8.22 Bath2 / Kitchen Cabinet Fix Patch
-Project version: V8.22
-Updated: 2026-09-11 00:06 KST
+# Yeoksam V8.23 Kitchen Detail / Half-Wall View Patch
+Project version: V8.23
+Updated: 2026-09-11 00:13 KST
 Baseline: V7.5 BASELINE LOCKED
 
-Scope:
-- bath2 toilet rotation + TP/towel accessories
-- recessed kitchen sink
-- lower cabinet modules: 150 + 600 + 600(DW) + 600 + 600
-- upper cabinet modules: 4 equal x 637.5mm
-- upper/lower overall endpoints aligned
+Includes:
+- bath2 towel placement correction
+- actual countertop sink opening + below-counter sink bowl
+- detailed lower cabinet fronts and LG-DIOS-like built-in dishwasher front
+- 4 equal upper cabinet fronts
+- half-height wall visibility toggle
 
-No baseline geometry files are included.
+Structural baseline coordinates are untouched.

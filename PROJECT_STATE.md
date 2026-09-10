@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.22 — BATH2 / KITCHEN CABINET FIX**
-- Last updated: **2026-09-11 00:06 KST**
+- Project version: **V8.23 — KITCHEN DETAIL / HALF-WALL VIEW**
+- Last updated: **2026-09-11 00:13 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,16 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.23 — Kitchen Detail / Half-Wall View — 2026-09-11 00:13 KST
+- 욕실2 수건걸이와 수건을 **변기 정면 맞은편 남측 벽, 변기 x축에 맞춰** 재배치.
+- 주방 싱크는 단순히 아래로 내린 박스가 아니라 **상판 자체를 네 조각으로 분할하여 실제 타공부를 생성**하고, 스테인리스 볼은 그 구멍 아래에 배치.
+- 하부장의 기존 민자 통박스 렌더링을 제거하고 `150 + 600 + 600 식세기 + 600 + 600` 전면 모듈을 실제로 렌더링.
+- 식기세척기는 LG DIOS 빌트인 계열의 전면 특징을 참고하여 **약 600mm 모듈, 밝은 전면, 상단 어두운 컨트롤 스트립/표시부, 손잡이 디테일**로 구현. citeturn206657search13turn206657search15
+- 상부장은 동일한 전체 폭 2550mm에서 637.5mm × 4칸으로 렌더링.
+- 3D 화면에 **`벽 1/2 보기` 버튼** 추가. 누르면 구조 좌표를 바꾸지 않고 렌더링 높이만 절반으로 낮춰 내부를 쉽게 검토할 수 있고, 다시 누르면 원래 높이로 복귀.
+- V7.5 baseline 좌표 데이터는 수정하지 않음.
+
 
 ### V8.22 — Bath2 / Kitchen Cabinet Fix — 2026-09-11 00:06 KST
 - 욕실2 변기를 V8.21 상태에서 **180° 회전**.

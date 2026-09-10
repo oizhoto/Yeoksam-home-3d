@@ -17,6 +17,7 @@ const expanded=validate(expandedRaw);
 let view='plan';
 let furnitureOn=false;
 let designOn=false;
+let wallHalf=false;
 const viewer=createShared3D($('#scene'));
 let editor;
 
@@ -48,7 +49,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.22 · 욕조형 공용욕실 + 욕실기구 + 싱크볼/인덕션 + 3열 냉장고장이 기본 적용됩니다.';
+  $('#note').textContent='V8.23 · 실제 싱크 상판 타공 + 디테일 하부장/식세기 + 욕실2 수건 + 벽 1/2 보기 옵션이 적용됩니다.';
 }
 
 function render(){drawPlan();model();refreshUI();}
@@ -67,7 +68,11 @@ function setView(v){
 }
 
 $('#furnitureToggle').onclick=()=>{furnitureOn=!furnitureOn;render();};
-$('#designToggle').onclick=()=>{designOn=!designOn;$('#designToggle').classList.toggle('active',designOn);$('#designControls').hidden=!designOn;if(designOn)setView('overview');else render();};
+$('#designToggle').onclick=()=>{designOn=!designOn;$('#designToggle').classList.toggle('active',designOn);
+$('#wallHeightToggle').onclick=()=>{wallHalf=!wallHalf;viewer.setWallHeightMode(wallHalf?'half':'full');refreshUI();};
+  $('#wallHeightToggle').classList.toggle('active',wallHalf);
+  $('#wallHeightToggle').setAttribute('aria-pressed',String(wallHalf));
+  $('#wallHeightToggle').textContent=wallHalf?'벽 원래 높이':'벽 1/2 보기';$('#designControls').hidden=!designOn;if(designOn)setView('overview');else render();};
 document.querySelectorAll('[data-design-camera]').forEach(b=>b.onclick=()=>{setView('entry');viewer.designCamera(designData.cameras[b.dataset.designCamera]);});
 $('#designLight').onchange=e=>viewer.setLightMode(e.target.value==='warm');
 document.querySelectorAll('.view').forEach(b=>b.onclick=()=>setView(b.dataset.view));

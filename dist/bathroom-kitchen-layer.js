@@ -126,8 +126,31 @@ function upperCabinetModules(o){
   return g;
 }
 
+
+function trueInsetSink(o){
+  const g=new THREE.Group();
+  const steel=mat('steel');
+  // Bowl walls/bottom start below countertop surface. No block protrudes above the stone.
+  const bottom=new THREE.Mesh(
+    new THREE.BoxGeometry(mm(o.size[0]-70),mm(18),mm(o.size[2]-70)), steel
+  );
+  bottom.position.y=mm(-165); g.add(bottom);
+
+  const wallT=18, h=150, w=o.size[0]-70, d=o.size[2]-70;
+  const side1=new THREE.Mesh(new THREE.BoxGeometry(mm(w),mm(h),mm(wallT)),steel);
+  side1.position.set(0,mm(-82),mm(d/2-wallT/2)); g.add(side1);
+  const side2=side1.clone(); side2.position.z=mm(-d/2+wallT/2); g.add(side2);
+  const end1=new THREE.Mesh(new THREE.BoxGeometry(mm(wallT),mm(h),mm(d)),steel);
+  end1.position.set(mm(w/2-wallT/2),mm(-82),0); g.add(end1);
+  const end2=end1.clone(); end2.position.x=mm(-w/2+wallT/2); g.add(end2);
+
+  g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+  g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+  return g;
+}
+
 export function buildBathroomKitchenLayer(data){
-  const root=new THREE.Group();root.name='V8.22-bath2-kitchen-cabinet-fix';
+  const root=new THREE.Group();root.name='V8.23-visibility-kitchen-detail';
 
   function genericPlaced(o, materialType='white'){
     return place(box(o.size,materialType),o.position,o.rotationY,o.size);
@@ -278,6 +301,7 @@ export function buildBathroomKitchenLayer(data){
       mesh=fridgeWall(o);
       mesh.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
     } else if(o.type==='kitchenFaucet') mesh=faucet(o,true);
+    else if(o.type==='trueInsetSinkBowl') mesh=trueInsetSink(o);
     else if(o.type==='recessedSinkBowl') mesh=recessedSink(o);
     else if(o.type==='baseCabinetModules') mesh=baseCabinetModules(o);
     else if(o.type==='upperCabinetModules') mesh=upperCabinetModules(o);

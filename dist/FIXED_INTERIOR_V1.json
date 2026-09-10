@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "units": "mm",
   "name": "FIXED_INTERIOR_V1",
-  "buildVersion": "V7.0",
+  "buildVersion": "V8.23",
   "basis": "INTERIOR_V2_SVG_EXPANSION",
   "entryObjects": [
     {
@@ -111,7 +111,7 @@
       ],
       "rotationY": 0,
       "style": "insulated turning door",
-      "note": "구조체 코너 x=4550,z=1250에서 외측 z=0 방향으로 직선. 냉장고/워시타워가 같은 확장 주방 영역 안쪽에 남도록 함."
+      "note": "LOCKED V7.5 geometry"
     },
     {
       "id": "master-wardrobe",
@@ -145,14 +145,22 @@
       "size": [
         600,
         880,
-        2900
+        2550
       ],
       "rotationY": 0,
       "modules": [
+        150,
         600,
         600,
-        800,
-        900
+        600,
+        600
+      ],
+      "moduleKinds": [
+        "knife",
+        "cabinet",
+        "dishwasher",
+        "cabinet",
+        "cabinet"
       ],
       "status": "PROVISIONAL"
     },
@@ -168,9 +176,14 @@
       "size": [
         620,
         20,
-        2900
+        2550
       ],
       "rotationY": 0,
+      "sinkCutout": {
+        "centerZ": 3675,
+        "sizeX": 500,
+        "sizeZ": 760
+      },
       "status": "PROVISIONAL"
     },
     {
@@ -185,17 +198,17 @@
       "size": [
         350,
         780,
-        2900
+        2550
       ],
       "rotationY": 0,
       "modules": [
-        600,
-        600,
-        800,
-        900
+        637.5,
+        637.5,
+        637.5,
+        637.5
       ],
       "status": "PROVISIONAL"
     }
   ],
-  "note": "현관중문/세탁실터닝도어/붙박이장/주방은 메인 확장안에 기본 적용. 별도 토글 없음."
+  "note": "V7.5 structural/door baseline locked. V8.23 updates editable kitchen cabinetry only."
 }

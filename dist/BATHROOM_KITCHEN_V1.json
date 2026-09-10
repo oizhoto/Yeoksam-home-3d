@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "id": "BATHROOM_KITCHEN_V1",
-  "projectVersion": "V8.22",
+  "projectVersion": "V8.23",
   "baselineVersion": "V7.5 BASELINE LOCKED",
-  "updatedAt": "2026-09-11 00:06 KST",
+  "updatedAt": "2026-09-11 00:13 KST",
   "layoutBasis": {
     "bath1Rect": [
       0,
@@ -394,7 +394,7 @@
           "id": "bath2-towel-bar",
           "type": "towelBar",
           "position": [
-            560,
+            2200,
             1120,
             6650
           ],
@@ -404,13 +404,13 @@
             80
           ],
           "rotationY": 0,
-          "note": "opposite toilet wall"
+          "note": "directly opposite bath2 toilet on south wall"
         },
         {
           "id": "bath2-towel",
           "type": "towel",
           "position": [
-            560,
+            2200,
             865,
             6610
           ],
@@ -481,10 +481,10 @@
       },
       {
         "id": "kitchen-sink-bowl",
-        "type": "recessedSinkBowl",
+        "type": "trueInsetSinkBowl",
         "position": [
-          4965,
-          895,
+          4990,
+          899,
           3675
         ],
         "size": [
@@ -493,72 +493,7 @@
           760
         ],
         "rotationY": 0,
-        "note": "top rim flush/slightly below countertop; bowl extends downward"
-      },
-      {
-        "id": "kitchen-base-module-fronts",
-        "type": "baseCabinetModules",
-        "position": [
-          4968,
-          0,
-          3300
-        ],
-        "size": [
-          600,
-          880,
-          2550
-        ],
-        "rotationY": 0,
-        "modules": [
-          {
-            "name": "knife-slim",
-            "width": 150,
-            "kind": "drawer"
-          },
-          {
-            "name": "induction-lower",
-            "width": 600,
-            "kind": "cabinet"
-          },
-          {
-            "name": "dishwasher",
-            "width": 600,
-            "kind": "dishwasher"
-          },
-          {
-            "name": "lower-1",
-            "width": 600,
-            "kind": "cabinet"
-          },
-          {
-            "name": "lower-2",
-            "width": 600,
-            "kind": "cabinet"
-          }
-        ],
-        "note": "150 + 600x4 = 2550mm. Knife drawer at left end."
-      },
-      {
-        "id": "kitchen-upper-module-fronts",
-        "type": "upperCabinetModules",
-        "position": [
-          5125,
-          1500,
-          3300
-        ],
-        "size": [
-          350,
-          780,
-          2550
-        ],
-        "rotationY": 0,
-        "modules": [
-          637.5,
-          637.5,
-          637.5,
-          637.5
-        ],
-        "note": "4 equal upper doors. Overall left/right endpoints align with lower 2550mm run; internal seams intentionally do not need to align with the thin knife module."
+        "note": "actual countertop opening is created in FIXED_INTERIOR_V1; sink bowl sits below the opening"
       }
     ]
   },
