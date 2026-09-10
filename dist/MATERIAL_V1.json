@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "name": "Yeoksam Finish Set V1",
+  "verifiedAt": "2026-09-10",
+  "geometryPolicy": "NO_GEOMETRY_CHANGES",
+  "provenancePolicy": {
+    "priority": [
+      "manufacturer_official",
+      "manufacturer_installation_example",
+      "trusted_installation_reference",
+      "user_supplied_installation_photo"
+    ],
+    "implementationNote": "Digital color/roughness/bump values are visualization approximations, not manufacturer-provided colorimetric specifications. Physical samples should be checked before construction."
+  },
+  "wall": {
+    "manufacturer": "LX Z:IN",
+    "category": "디아망",
+    "product": "회벽/블랑 그레이",
+    "code": "PR002-13",
+    "officialFacts": {
+      "size": "106cm(W) x 15.6m(L)",
+      "descriptionSummary": "기존 회벽 계열과 유사한 질감·패턴·색상 방향을 유지하면서 펄을 제외해 차분하고 부드러운 분위기를 지향하는 제품."
+    },
+    "approximation": {
+      "baseColor": "#f0efeb",
+      "roughness": 0.96,
+      "bumpScale": 0.006,
+      "finish": "matte, subtle plaster relief, no pearl"
+    },
+    "references": [
+      {
+        "type": "manufacturer_official",
+        "label": "LX Z:IN 제품 페이지 — 디아망 회벽/블랑 그레이 PR002-13",
+        "url": "https://www.lxzin.com/zin/product/102541"
+      },
+      {
+        "type": "manufacturer_editorial",
+        "label": "LX Z:IN NEW 디아망 소개 — 블랑그레이 질감/펄 제외 설명",
+        "url": "https://www.lxzin.com/styling/life-book/detail/7396"
+      },
+      {
+        "type": "manufacturer_editorial",
+        "label": "LX Z:IN 디아망 인기패턴 비교 — 회벽/블랑 그레이",
+        "url": "https://www.lxzin.com/styling/life-book/detail/7239"
+      }
+    ]
+  },
+  "floor": {
+    "manufacturer": "동화자연마루",
+    "series": "나투스진 그란데",
+    "product": "이모션블랑",
+    "officialFacts": {
+      "boardSizeMm": [
+        325,
+        810,
+        7
+      ],
+      "descriptionSummary": "타일 느낌의 광폭 강마루. 간결한 석재 디자인과 화이트톤이 조화된 패턴."
+    },
+    "approximation": {
+      "baseTone": "warm light stone / blanc",
+      "roughness": 0.78,
+      "bumpScale": 0.003,
+      "patternScaleBasisMm": [
+        325,
+        810
+      ]
+    },
+    "references": [
+      {
+        "type": "manufacturer_official",
+        "label": "동화자연마루 공식 콘텐츠 — 나투스진 그란데 이모션블랑",
+        "url": "https://www.greendongwha.com/community/event/detail/47"
+      },
+      {
+        "type": "manufacturer_official",
+        "label": "동화자연마루 공식 콘텐츠 — 이모션블랑 석재 디자인/화이트톤 설명",
+        "url": "https://www.greendongwha.com/community/event/detail/34"
+      },
+      {
+        "type": "trusted_installation_reference",
+        "label": "오늘의집 시공사례 — 나투스진 그란데 이모션블랑 7T×325×810",
+        "url": "https://contents.ohou.se/projects/184103"
+      }
+    ]
+  },
+  "film": {
+    "manufacturer": "영림",
+    "product": "루카 화이트",
+    "code": "PX454-2",
+    "officialFacts": {
+      "category": "스톤&마블 계열",
+      "scanSizeMm": [
+        900,
+        2000
+      ],
+      "descriptionSummary": "화이트 계열의 스톤/마블 패턴 인테리어 필름."
+    },
+    "approximation": {
+      "baseColor": "#ffffff",
+      "roughness": 0.58,
+      "finish": "subtle white stone/marble pattern"
+    },
+    "references": [
+      {
+        "type": "manufacturer_official",
+        "label": "영림 인테리어필름 — PX454-2 루카 화이트",
+        "url": "https://www.ylfilm.co.kr/detail/FH23050006/"
+      }
+    ]
+  },
+  "userReference": {
+    "type": "user_supplied_installation_photo",
+    "label": "사용자가 제공한 루카화이트 + 블랑그레이 + 이모션블랑 시공 참고 이미지",
+    "use": [
+      "전체 명도 관계",
+      "벽/바닥의 웜-뉴트럴 균형",
+      "바닥 석재 패턴의 시각적 밀도",
+      "필름이 과도하게 순백색으로 보이지 않도록 하는 보정"
+    ],
+    "note": "대화에 첨부된 참고 이미지이므로 GitHub에서 직접 재현 가능한 외부 URL은 저장하지 않음."
+  },
+  "application": {
+    "wall": "일반 실내 벽",
+    "floor": "거실, 주방/식당, 침실1, 침실2, 침실3 등 일반 실내 바닥",
+    "film": "문짝/문틀 및 향후 확정되는 필름 마감 목공·가구",
+    "excludedUntilSpecified": [
+      "욕실 바닥/벽",
+      "현관 바닥",
+      "안방 발코니 바닥"
+    ]
+  }
+}
