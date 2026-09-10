@@ -1,7 +1,7 @@
-# Furniture Editor V2
-- Geometry JSON untouched.
-- Furniture tab 2D drag editing.
-- 90-degree rotate, reset, JSON export.
-- Layout persists in browser localStorage.
-- 3D furniture updates from edited layout.
-- Initial Simmons LK placement moved toward master-bedroom window side.
+# UI stage/navigation V3 patch
+- Stage order: 확장 / 중문 / 가구 / 완성안 / 원본
+- Added 중문 stage on top of confirmed expansion geometry (no BASE geometry changes)
+- Unified stage + view controls into one sticky horizontal bar
+- Simplified view controls: 2D / 3D / 워크스루 / 저장
+- "워크스루" replaces "현관 시점" as the clearer interior 3D navigation term
+- Mobile: one-row horizontal scrolling toolbar, remains sticky while page scrolls
