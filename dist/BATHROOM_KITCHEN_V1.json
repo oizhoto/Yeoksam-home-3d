@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
   "id": "BATHROOM_KITCHEN_V1",
-  "projectVersion": "V8.21",
+  "projectVersion": "V8.22",
   "baselineVersion": "V7.5 BASELINE LOCKED",
-  "updatedAt": "2026-09-10 23:59 KST",
+  "updatedAt": "2026-09-11 00:06 KST",
   "layoutBasis": {
     "bath1Rect": [
       0,
@@ -244,8 +244,8 @@
             730,
             690
           ],
-          "rotationY": 180,
-          "note": "rotated clockwise 90deg from V8.2 and pushed to north/ledge wall"
+          "rotationY": 0,
+          "note": "V8.22: rotated 180deg from V8.21"
         },
         {
           "id": "bath2-ledge",
@@ -373,6 +373,53 @@
           "swing": "inward",
           "swingAngle": 85,
           "note": "located behind bathroom entry door; entry door must close before shower door can open"
+        },
+        {
+          "id": "bath2-paper-holder",
+          "type": "paperHolder",
+          "position": [
+            2615,
+            650,
+            5920
+          ],
+          "size": [
+            180,
+            90,
+            100
+          ],
+          "rotationY": 90,
+          "note": "mounted on bath2 right/east wall"
+        },
+        {
+          "id": "bath2-towel-bar",
+          "type": "towelBar",
+          "position": [
+            560,
+            1120,
+            6650
+          ],
+          "size": [
+            620,
+            40,
+            80
+          ],
+          "rotationY": 0,
+          "note": "opposite toilet wall"
+        },
+        {
+          "id": "bath2-towel",
+          "type": "towel",
+          "position": [
+            560,
+            865,
+            6610
+          ],
+          "size": [
+            380,
+            520,
+            12
+          ],
+          "rotationY": 0
         }
       ]
     }
@@ -381,27 +428,12 @@
     "concept": "reference-photo-linear-kitchen-opposite-fridge-wall",
     "objects": [
       {
-        "id": "kitchen-sink-bowl",
-        "type": "sinkBowl",
-        "position": [
-          4965,
-          875,
-          3600
-        ],
-        "size": [
-          500,
-          180,
-          760
-        ],
-        "rotationY": 0
-      },
-      {
         "id": "kitchen-faucet",
         "type": "kitchenFaucet",
         "position": [
           4975,
           900,
-          3600
+          3675
         ],
         "size": [
           45,
@@ -416,7 +448,7 @@
         "position": [
           4968,
           895,
-          2450
+          2475
         ],
         "size": [
           560,
@@ -446,6 +478,87 @@
         ],
         "upperStorageHeight": 430,
         "note": "기존 일자형 조리대 반대편 x=2700 벽에 밀착. 창가(z≈0) 쪽부터 배치. 원도어 3대 병렬 + 상부수납 계획."
+      },
+      {
+        "id": "kitchen-sink-bowl",
+        "type": "recessedSinkBowl",
+        "position": [
+          4965,
+          895,
+          3675
+        ],
+        "size": [
+          500,
+          180,
+          760
+        ],
+        "rotationY": 0,
+        "note": "top rim flush/slightly below countertop; bowl extends downward"
+      },
+      {
+        "id": "kitchen-base-module-fronts",
+        "type": "baseCabinetModules",
+        "position": [
+          4968,
+          0,
+          3300
+        ],
+        "size": [
+          600,
+          880,
+          2550
+        ],
+        "rotationY": 0,
+        "modules": [
+          {
+            "name": "knife-slim",
+            "width": 150,
+            "kind": "drawer"
+          },
+          {
+            "name": "induction-lower",
+            "width": 600,
+            "kind": "cabinet"
+          },
+          {
+            "name": "dishwasher",
+            "width": 600,
+            "kind": "dishwasher"
+          },
+          {
+            "name": "lower-1",
+            "width": 600,
+            "kind": "cabinet"
+          },
+          {
+            "name": "lower-2",
+            "width": 600,
+            "kind": "cabinet"
+          }
+        ],
+        "note": "150 + 600x4 = 2550mm. Knife drawer at left end."
+      },
+      {
+        "id": "kitchen-upper-module-fronts",
+        "type": "upperCabinetModules",
+        "position": [
+          5125,
+          1500,
+          3300
+        ],
+        "size": [
+          350,
+          780,
+          2550
+        ],
+        "rotationY": 0,
+        "modules": [
+          637.5,
+          637.5,
+          637.5,
+          637.5
+        ],
+        "note": "4 equal upper doors. Overall left/right endpoints align with lower 2550mm run; internal seams intentionally do not need to align with the thin knife module."
       }
     ]
   },

@@ -58,8 +58,76 @@ function fridgeWall(obj){
   }
   g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));return g;
 }
+
+function recessedSink(o){
+  const g=new THREE.Group();
+  const steel=mat('steel');
+
+  // Thin flush rim at countertop plane
+  const outerW=mm(o.size[0]), outerD=mm(o.size[2]);
+  const rim=new THREE.Mesh(new THREE.BoxGeometry(outerW,mm(10),outerD),steel);
+  rim.position.y=mm(-5);
+  g.add(rim);
+
+  // dark inset opening to visually read as cut into countertop
+  const opening=new THREE.Mesh(
+    new THREE.BoxGeometry(mm(o.size[0]-70),mm(8),mm(o.size[2]-70)),
+    new THREE.MeshStandardMaterial({color:0x555b5e,roughness:.30,metalness:.65})
+  );
+  opening.position.y=mm(-12);
+  g.add(opening);
+
+  // basin bottom sits below countertop, not above it
+  const basin=new THREE.Mesh(
+    new THREE.BoxGeometry(mm(o.size[0]-85),mm(150),mm(o.size[2]-85)),
+    steel
+  );
+  basin.position.y=mm(-85);
+  g.add(basin);
+
+  g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+  g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+  return g;
+}
+
+function baseCabinetModules(o){
+  const g=new THREE.Group();
+  const total=o.modules.reduce((a,m)=>a+m.width,0);
+  let z=-total/2;
+  for(const m of o.modules){
+    const front=box([o.size[0],o.size[1],m.width-6],m.kind==='dishwasher'?'steel':'cabinet');
+    front.position.set(0,mm(o.size[1]/2),mm(z+m.width/2));
+    g.add(front);
+    if(m.kind==='drawer'){
+      const line=box([o.size[0]+6,4,m.width-14],'black');
+      line.position.set(mm(-4),mm(o.size[1]-90),mm(z+m.width/2));
+      g.add(line);
+    }
+    z+=m.width;
+  }
+  g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+  g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+  return g;
+}
+
+function upperCabinetModules(o){
+  const g=new THREE.Group();
+  const widths=o.modules;
+  const total=widths.reduce((a,b)=>a+b,0);
+  let z=-total/2;
+  for(const w of widths){
+    const front=box([o.size[0],o.size[1],w-6],'cabinet');
+    front.position.set(0,mm(o.size[1]/2),mm(z+w/2));
+    g.add(front);
+    z+=w;
+  }
+  g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+  g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+  return g;
+}
+
 export function buildBathroomKitchenLayer(data){
-  const root=new THREE.Group();root.name='V8.21-bathroom-clearance-fix';
+  const root=new THREE.Group();root.name='V8.22-bath2-kitchen-cabinet-fix';
 
   function genericPlaced(o, materialType='white'){
     return place(box(o.size,materialType),o.position,o.rotationY,o.size);
@@ -210,8 +278,11 @@ export function buildBathroomKitchenLayer(data){
       mesh=fridgeWall(o);
       mesh.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
     } else if(o.type==='kitchenFaucet') mesh=faucet(o,true);
+    else if(o.type==='recessedSinkBowl') mesh=recessedSink(o);
+    else if(o.type==='baseCabinetModules') mesh=baseCabinetModules(o);
+    else if(o.type==='upperCabinetModules') mesh=upperCabinetModules(o);
     else {
-      const mt=o.type==='sinkBowl'?'steel':o.type==='induction'?'black':'white';
+      const mt=o.type==='induction'?'black':'white';
       mesh=genericPlaced(o,mt);
     }
     mesh.userData.fixtureId=o.id;root.add(mesh);

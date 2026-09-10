@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.21 — BATHROOM CLEARANCE FIX**
-- Last updated: **2026-09-10 23:59 KST**
+- Project version: **V8.22 — BATH2 / KITCHEN CABINET FIX**
+- Last updated: **2026-09-11 00:06 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,18 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.22 — Bath2 / Kitchen Cabinet Fix — 2026-09-11 00:06 KST
+- 욕실2 변기를 V8.21 상태에서 **180° 회전**.
+- 전체뷰 기준 욕실2 **우측/동측 벽면에 휴지걸이** 추가.
+- 변기 맞은편 벽에 **수건걸이 + 수건 1장** 추가.
+- 주방 싱크볼을 상판 위로 돌출된 박스 표현에서 **상판에 매립된 recessed sink** 표현으로 수정. 림은 상판 높이에 맞추고 볼은 아래로 내려가도록 구현.
+- 주방 하부장 전면 모듈을 `얇은 칼수납 150 + 600 + 식기세척기 600 + 600 + 600`으로 구성.
+- 칼수납장을 제외한 모든 하부 모듈은 식기세척기와 동일한 **600mm 폭**으로 통일.
+- 상부장은 전체 길이를 하부장과 동일한 **2550mm**로 맞추고, **637.5mm × 4칸 등간격**으로 구성.
+- 상/하부 **양 끝선은 정확히 일치**. 얇은 칼수납 때문에 내부 세로 구분선까지 모두 일치시키지는 않고, 전체 외곽 정렬을 우선.
+- V7.5 baseline geometry는 수정하지 않음.
+
 
 ### V8.21 — Bathroom Clearance Fix — 2026-09-10 23:59 KST
 - 욕실1 세면대/세면볼/수전 세트를 젠다이에서 **방 안쪽으로 분리 이동**해 서로 겹치지 않도록 수정.

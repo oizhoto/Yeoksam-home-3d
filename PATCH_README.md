@@ -1,11 +1,13 @@
-# Yeoksam V8.21 Bathroom Clearance Fix Patch
-Project version: V8.21
-Updated: 2026-09-10 23:59 KST
+# Yeoksam V8.22 Bath2 / Kitchen Cabinet Fix Patch
+Project version: V8.22
+Updated: 2026-09-11 00:06 KST
 Baseline: V7.5 BASELINE LOCKED
 
 Scope:
-- separate both vanities/basins/faucets from rear ledges
-- rotate master-bath toilet clockwise 90 degrees
-- push master-bath toilet to upper/ledge wall
+- bath2 toilet rotation + TP/towel accessories
+- recessed kitchen sink
+- lower cabinet modules: 150 + 600 + 600(DW) + 600 + 600
+- upper cabinet modules: 4 equal x 637.5mm
+- upper/lower overall endpoints aligned
 
 No baseline geometry files are included.

@@ -124,7 +124,7 @@ function filmMap(){
 }
 
 export const MATERIAL_V1=Object.freeze({
-  appVersion:'V8.21',
+  appVersion:'V8.22',
   revision:'MATERIAL_STAGE2',
   wall:{id:'LX_DIAMANT_PR002_13',tileMeters:.25,roughness:.94,bumpMeters:.00025},
   floor:{id:'DONGWHA_NATUSJIN_GRANDE_EMOTION_BLANC',boardMeters:[.81,.325],roughness:.76,bumpMeters:.00018},
