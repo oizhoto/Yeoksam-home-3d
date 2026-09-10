@@ -1054,14 +1054,14 @@
         {
           "id": "door-bath2",
           "type": "door",
-          "start": 2820,
+          "start": 2550,
           "width": 650,
           "hinge": "start",
           "swing": 90,
           "open": true,
-          "evidence": "image-estimated",
+          "evidence": "image-estimated-user-reviewed",
           "symbolEvidence": "visible",
-          "note": "출입 위치·회전호는 원본 식별. 폭/이격거리는 이미지 추정. / ASSUMED: mm 폭·이격거리 미표기, 원본 이미지 기호 기준. 회전호 x338–355px 및 힌지 x338px 재판독.",
+          "note": "원본 평면 overlay 재검토 후 욕실2 문을 외벽에서 더 이격되도록 보정. bed1-north 벽 a=(3800,6720)→b=(0,6720) 기준 start=2550, width=650으로 개구부 끝에서 x=0측 벽까지 약 600mm가 남도록 설정. 실측 전 추정값.",
           "status": "ASSUMED",
           "sourcePixelRange": [
             [
@@ -1342,7 +1342,7 @@
   "extensions": [],
   "orientation": "line2-mirrored-x",
   "stage": "평면·3D 동일 geometry 검증",
-  "geometryStatus": "calibrated-to-source-not-surveyed",
+  "geometryStatus": "calibrated-to-source-not-surveyed-user-reviewed",
   "fixtures": [],
   "review": {
     "mirrorAxisX": 3975,
@@ -1399,8 +1399,8 @@
         "space": "욕실2",
         "before": "서측 주방에서 출입",
         "sourceLine1": "남측 / 침실1에서 진입, 욕실 안쪽 열림",
-        "result": "출입 관계 교정",
-        "confidence": "문 위치/방향은 기호 판독, mm 폭·이격거리는 추정",
+        "result": "원본 overlay 재검토 후 위치 재보정",
+        "confidence": "사용자 검토 반영, mm 위치는 실측 전 추정",
         "confirmed": false
       },
       {
@@ -1906,11 +1906,11 @@
     "approachDepth": 1400,
     "approachWidth": 1800
   },
-  "geometryRevision": "BASE_GEOMETRY_V1",
+  "geometryRevision": "BASE_GEOMETRY_V1_R1_BATH2_DOOR",
   "baseGeometryId": "BASE_GEOMETRY_V1",
   "calibration": {
     "baselineId": "BASE_GEOMETRY_V1",
-    "date": "2026-09-07",
+    "date": "2026-09-10",
     "method": "Visual comparison against reflected original; printed dimensions preserved; existing openings adjusted only.",
     "sourceImage": "floorplan.png",
     "sourcePixelOriginLine1": [
@@ -2114,31 +2114,21 @@
       },
       {
         "id": "door-bath2",
-        "status": "ASSUMED",
+        "status": "ASSUMED_USER_REVIEWED",
         "coordinateFrame": "line2",
         "before": {
-          "start": 2050,
-          "width": 650,
-          "hinge": "end",
-          "swing": -90
-        },
-        "after": {
           "start": 2820,
           "width": 650,
           "hinge": "start",
           "swing": 90
         },
-        "sourcePixelRange": [
-          [
-            338,
-            241
-          ],
-          [
-            355,
-            241
-          ]
-        ],
-        "basis": "Visible quarter-circle lies at source x338–355 with hinge x338. Previous location followed adjacent white fixture. Correct location and hinge together."
+        "after": {
+          "start": 2550,
+          "width": 650,
+          "hinge": "start",
+          "swing": 90
+        },
+        "basis": "Source-plan overlay review showed the prior opening too close to the x=0 side wall. Adjusted so the opening end leaves approximately 600 mm to the side wall; not survey-measured."
       }
     ],
     "unresolved": [
@@ -2147,6 +2137,6 @@
       "Lower curved balcony outline and unclear upper boundary remain unresolved; no new spaces/openings added.",
       "Printed-constrained lines may differ from image by a few pixels; no nonuniform image distortion applied."
     ],
-    "futurePolicy": "Keep BASE_GEOMETRY_V1.json immutable. Derive interior working copies with baseGeometryId; do not overwrite the baseline."
+    "futurePolicy": "BASE geometry may be corrected when source-plan overlay review identifies an error. Only evidence-backed corrections should be applied; unrelated geometry remains unchanged."
   }
 }
