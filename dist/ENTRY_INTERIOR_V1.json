@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "name": "ENTRY_INTERIOR_V1",
+  "basis": "INTERIOR_V2_SVG_EXPANSION",
+  "note": "Reference-inspired vestibule layer. Does not modify BASE or expansion geometry.",
+  "objects": [
+    {
+      "id": "entry-screen",
+      "type": "screenDoor",
+      "name": "현관 중문",
+      "position": [
+        6500,
+        0,
+        5600
+      ],
+      "size": [
+        50,
+        2200,
+        1050
+      ],
+      "rotationY": 0,
+      "style": "slim-frame translucent glass"
+    },
+    {
+      "id": "entry-cabinet",
+      "type": "cabinet",
+      "name": "현관 수납장",
+      "position": [
+        7180,
+        0,
+        4990
+      ],
+      "size": [
+        1050,
+        2200,
+        340
+      ],
+      "rotationY": 0,
+      "style": "full-height white cabinet with open niche",
+      "niche": {
+        "y": 980,
+        "height": 430
+      }
+    },
+    {
+      "id": "entry-mirror",
+      "type": "mirror",
+      "name": "전신거울",
+      "position": [
+        7050,
+        120,
+        6368
+      ],
+      "size": [
+        700,
+        1850,
+        18
+      ],
+      "rotationY": 0,
+      "style": "full-height mirror"
+    }
+  ]
+}

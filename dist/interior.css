@@ -11,3 +11,6 @@
 .control-bar button.active{background:#126e78;color:#fff;border-color:#126e78}
 .control-bar #active{margin-left:8px;white-space:nowrap;color:#647b8b}
 @media(max-width:700px){.control-strip{padding:8px 10px;gap:6px}.control-bar button{padding:7px 10px;font-size:13px}.control-bar #active{display:none}.control-divider{height:25px}}
+
+/* Layered design controls V4 */
+.layer-tabs{display:flex;align-items:center;gap:6px;flex:0 0 auto}.base-pill{white-space:nowrap;padding:8px 12px;border-radius:5px;background:#e8f3f4;color:#126e78;border:1px solid #9bc4c8;font-weight:700}.layer-toggle.active,#finalPreset.active,#originalToggle.active{background:#126e78;color:#fff;border-color:#126e78}.layer-toggle::before{content:"＋ ";opacity:.65}.layer-toggle.active::before{content:"✓ ";opacity:1}

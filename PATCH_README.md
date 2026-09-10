@@ -1,7 +1,8 @@
-# UI stage/navigation V3 patch
-- Stage order: 확장 / 중문 / 가구 / 완성안 / 원본
-- Added 중문 stage on top of confirmed expansion geometry (no BASE geometry changes)
-- Unified stage + view controls into one sticky horizontal bar
-- Simplified view controls: 2D / 3D / 워크스루 / 저장
-- "워크스루" replaces "현관 시점" as the clearer interior 3D navigation term
-- Mobile: one-row horizontal scrolling toolbar, remains sticky while page scrolls
+# Yeoksam layered entry V4 patch
+
+- 확장안을 기본 geometry로 고정
+- 중문/가구를 독립 ON/OFF 레이어로 변경
+- 완성안 = 현재 구현된 중문+가구 레이어 모두 ON 프리셋
+- 원본 = 비교용 BASE toggle
+- 사용자가 제공한 현관 사진을 참고해 중문/현관장/오픈니치/전신거울 1차안 추가
+- BASE_GEOMETRY_V1 / INTERIOR_V2_SVG_EXPANSION JSON은 수정하지 않음
