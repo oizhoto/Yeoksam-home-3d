@@ -59,7 +59,7 @@ function fridgeWall(obj){
   g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));return g;
 }
 export function buildBathroomKitchenLayer(data){
-  const root=new THREE.Group();root.name='V8.1-bathroom-kitchen-detail';
+  const root=new THREE.Group();root.name='V8.2-bathroom-detail-correction';
 
   function genericPlaced(o, materialType='white'){
     return place(box(o.size,materialType),o.position,o.rotationY,o.size);
@@ -69,7 +69,7 @@ export function buildBathroomKitchenLayer(data){
     const carcass=box(o.size,'cabinet');
     carcass.position.y=mm(o.size[1]/2);
     g.add(carcass);
-    const doorCount=Math.max(2,Math.round(o.size[0]/500));
+    const doorCount=o.doorCount||Math.max(2,Math.round(o.size[0]/500));
     for(let i=1;i<doorCount;i++){
       const seam=box([4,o.size[1]-20,o.size[2]+4],'black');
       seam.position.set(mm(-o.size[0]/2 + o.size[0]*i/doorCount),mm(o.size[1]/2),mm(2));
@@ -110,12 +110,85 @@ export function buildBathroomKitchenLayer(data){
     g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);return g;
   }
 
+
+  function insetBasin(o){
+    const g=new THREE.Group();
+    const rim=new THREE.Mesh(
+      new THREE.TorusGeometry(mm(145),mm(22),10,36),
+      mat('white')
+    );
+    rim.rotation.x=Math.PI/2;
+    rim.scale.x=1.45;
+    g.add(rim);
+    const bowl=new THREE.Mesh(
+      new THREE.SphereGeometry(mm(155),28,16,0,Math.PI*2,0,Math.PI/2),
+      mat('white')
+    );
+    bowl.scale.set(1.45,.52,1.0);
+    bowl.rotation.x=Math.PI;
+    bowl.position.y=mm(-42);
+    g.add(bowl);
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+    return g;
+  }
+
+  function deckFaucet(o){ return faucet(o,false); }
+
+  function towel(o){
+    const g=new THREE.Group();
+    const towelMat=new THREE.MeshStandardMaterial({color:0xe8e5df,roughness:.95,metalness:0});
+    const cloth=new THREE.Mesh(
+      new THREE.BoxGeometry(mm(o.size[0]),mm(o.size[1]),mm(o.size[2])),
+      towelMat
+    );
+    cloth.position.y=mm(-o.size[1]/2);
+    g.add(cloth);
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+    return g;
+  }
+
+  function glassDoor(o){
+    const g=new THREE.Group();
+    const panel=box(o.size,'glass');
+    panel.position.y=mm(o.size[1]/2);
+    g.add(panel);
+
+    // slim metal frame + handle
+    const frameMat=mat('chrome');
+    const edge=new THREE.Mesh(
+      new THREE.BoxGeometry(mm(20),mm(o.size[1]),mm(20)),
+      frameMat
+    );
+    edge.position.set(0,mm(o.size[1]/2),mm(-o.size[2]/2+10));
+    g.add(edge);
+
+    const handle=new THREE.Mesh(
+      new THREE.CylinderGeometry(mm(10),mm(10),mm(220),16),
+      frameMat
+    );
+    handle.position.set(mm(35),mm(1050),mm(o.size[2]/2-80));
+    g.add(handle);
+
+    g.position.set(mm(o.position[0]),mm(o.position[1]),mm(o.position[2]));
+    g.rotation.y=THREE.MathUtils.degToRad(o.rotationY||0);
+    g.userData.hinge=o.hinge;
+    g.userData.swing=o.swing;
+    g.userData.swingAngle=o.swingAngle||85;
+    return g;
+  }
+
   for(const room of data.bathrooms||[]){
     for(const o of room.objects||[]){
       let mesh;
       if(o.type==='bathtub') mesh=tub(o);
       else if(o.type==='toilet') mesh=toilet(o);
       else if(o.type==='faucet') mesh=faucet(o,false);
+      else if(o.type==='deckFaucet') mesh=deckFaucet(o);
+      else if(o.type==='insetBasin') mesh=insetBasin(o);
+      else if(o.type==='towel') mesh=towel(o);
+      else if(o.type==='glassDoor') mesh=glassDoor(o);
       else if(o.type==='showerSet') mesh=showerSet(o);
       else if(o.type==='wallCabinet') mesh=wallCabinet(o);
       else if(o.type==='towelBar') mesh=towelBar(o);

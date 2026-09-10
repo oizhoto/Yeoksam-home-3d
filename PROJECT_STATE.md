@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.1 — BATHROOM / FRIDGE LAYOUT CORRECTION**
-- Last updated: **2026-09-10 23:49 KST**
+- Project version: **V8.2 — BATHROOM DETAIL CORRECTION**
+- Last updated: **2026-09-10 23:55 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -146,6 +146,17 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
 
 ## VERSION HISTORY
+
+### V8.2 — Bathroom Detail Correction — 2026-09-10 23:55 KST
+- 욕실1에도 젠다이를 추가하고, 욕실1·2 모두 젠다이/세면대 상판에 **매립형 세면볼 + 데크형 수전**을 명확하게 구현.
+- 욕실1 휴지걸이는 **변기에 앉았을 때 왼쪽** 기준의 실제 벽면에 부착되도록 위치 수정. 공중에 뜨는 배치 제거.
+- 욕실1 수건걸이에 **수건 1장** 추가.
+- 욕실1·2 젠다이 위 긴 수납장을 **4칸**으로 수정: 구분선 2개 → **3개**.
+- 욕실2 샤워부스 고정 유리는 **욕실문 90° 오픈 상태와 평행**하게 벽과 벽 사이를 잇는 방향으로 수정.
+- 욕실2 샤워부스 출입용 **유리문 추가**. 욕실 출입문 뒤쪽에 배치하고 **샤워부스 안쪽으로 열리도록** 설정.
+- 동선 의도: 욕실2 출입문을 닫은 뒤에야 샤워부스 유리문을 열 수 있는 관계로 구성.
+- V8.1의 변기/세면대/욕조 기본 배치 및 V7.5 baseline geometry는 유지.
+
 
 ### V8.1 — Bathroom / Fridge Layout Correction — 2026-09-10 23:49 KST
 - 냉장고장을 기존 조리대 **반대편 x=2700 벽**으로 이동하고 **창가(z≈0) 쪽에 밀착**. 원도어 3대 병렬 + 상부수납 구성 유지.

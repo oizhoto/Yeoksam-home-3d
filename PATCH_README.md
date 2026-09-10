@@ -1,12 +1,14 @@
-# Yeoksam V8.1 Layout Correction Patch
-Project version: V8.1
-Updated: 2026-09-10 23:49 KST
+# Yeoksam V8.2 Bathroom Detail Correction Patch
+Project version: V8.2
+Updated: 2026-09-10 23:55 KST
 Baseline: V7.5 BASELINE LOCKED
 
 Scope:
-- bathroom fixture placement correction
-- bath1 long upper cabinet
-- bath2 ledge + upper cabinet + shower booth
-- refrigerator wall relocation to opposite wall near window
+- bath1 ledge
+- bath1/bath2 inset basins + visible deck faucets
+- bath1 toilet-paper holder wall correction
+- bath1 towel
+- 4-door bathroom upper cabinets
+- bath2 fixed shower glass + inward-opening glass door
 
 No baseline geometry files are included.
