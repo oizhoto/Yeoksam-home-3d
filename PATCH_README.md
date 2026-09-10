@@ -1,9 +1,6 @@
-# Expansion renderer cleanup patch
-
-- BASE_GEOMETRY_V1.json: not modified.
-- INTERIOR_V2_SVG_EXPANSION.json: copied unchanged from the user-confirmed Astra expansion package.
-- UI: removed the unfinished wallpaper/floor stage for now.
-- Expansion/Furniture/Final stages now render INTERIOR_V2_SVG_EXPANSION directly.
-- Because removed balcony boundary walls are absent from this geometry's `walls` array, Three.js does not create meshes/colliders for them.
-- Furniture stage is kept as the next working stage; no furniture has been added in this patch.
-- WASD/pointer-lock behavior is intentionally not changed in this patch.
+# Furniture V1 patch
+- Geometry JSON is unchanged.
+- Adds FURNITURE_V1.json and simple dimension-true 3D envelopes.
+- Furniture appears only in 가구/완성안 stages.
+- Placement is a first-pass layout for spatial validation, not a final design.
+- Exact official dimensions are used where a specific model is identified; generic JAKOMO 3.5-seat depth/height remain planning assumptions because no model was specified.

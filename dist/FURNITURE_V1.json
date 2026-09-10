@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "name": "Yeoksam Furniture & Appliance V1",
+  "geometryPolicy": "NO_GEOMETRY_CHANGES",
+  "items": [
+    {
+      "id": "samsung-kitchenfit-4door",
+      "category": "fridge",
+      "name": "삼성 BESPOKE AI 4도어 키친핏 615L",
+      "model": "RF60DB9KF1AP",
+      "size": [912, 1853, 683],
+      "position": [3400, 0, 650],
+      "rotationY": 0,
+      "source": "https://www.samsung.com/sec/support/model/RF60DB9KF1AP/",
+      "sizeStatus": "OFFICIAL_EXACT"
+    },
+    {
+      "id": "lg-washtower-full",
+      "category": "washtower",
+      "name": "LG 트롬 워시타워",
+      "model": "W17KTA",
+      "size": [700, 1890, 830],
+      "position": [5150, 0, 650],
+      "rotationY": 0,
+      "source": "https://www.lge.co.kr/wash-tower/w17kta",
+      "sizeStatus": "OFFICIAL_EXACT",
+      "note": "주방 확장부 상단 세탁존에 배치. 실제 설치 여유공간은 추후 별도 검토."
+    },
+    {
+      "id": "simmons-lk-mattress",
+      "category": "bed",
+      "name": "시몬스 라지킹 매트리스",
+      "model": "LK planning size",
+      "size": [1700, 270, 2075],
+      "position": [1900, 0, 8200],
+      "rotationY": 0,
+      "source": "https://www.hyundailivart.co.kr/p/P200191177",
+      "sizeStatus": "SIZE_CORROBORATED_NOT_OFFICIAL",
+      "note": "1700×2075mm LK 규격. 높이 270mm는 시몬스 LK 사용 사례 기반 계획값이며 모델별 상이. 프레임 미포함."
+    },
+    {
+      "id": "jakomo-3p5-sofa",
+      "category": "sofa",
+      "name": "자코모 3.5인 소파",
+      "model": "generic planning envelope",
+      "size": [2600, 850, 1000],
+      "position": [5400, 0, 8300],
+      "rotationY": 90,
+      "source": "https://www.jakomo.co.kr/main/html.php?htmid=event%2Fwedding.html",
+      "sizeStatus": "OFFICIAL_WIDTH_RANGE_PLUS_ASSUMED_DEPTH_HEIGHT",
+      "note": "공식 3.5인 권장 폭 2500~2700mm의 중앙값 2600mm 사용. 깊이/높이는 특정 모델 미지정으로 계획용 envelope."
+    },
+    {
+      "id": "samsung-tv-75",
+      "category": "tv",
+      "name": "삼성 75형 TV",
+      "model": "KQ75QNF75AFXKR",
+      "size": [1677.5, 960.7, 26.6],
+      "position": [7820, 650, 8300],
+      "rotationY": 90,
+      "source": "https://www.samsung.com/sec/support/model/KQ75QNF75AFXKR/",
+      "sizeStatus": "OFFICIAL_EXACT_NO_STAND",
+      "note": "스탠드 제외 본체 치수. 현재는 공간감 검토용으로 거실 동측에 세움."
+    }
+  ]
+}
