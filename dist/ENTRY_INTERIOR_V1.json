@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "units": "mm",
-  "name": "ENTRY_INTERIOR_V2",
+  "name": "ENTRY_INTERIOR_V3",
   "basis": "INTERIOR_V2_SVG_EXPANSION",
-  "note": "Reference-inspired vestibule layer. Screen door plus full-height partition wall, cabinet niche and wall-mounted mirror. Does not modify BASE or expansion geometry.",
+  "note": "Reference-inspired vestibule layer. Adds a full-height living-room-side solid wall behind the entry mirror, while keeping the screen door, side partition and cabinet. Does not modify BASE or expansion geometry.",
   "objects": [
     {
       "id": "entry-screen",
@@ -61,13 +61,30 @@
       }
     },
     {
+      "id": "entry-living-wall",
+      "type": "partitionWall",
+      "name": "현관-거실측 가벽",
+      "position": [
+        7225,
+        0,
+        6340
+      ],
+      "size": [
+        1450,
+        2300,
+        120
+      ],
+      "rotationY": 0,
+      "style": "full-height solid partition wall; spans entry width from x=6500 to x=7950; provisional 120 mm thickness"
+    },
+    {
       "id": "entry-mirror",
       "type": "mirror",
       "name": "전신거울",
       "position": [
         7050,
         120,
-        6388
+        6274
       ],
       "size": [
         700,
@@ -75,7 +92,7 @@
         8
       ],
       "rotationY": 0,
-      "style": "wall-mounted full-height mirror"
+      "style": "wall-mounted full-height mirror on vestibule-facing side of entry/living partition"
     }
   ]
 }

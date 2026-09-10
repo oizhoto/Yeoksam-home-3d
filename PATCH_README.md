@@ -1,7 +1,6 @@
-# Yeoksam entry wall + camera preserve patch
+# Yeoksam Entry Full Wall V6
 
-- Adds a full-height solid partition wall beside the translucent screen door.
-- Keeps the mirror as a thin wall-mounted surface instead of a dark freestanding-looking block.
-- Layer toggles (중문/가구/완성안/원본) no longer reset the current 3D zoom/orbit camera.
-- 3D / 워크스루 buttons still intentionally move to their preset viewpoints when the user explicitly changes view mode.
-- BASE_GEOMETRY_V1.json and INTERIOR_V2_SVG_EXPANSION.json are not included or modified.
+- Adds a full-height solid wall across the entry/living-room boundary (provisional 120 mm thickness).
+- Moves the full-height mirror to the vestibule-facing side of that wall, so the living-room side reads as a continuous wall rather than a dark/gray panel.
+- Keeps the existing screen door, side partition, cabinet, expansion geometry, and furniture layer unchanged.
+- BASE_GEOMETRY_V1 and INTERIOR_V2_SVG_EXPANSION are not included or modified.
