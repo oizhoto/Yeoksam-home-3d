@@ -1,14 +1,22 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>역삼푸르지오 · Digital Twin</title><link rel="stylesheet" href="interior.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head><body><div class="version-bar">Yeoksam Digital Twin · V6.1 · 2026-09-10</div><header><div><h1>역삼푸르지오 · Digital Twin</h1><p>24평 2호 라인 · 장기 인테리어 설계</p></div><a href="review.html">원본 도면 검증</a></header><nav class="control-bar"><div class="control-strip"><div class="layer-tabs"><span class="base-pill">확장안</span><button class="layer-toggle" data-layer="entry">중문</button><button class="layer-toggle" data-layer="kitchen">주방</button><button class="layer-toggle" data-layer="furniture">가구</button><button id="finalPreset">완성안</button><button id="originalToggle">원본</button></div><span class="control-divider"></span><div class="view-tabs"><button class="view active" data-view="plan">2D</button><button class="view" data-view="overview">3D</button><button class="view" data-view="entry">워크스루</button><button id="saveView">저장</button></div><button id="resetFurniture" hidden>초기화</button><button id="exportFurniture" hidden>가구 좌표 내보내기</button><span id="active">확장안 · 2D</span></div></nav><p class="note" id="note"></p><div id="furnitureControls" class="furniture-controls" hidden>
-  <div class="furniture-control-top">
-    <p id="furnitureInfo">가구를 눌러 선택한 뒤 화살표로 이동하세요.</p>
-    <label>이동 <select id="furnitureStep"><option value="10">10 mm</option><option value="50" selected>50 mm</option><option value="100">100 mm</option></select></label>
-  </div>
-  <div class="furniture-pad" aria-label="가구 위치 조정">
-    <button data-furniture-action id="moveUp" aria-label="위로 이동">↑</button>
-    <button data-furniture-action id="moveLeft" aria-label="왼쪽 이동">←</button>
-    <button data-furniture-action id="rotateLeft" aria-label="왼쪽으로 90도 회전">↶</button>
-    <button data-furniture-action id="rotateRight" aria-label="오른쪽으로 90도 회전">↷</button>
-    <button data-furniture-action id="moveRight" aria-label="오른쪽 이동">→</button>
-    <button data-furniture-action id="moveDown" aria-label="아래로 이동">↓</button>
-  </div>
-</div><div id="furnitureExportDialog" class="furniture-export-dialog" hidden><div class="furniture-export-card" role="dialog" aria-modal="true" aria-labelledby="furnitureExportTitle"><div class="furniture-export-head"><h2 id="furnitureExportTitle">가구 좌표 JSON</h2><button id="closeFurnitureExport" aria-label="닫기">✕</button></div><p>현재 배치를 소스코드에 반영하려면 아래 JSON을 복사해 ChatGPT에 보내세요.</p><textarea id="furnitureExportJson" readonly spellcheck="false"></textarea><div class="furniture-export-actions"><button id="copyFurnitureExport" class="primary">JSON 복사</button><span id="copyFurnitureStatus" aria-live="polite"></span></div></div></div><main class="viewer"><section class="view-card"><h2><span id="viewTitle">확장안 · 2D</span> <small id="viewSubtitle">INTERIOR_V2_SVG_EXPANSION</small></h2><div class="plan" id="plan"></div><div class="scene" id="scene" hidden></div></section></main><div class="evidence" id="evidence"></div><details><summary>구조 검토 정보</summary><ul id="structures"></ul></details><footer><a href="BASE_GEOMETRY_V1.json" download>원본 기준 JSON</a><a href="INTERIOR_V2_SVG_EXPANSION.json" download>확장 기준 JSON</a><a href="ENTRY_INTERIOR_V1.json" download>중문/현관 JSON</a><a href="KITCHEN_V1.json" download>주방 V1 JSON</a><span>Layered digital twin · geometry 기준 고정</span></footer><script type="module" src="interior.js"></script></body></html>
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>역삼푸르지오 · Digital Twin</title><link rel="stylesheet" href="interior.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head><body>
+<div class="version-bar">Yeoksam Digital Twin · V7.0 · 2026-09-10</div>
+<header><div><h1>역삼푸르지오 · Digital Twin</h1><p>24평 2호 라인 · 장기 인테리어 설계</p></div><a href="review.html">원본 도면 검증</a></header>
+<nav class="control-bar"><div class="control-strip">
+  <div class="layer-tabs"><button class="layer-toggle" id="furnitureToggle">가구</button></div>
+  <span class="control-divider"></span>
+  <div class="view-tabs"><button class="view active" data-view="plan">2D</button><button class="view" data-view="overview">3D</button><button class="view" data-view="entry">워크스루</button><button id="saveView">저장</button></div>
+  <button id="resetFurniture" hidden>초기화</button><button id="exportFurniture" hidden>가구 좌표 내보내기</button>
+  <span id="active">확장안 · 2D</span>
+</div></nav>
+<p class="note" id="note"></p>
+<div id="furnitureExportDialog" class="furniture-export-dialog" hidden><div class="furniture-export-card" role="dialog" aria-modal="true" aria-labelledby="furnitureExportTitle"><div class="furniture-export-head"><h2 id="furnitureExportTitle">가구 좌표 JSON</h2><button id="closeFurnitureExport" aria-label="닫기">✕</button></div><p>현재 배치를 소스코드에 반영하려면 아래 JSON을 복사해 ChatGPT에 보내세요.</p><textarea id="furnitureExportJson" readonly spellcheck="false"></textarea><div class="furniture-export-actions"><button id="copyFurnitureExport" class="primary">JSON 복사</button><span id="copyFurnitureStatus" aria-live="polite"></span></div></div></div>
+<main class="viewer"><section class="view-card"><h2><span id="viewTitle">확장안 · 2D</span> <small id="viewSubtitle">INTERIOR_V2_SVG_EXPANSION</small></h2>
+<div class="plan" id="plan"></div>
+<div id="furnitureControls" class="furniture-controls" hidden>
+  <div class="furniture-control-top"><p id="furnitureInfo">가구를 눌러 선택한 뒤 화살표로 이동하세요.</p><label>이동 <select id="furnitureStep"><option value="10">10 mm</option><option value="50" selected>50 mm</option><option value="100">100 mm</option></select></label></div>
+  <div class="furniture-pad" aria-label="가구 위치 조정"><button data-furniture-action id="moveUp">↑</button><button data-furniture-action id="moveLeft">←</button><button data-furniture-action id="rotateLeft">↶</button><button data-furniture-action id="rotateRight">↷</button><button data-furniture-action id="moveRight">→</button><button data-furniture-action id="moveDown">↓</button></div>
+</div>
+<div class="scene" id="scene" hidden></div></section></main>
+<details><summary>구조 검토 정보</summary><ul id="structures"></ul></details>
+<footer><a href="INTERIOR_V2_SVG_EXPANSION.json" download>확장 geometry JSON</a><a href="FIXED_INTERIOR_V1.json" download>기본 인테리어 JSON</a><span>Main page sources minimized · bathroom/original calibration pending</span></footer>
+<script type="module" src="interior.js"></script></body></html>

@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "units": "mm",
+  "name": "FIXED_INTERIOR_V1",
+  "buildVersion": "V7.0",
+  "basis": "INTERIOR_V2_SVG_EXPANSION",
+  "entryObjects": [
+    {
+      "id": "entry-screen",
+      "type": "screenDoor",
+      "name": "현관 중문",
+      "position": [
+        6500,
+        0,
+        5320
+      ],
+      "size": [
+        50,
+        2200,
+        1000
+      ],
+      "rotationY": 0,
+      "style": "slim-frame translucent glass screen door"
+    },
+    {
+      "id": "entry-partition-wall",
+      "type": "partitionWall",
+      "name": "중문 가벽",
+      "position": [
+        6500,
+        0,
+        6110
+      ],
+      "size": [
+        120,
+        2300,
+        580
+      ],
+      "rotationY": 0,
+      "style": "full-height solid partition wall"
+    },
+    {
+      "id": "entry-cabinet",
+      "type": "cabinet",
+      "name": "현관 수납장",
+      "position": [
+        7180,
+        0,
+        4990
+      ],
+      "size": [
+        1050,
+        2200,
+        340
+      ],
+      "rotationY": 0,
+      "style": "full-height white cabinet with open niche",
+      "niche": {
+        "y": 980,
+        "height": 430
+      }
+    },
+    {
+      "id": "entry-living-wall",
+      "type": "partitionWall",
+      "name": "현관-거실측 가벽",
+      "position": [
+        7225,
+        0,
+        6340
+      ],
+      "size": [
+        1450,
+        2300,
+        120
+      ],
+      "rotationY": 0,
+      "style": "full-height solid partition wall"
+    },
+    {
+      "id": "entry-mirror",
+      "type": "mirror",
+      "name": "전신거울",
+      "position": [
+        7050,
+        120,
+        6274
+      ],
+      "size": [
+        700,
+        1850,
+        8
+      ],
+      "rotationY": 0,
+      "style": "wall-mounted full-height mirror"
+    },
+    {
+      "id": "laundry-turning-door",
+      "type": "screenDoor",
+      "subtype": "turningDoor",
+      "name": "워시타워 터닝도어",
+      "position": [
+        4550,
+        0,
+        625
+      ],
+      "size": [
+        50,
+        2200,
+        1250
+      ],
+      "rotationY": 0,
+      "style": "insulated turning door",
+      "note": "구조체 코너 x=4550,z=1250에서 외측 z=0 방향으로 직선. 냉장고/워시타워가 같은 확장 주방 영역 안쪽에 남도록 함."
+    },
+    {
+      "id": "master-wardrobe",
+      "type": "cabinet",
+      "subtype": "wardrobe",
+      "name": "안방 붙박이장",
+      "position": [
+        300,
+        0,
+        8337.5
+      ],
+      "size": [
+        600,
+        2300,
+        3235
+      ],
+      "rotationY": 0,
+      "style": "Livart-inspired flat matte-white full-height built-in wardrobe"
+    }
+  ],
+  "kitchenObjects": [
+    {
+      "id": "kitchen-lower-run",
+      "type": "lowerCabinetRun",
+      "name": "일자형 하부장",
+      "position": [
+        5000,
+        0,
+        3300
+      ],
+      "size": [
+        600,
+        880,
+        2900
+      ],
+      "rotationY": 0,
+      "modules": [
+        600,
+        600,
+        800,
+        900
+      ],
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "kitchen-countertop",
+      "type": "countertop",
+      "name": "주방 상판",
+      "position": [
+        4990,
+        880,
+        3300
+      ],
+      "size": [
+        620,
+        20,
+        2900
+      ],
+      "rotationY": 0,
+      "status": "PROVISIONAL"
+    },
+    {
+      "id": "kitchen-upper-run",
+      "type": "upperCabinetRun",
+      "name": "일자형 상부장",
+      "position": [
+        5125,
+        1500,
+        3300
+      ],
+      "size": [
+        350,
+        780,
+        2900
+      ],
+      "rotationY": 0,
+      "modules": [
+        600,
+        600,
+        800,
+        900
+      ],
+      "status": "PROVISIONAL"
+    }
+  ],
+  "note": "현관중문/세탁실터닝도어/붙박이장/주방은 메인 확장안에 기본 적용. 별도 토글 없음."
+}
