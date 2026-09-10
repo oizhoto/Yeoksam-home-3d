@@ -4,7 +4,7 @@ import {OrbitControls} from './vendor/OrbitControls.js';
 import {compileGeometry,entranceFrame,blocked} from './plan-core.js';
 import {createFinishLibrary,materialForBox,MATERIAL_V1} from './materials.js';
 import {createDesignLayer} from './design-layer.js';
-export const APP_VERSION='V7.7';
+export const APP_VERSION='V7.8';
 export function createShared3D(host,{onCameraChange}={}){
 host.dataset.appVersion=APP_VERSION;
 if(!host.querySelector('[data-yeoksam-version-badge]')){

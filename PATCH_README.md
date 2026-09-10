@@ -1,14 +1,16 @@
-# Yeoksam V7.7 Material Stage 2 Patch
+# Yeoksam V7.8 Version / History UI Patch
 
-- Project version: **V7.7**
-- Structural baseline: **V7.5 BASELINE LOCKED**
-- Purpose: confirmed finish-material refinement only.
-- Apply by merging the ZIP contents into the repository root.
-- This patch intentionally contains only changed/supporting files.
-- Patch naming rule: every patch ZIP must start with lowercase `yeoksam`.
-- Canonical filename: `yeoksam-v7.7-material-stage2-patch.zip`
+- Project version: **V7.8**
+- Updated: **2026-09-10 23:22 KST**
+- Baseline: **V7.5 BASELINE LOCKED**
+- Canonical patch filename: `yeoksam-v7.8-version-history-ui-patch.zip`
 
-## Version rule
-The visible app version, `PROJECT_STATE.md` project version, Git commit version,
-and patch ZIP version must match. Baseline version changes only when the user
-explicitly authorizes structural/baseline changes.
+## Scope
+This patch only fixes project-version presentation and version-history policy.
+It does NOT intentionally modify baseline geometry or interior design geometry.
+
+## Permanent rule
+- Top bar: current Project version + last updated time (KST)
+- PROJECT_STATE.md: current version + timestamp + cumulative VERSION HISTORY
+- Git commit message: starts with the same Vx.x
+- Patch ZIP: lowercase `yeoksam-vX.X-...-patch.zip`

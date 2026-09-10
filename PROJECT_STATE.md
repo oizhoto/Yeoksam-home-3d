@@ -1,7 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V7.7 — MATERIAL STAGE 2**
+- Project version: **V7.8 — VERSION / HISTORY UI**
+- Last updated: **2026-09-10 23:22 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -96,7 +97,9 @@
    - 내부적으로도 `data-app-version` 또는 동등한 metadata에 현재 버전을 기록한다.
 
 3. **PROJECT_STATE.md 기록**
-   - 문서 상단의 `Current project version`을 새 버전으로 갱신한다.
+   - 문서 가장 상단의 `Current project version`을 새 버전으로 갱신한다.
+   - 같은 위치에 **최종 업데이트 시간(KST)** 을 기록한다.
+   - `VERSION HISTORY`에 버전별 실제 변경사항을 누적 기록한다. 기존 히스토리를 삭제/덮어쓰지 않는다.
    - 해당 버전에서 실제 변경한 범위와 검증 상태를 progress 섹션에 기록한다.
    - baseline lock 내용은 사용자의 명시적 구조 변경 요청이 없는 한 수정하지 않는다.
 
@@ -117,7 +120,9 @@
 6. **작업 종료 검증**
    - 코드 syntax / 실행 여부를 확인한다.
    - baseline geometry, 확장, 문, 중문, 터닝도어가 변경되지 않았는지 diff/check script로 확인한다.
+   - 화면 최상단에는 항상 **현재 Project version + 최종 업데이트 시간(KST)** 이 보여야 한다.
    - 화면에 표시되는 버전, `PROJECT_STATE.md`, commit message, ZIP 파일명의 버전이 서로 동일해야 한다.
+   - 레이어 고유 버전이나 baseline 버전을 현재 project version처럼 단독 표시하지 않는다.
 
 이 규칙은 Astra와 ChatGPT 어느 쪽에서 작업하더라도 동일하게 적용한다.
 
@@ -139,3 +144,32 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 '정리
 - 304ac57 대비 구조·고정 요소·가구·천장·조명·카메라 보호 검사: tools/check-material-stage2.mjs.
 - 실행 확인은 Canvas3D 환경. WebGL 질감/광택 시각 검증은 미완료.
 - 적용 및 자료/가정: docs/MATERIAL_STAGE2.md.
+
+## VERSION HISTORY
+
+### V7.8 — Version / History UI — 2026-09-10 23:22 KST
+- 화면 최상단의 현재 프로젝트 버전을 **V7.8**로 통일.
+- 화면 최상단에 **최종 업데이트 시간(KST)** 표시.
+- 인테리어 시안 영역은 `Project V7.8 / Baseline V7.5 LOCKED`로 역할을 구분해 표시.
+- `PROJECT_STATE.md`에 버전별 변경내역 누적 규칙 추가.
+- 앞으로 화면 버전 / PROJECT_STATE / Git commit / patch ZIP 버전 일치를 필수 규칙으로 적용.
+- 구조, 확장, 문, 중문, 터닝도어 및 인테리어 geometry 변경 없음.
+
+### V7.7 — Material Stage 2
+- 확정 마감재 3종의 Three.js material 구현/개선.
+- LX Z:IN 디아망 PR002-13: procedural color map / bump / roughness 적용.
+- 동화자연마루 나투스진 그란데 이모션블랑: 810×325mm 물리 스케일 기반 반복 적용.
+- 영림 루카화이트 PX454-2: procedural film texture / roughness 적용.
+- 구조·고정 요소·가구·천장·조명·카메라는 변경하지 않도록 보호.
+- WebGL에서 실제 체감 질감/광택에 대한 최종 시각 검증은 미완료.
+
+### V7.6 — Interior Stage 1
+- 별도 DESIGN layer 추가.
+- 실링팬, 시스템에어컨, 다운라이트, 간접조명, 커튼박스 구현.
+- 인테리어 시안 ON/OFF 및 디자인 카메라/조명 컨트롤 추가.
+- baseline geometry 변경 없음.
+
+### V7.5 — BASELINE LOCKED
+- 사용자 overlay 검토를 기준으로 구조 baseline 확정.
+- 확장, 문 위치/방향, 현관 중문, WashTower 터닝도어 등 고정.
+- 이후 사용자 명시 지시 없이는 baseline 수정 금지.
