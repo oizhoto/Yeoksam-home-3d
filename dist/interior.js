@@ -6,7 +6,7 @@ import {drawKitchenLayer} from './kitchen-layer.js';
 
 const $=s=>document.querySelector(s);
 const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
-const PROJECT_VERSION='V8.25';
+const PROJECT_VERSION='V8.26';
 
 const [expandedRaw,furnitureData,fixedData,designData,bathKitchenData]=await Promise.all([
   load('INTERIOR_V2_SVG_EXPANSION.json'),
@@ -49,7 +49,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.25 · 191168 레퍼런스 스타일 반영: 상하부장·붙박이장·현관장·욕실 디테일. 일자형 주방/조명/구조 baseline 유지.';
+  $('#note').textContent='V8.26 · Walk Mode: 모바일 조이스틱 + 오른쪽 드래그, PC WASD + 마우스, 1600mm 눈높이, 충돌 유지. V8.25 인테리어/조명/구조 유지.';
 }
 function render(){drawPlan();model();refreshUI();}
 function setView(v){

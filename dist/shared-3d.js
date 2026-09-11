@@ -5,7 +5,7 @@ import {compileGeometry,entranceFrame,blocked} from './plan-core.js';
 import {createFinishLibrary,materialForBox,MATERIAL_V1} from './materials.js';
 import {createDesignLayer} from './design-layer.js';
 import {buildBathroomKitchenLayer} from './bathroom-kitchen-layer.js';
-export const APP_VERSION='V8.24';
+export const APP_VERSION='V8.26';
 export function createShared3D(host,{onCameraChange}={}){
 host.dataset.appVersion=APP_VERSION;
 if(!host.querySelector('[data-yeoksam-version-badge]')){
@@ -208,17 +208,230 @@ function setWallHeightMode(mode='full'){
  host.dataset.wallHeightMode=wallHeightMode;
  dirtyCamera=true;
 }
-function entrance(){if(!config)return;mode='entry';orbit.enabled=false;document.exitPointerLock?.();for(const k in keys)delete keys[k];const f=entranceFrame(config);camera.fov=config.settings.verificationFov;camera.position.set(mm(f.outside[0]),mm(config.settings.eyeHeight),mm(f.outside[1]));camera.lookAt(mm(f.center[0]),mm(config.settings.eyeHeight),mm(f.center[1]));yaw=camera.rotation.y;pitch=0;ceiling.visible=true;camera.updateProjectionMatrix();dirtyCamera=true;}
-function update(c){config=c;const sig=JSON.stringify([c.walls,c.rooms,c.floorPolygons,c.settings,c.entrance]);if(sig===signature)return;signature=sig;compiled=compileGeometry(c);clear(body);clear(labels);clear(ceiling);compiled.parts.forEach(segment);compiled.floors.forEach(floor);setWallHeightMode(wallHeightMode);config.rooms.filter(r=>!r.id.startsWith('bal')||r.expanded).forEach(label);if(signature===sig&&host.dataset.datasetRevision===undefined)entrance();host.dataset.datasetRevision=c.geometryRevision;host.dataset.geometryWallCount=c.walls.length;host.dataset.geometryPartCount=compiled.parts.length;host.dataset.livingLeft=String(entranceFrame(c).livingLeft);dirtyCamera=true;}
-function whole(){mode='overview';orbit.enabled=true;document.exitPointerLock?.();camera.fov=48;camera.position.set(15,15,19);orbit.target.set((config.bounds[0]+config.bounds[2])/2000,0,(config.bounds[1]+config.bounds[3])/2000);orbit.update();ceiling.visible=false;camera.updateProjectionMatrix();dirtyCamera=true;}
-renderer.domElement.addEventListener('click',()=>{if(mode==='overview')return;mode='walk';renderer.domElement.requestPointerLock?.()?.catch(()=>{});});document.addEventListener('mousemove',e=>{if(document.pointerLockElement!==renderer.domElement)return;yaw-=e.movementX*.002;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.002,-1.45,1.45);});window.addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(document.pointerLockElement===renderer.domElement&&['KeyW','KeyA','KeyS','KeyD'].includes(e.code)){e.preventDefault();keys[e.code]=true;}});window.addEventListener('keyup',e=>delete keys[e.code]);const resetKeys=()=>{for(const k in keys)delete keys[k];};window.addEventListener('blur',resetKeys);document.addEventListener('pointerlockchange',resetKeys);
-function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();dirtyCamera=true;}new ResizeObserver(resize).observe(host);const clock=new THREE.Clock();renderer.setAnimationLoop(()=>{const dt=Math.min(clock.getDelta(),.05);if(!config)return;if(mode==='walk'){camera.rotation.set(pitch,yaw,0,'YXZ');let f=(keys.KeyW?1:0)-(keys.KeyS?1:0),r=(keys.KeyD?1:0)-(keys.KeyA?1:0),norm=Math.hypot(f,r);if(norm){f/=norm;r/=norm;const dist=config.settings.speed*dt,dx=(-Math.sin(yaw)*f+Math.cos(yaw)*r)*dist,dz=(-Math.cos(yaw)*f-Math.sin(yaw)*r)*dist,n=Math.ceil(dist/40);for(let i=0;i<n;i++){let x=camera.position.x*1000,z=camera.position.z*1000;if(!blocked(config,compiled,[x+dx/n,z]))camera.position.x+=mm(dx/n);x=camera.position.x*1000;if(!blocked(config,compiled,[x,z+dz/n]))camera.position.z+=mm(dz/n);}}}else if(mode==='overview')orbit.update();const cs=cameraState(),ck=JSON.stringify(cs);if(ck===lastCamera&&!dirtyCamera)return;if(ck!==lastCamera){lastCamera=ck;onCameraChange?.(cs);}renderer.render(scene,camera);host.dataset.rendered='true';if(dirtyCamera){host.dataset.cameraPosition=camera.position.toArray().map(v=>Math.round(v*1000)).join(',');dirtyCamera=false;}});
+// V8.26 walkthrough: Twinmotion-style first-person review with mobile dual-touch controls.
+const WALK_EYE_MM=1600;
+const WALK_FOV=78;
+const coarse=matchMedia?.('(pointer: coarse)')?.matches ?? false;
+let walkSpeedMode='walk';
+let joyForward=0,joyRight=0;
+let lookPointer=null,lookLastX=0,lookLastY=0;
+let mouseLookPointer=null,mouseLastX=0,mouseLastY=0;
+let walkthroughUI=null;
+
+function walkSpeedFactor(){return walkSpeedMode==='inspect'?.35:1;}
+function enforceEyeHeight(){if(mode==='walk')camera.position.y=mm(WALK_EYE_MM);}
+function safePoint(x,z){
+ if(!config||!compiled)return [x,z];
+ if(!blocked(config,compiled,[x,z]))return [x,z];
+ for(let radius=120;radius<=1200;radius+=120){
+  for(let a=0;a<Math.PI*2;a+=Math.PI/8){
+   const px=x+Math.cos(a)*radius,pz=z+Math.sin(a)*radius;
+   if(!blocked(config,compiled,[px,pz]))return [px,pz];
+  }
+ }
+ return [x,z];
+}
+function roomPoint(id){
+ const r=config?.rooms?.find(x=>x.id===id);
+ return r?.labelPosition||null;
+}
+function teleportWalk(where){
+ if(!config)return;
+ let p=null;
+ if(where==='entry'){
+  const f=entranceFrame(config);
+  p=f.center;
+ }else if(where==='living')p=roomPoint('living');
+ else if(where==='kitchen')p=roomPoint('kitchen');
+ else if(where==='master')p=roomPoint('bed1');
+ if(!p)return;
+ const [x,z]=safePoint(p[0],p[1]);
+ camera.position.set(mm(x),mm(WALK_EYE_MM),mm(z));
+ mode='walk';orbit.enabled=false;ceiling.visible=true;setWallHeightMode('full');
+ camera.fov=WALK_FOV;camera.updateProjectionMatrix();dirtyCamera=true;syncWalkUI();
+}
+function enterFullscreen(){
+ const el=host;
+ if(document.fullscreenElement)document.exitFullscreen?.();
+ else el.requestFullscreen?.().catch?.(()=>{});
+}
+function syncWalkUI(){
+ if(!walkthroughUI)return;
+ const walking=mode==='walk';
+ walkthroughUI.root.hidden=!walking;
+ walkthroughUI.speed.textContent=walkSpeedMode==='walk'?'Walk':'Inspect';
+ host.dataset.walkthroughMode=walking?'walk':'off';
+}
+function createWalkthroughUI(){
+ if(walkthroughUI)return walkthroughUI;
+ const root=document.createElement('div');
+ root.dataset.walkthroughUi='true';
+ Object.assign(root.style,{position:'absolute',inset:'0',zIndex:'18',pointerEvents:'none',userSelect:'none',WebkitUserSelect:'none'});
+ const help=document.createElement('div');
+ help.textContent=coarse?'왼쪽 스틱 이동 · 오른쪽 화면 드래그 시선':'WASD 이동 · 드래그/클릭 후 마우스로 시선';
+ Object.assign(help.style,{position:'absolute',left:'50%',top:'12px',transform:'translateX(-50%)',padding:'7px 11px',borderRadius:'999px',background:'rgba(18,22,25,.62)',color:'#fff',font:'600 12px/1.2 system-ui,sans-serif',backdropFilter:'blur(5px)',whiteSpace:'nowrap',pointerEvents:'none'});
+ root.append(help);
+ setTimeout(()=>{help.style.opacity='.18';help.style.transition='opacity .5s';},4200);
+
+ const quick=document.createElement('div');
+ Object.assign(quick.style,{position:'absolute',left:'50%',bottom:'14px',transform:'translateX(-50%)',display:'flex',gap:'6px',pointerEvents:'auto'});
+ for(const [id,label] of [['entry','현관'],['living','거실'],['kitchen','주방'],['master','안방']]){
+  const b=document.createElement('button');b.type='button';b.textContent=label;
+  Object.assign(b.style,{border:'0',borderRadius:'999px',padding:'7px 10px',background:'rgba(25,29,31,.62)',color:'#fff',font:'600 12px system-ui,sans-serif',backdropFilter:'blur(5px)'});
+  b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();teleportWalk(id);});
+  quick.append(b);
+ }
+ root.append(quick);
+
+ const tools=document.createElement('div');
+ Object.assign(tools.style,{position:'absolute',right:'10px',top:'42px',display:'grid',gap:'6px',pointerEvents:'auto'});
+ const speed=document.createElement('button');speed.type='button';speed.textContent='Walk';
+ const full=document.createElement('button');full.type='button';full.textContent='⛶';
+ for(const b of [speed,full])Object.assign(b.style,{border:'0',borderRadius:'9px',padding:'8px 10px',minWidth:'44px',background:'rgba(25,29,31,.62)',color:'#fff',font:'700 12px system-ui,sans-serif',backdropFilter:'blur(5px)'});
+ speed.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();walkSpeedMode=walkSpeedMode==='walk'?'inspect':'walk';syncWalkUI();});
+ full.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();enterFullscreen();});
+ tools.append(speed,full);root.append(tools);
+
+ const joystick=document.createElement('div');
+ const knob=document.createElement('div');
+ Object.assign(joystick.style,{position:'absolute',left:'18px',bottom:'24px',width:'118px',height:'118px',borderRadius:'50%',background:'rgba(255,255,255,.11)',border:'1px solid rgba(255,255,255,.28)',boxShadow:'inset 0 0 0 28px rgba(0,0,0,.08)',pointerEvents:coarse?'auto':'none',display:coarse?'block':'none',touchAction:'none',backdropFilter:'blur(3px)'});
+ Object.assign(knob.style,{position:'absolute',left:'50%',top:'50%',width:'48px',height:'48px',marginLeft:'-24px',marginTop:'-24px',borderRadius:'50%',background:'rgba(255,255,255,.42)',border:'1px solid rgba(255,255,255,.62)',transform:'translate(0px,0px)'});
+ joystick.append(knob);root.append(joystick);
+
+ let joyId=null;
+ const joyMove=e=>{
+  if(e.pointerId!==joyId)return;
+  const r=joystick.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+  let dx=e.clientX-cx,dy=e.clientY-cy;
+  const max=r.width*.34,len=Math.hypot(dx,dy);
+  if(len>max){dx*=max/len;dy*=max/len;}
+  knob.style.transform=`translate(${dx}px,${dy}px)`;
+  joyRight=dx/max;joyForward=-dy/max;
+ };
+ joystick.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();joyId=e.pointerId;joystick.setPointerCapture?.(joyId);joyMove(e);});
+ joystick.addEventListener('pointermove',joyMove);
+ const joyEnd=e=>{if(e.pointerId!==joyId)return;joyId=null;joyForward=joyRight=0;knob.style.transform='translate(0px,0px)';};
+ joystick.addEventListener('pointerup',joyEnd);joystick.addEventListener('pointercancel',joyEnd);
+
+ host.append(root);
+ walkthroughUI={root,speed,joystick,help};
+ syncWalkUI();
+ return walkthroughUI;
+}
+createWalkthroughUI();
+
+function entrance(){
+ if(!config)return;
+ mode='walk';orbit.enabled=false;document.exitPointerLock?.();
+ for(const k in keys)delete keys[k];joyForward=joyRight=0;
+ const f=entranceFrame(config);
+ const [x,z]=safePoint(f.outside[0],f.outside[1]);
+ camera.fov=WALK_FOV;
+ camera.position.set(mm(x),mm(WALK_EYE_MM),mm(z));
+ camera.lookAt(mm(f.center[0]),mm(WALK_EYE_MM),mm(f.center[1]));
+ yaw=camera.rotation.y;pitch=0;ceiling.visible=true;setWallHeightMode('full');
+ camera.updateProjectionMatrix();dirtyCamera=true;syncWalkUI();
+}
+function update(c){
+ config=c;const sig=JSON.stringify([c.walls,c.rooms,c.floorPolygons,c.settings,c.entrance]);if(sig===signature)return;
+ signature=sig;compiled=compileGeometry(c);clear(body);clear(labels);clear(ceiling);
+ compiled.parts.forEach(segment);compiled.floors.forEach(floor);setWallHeightMode(wallHeightMode);
+ config.rooms.filter(r=>!r.id.startsWith('bal')||r.expanded).forEach(label);
+ if(signature===sig&&host.dataset.datasetRevision===undefined)entrance();
+ host.dataset.datasetRevision=c.geometryRevision;host.dataset.geometryWallCount=c.walls.length;host.dataset.geometryPartCount=compiled.parts.length;host.dataset.livingLeft=String(entranceFrame(c).livingLeft);dirtyCamera=true;
+}
+function whole(){
+ mode='overview';orbit.enabled=true;document.exitPointerLock?.();camera.fov=48;camera.position.set(15,15,19);
+ orbit.target.set((config.bounds[0]+config.bounds[2])/2000,0,(config.bounds[1]+config.bounds[3])/2000);orbit.update();
+ ceiling.visible=false;camera.updateProjectionMatrix();dirtyCamera=true;syncWalkUI();
+}
+
+// Desktop: click for pointer-lock, or hold-drag to look without pointer-lock.
+// Touch: right half of the viewport is the look pad; joystick remains independent for multitouch.
+renderer.domElement.style.touchAction='none';
+renderer.domElement.addEventListener('click',e=>{
+ if(mode!=='walk'||coarse||e.pointerType==='touch')return;
+ renderer.domElement.requestPointerLock?.()?.catch(()=>{});
+});
+document.addEventListener('mousemove',e=>{
+ if(document.pointerLockElement!==renderer.domElement||mode!=='walk')return;
+ yaw-=e.movementX*.002;pitch=THREE.MathUtils.clamp(pitch-e.movementY*.002,-1.35,1.35);dirtyCamera=true;
+});
+renderer.domElement.addEventListener('pointerdown',e=>{
+ if(mode!=='walk')return;
+ if(e.pointerType==='touch'){
+  const rect=renderer.domElement.getBoundingClientRect();
+  if(e.clientX<rect.left+rect.width*.42)return;
+  lookPointer=e.pointerId;lookLastX=e.clientX;lookLastY=e.clientY;renderer.domElement.setPointerCapture?.(e.pointerId);e.preventDefault();
+ }else if(document.pointerLockElement!==renderer.domElement){
+  mouseLookPointer=e.pointerId;mouseLastX=e.clientX;mouseLastY=e.clientY;renderer.domElement.setPointerCapture?.(e.pointerId);e.preventDefault();
+ }
+});
+renderer.domElement.addEventListener('pointermove',e=>{
+ if(mode!=='walk')return;
+ if(e.pointerId===lookPointer){
+  const dx=e.clientX-lookLastX,dy=e.clientY-lookLastY;lookLastX=e.clientX;lookLastY=e.clientY;
+  yaw-=dx*.0042;pitch=THREE.MathUtils.clamp(pitch-dy*.0042,-1.35,1.35);dirtyCamera=true;e.preventDefault();
+ }else if(e.pointerId===mouseLookPointer){
+  const dx=e.clientX-mouseLastX,dy=e.clientY-mouseLastY;mouseLastX=e.clientX;mouseLastY=e.clientY;
+  yaw-=dx*.003;pitch=THREE.MathUtils.clamp(pitch-dy*.003,-1.35,1.35);dirtyCamera=true;e.preventDefault();
+ }
+});
+const endLook=e=>{if(e.pointerId===lookPointer)lookPointer=null;if(e.pointerId===mouseLookPointer)mouseLookPointer=null;};
+renderer.domElement.addEventListener('pointerup',endLook);renderer.domElement.addEventListener('pointercancel',endLook);
+
+window.addEventListener('keydown',e=>{
+ if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+ if(mode==='walk'&&['KeyW','KeyA','KeyS','KeyD'].includes(e.code)){e.preventDefault();keys[e.code]=true;}
+});
+window.addEventListener('keyup',e=>delete keys[e.code]);
+const resetKeys=()=>{for(const k in keys)delete keys[k];joyForward=joyRight=0;};
+window.addEventListener('blur',resetKeys);
+document.addEventListener('pointerlockchange',()=>{if(document.pointerLockElement!==renderer.domElement)resetKeys();});
+
+function resize(){const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();dirtyCamera=true;}
+new ResizeObserver(resize).observe(host);
+const clock=new THREE.Clock();
+renderer.setAnimationLoop(()=>{
+ const dt=Math.min(clock.getDelta(),.05);if(!config)return;
+ if(mode==='walk'){
+  enforceEyeHeight();
+  camera.rotation.set(pitch,yaw,0,'YXZ');
+  let f=((keys.KeyW?1:0)-(keys.KeyS?1:0))+joyForward;
+  let r=((keys.KeyD?1:0)-(keys.KeyA?1:0))+joyRight;
+  let norm=Math.hypot(f,r);
+  if(norm){
+   if(norm>1){f/=norm;r/=norm;}
+   const baseSpeed=Number(config.settings.speed)||1200;
+   const dist=baseSpeed*walkSpeedFactor()*dt;
+   const dx=(-Math.sin(yaw)*f+Math.cos(yaw)*r)*dist;
+   const dz=(-Math.cos(yaw)*f-Math.sin(yaw)*r)*dist;
+   const n=Math.max(1,Math.ceil(Math.hypot(dx,dz)/40));
+   for(let i=0;i<n;i++){
+    let x=camera.position.x*1000,z=camera.position.z*1000;
+    if(!blocked(config,compiled,[x+dx/n,z]))camera.position.x+=mm(dx/n);
+    x=camera.position.x*1000;
+    if(!blocked(config,compiled,[x,z+dz/n]))camera.position.z+=mm(dz/n);
+   }
+   enforceEyeHeight();dirtyCamera=true;
+  }
+ }else if(mode==='overview')orbit.update();
+ const cs=cameraState(),ck=JSON.stringify(cs);
+ if(ck===lastCamera&&!dirtyCamera)return;
+ if(ck!==lastCamera){lastCamera=ck;onCameraChange?.(cs);}
+ renderer.render(scene,camera);host.dataset.rendered='true';
+ if(dirtyCamera){host.dataset.cameraPosition=camera.position.toArray().map(v=>Math.round(v*1000)).join(',');dirtyCamera=false;}
+});
 function cameraState(){return {position:camera.position.toArray(),quaternion:camera.quaternion.toArray(),target:orbit.target.toArray(),fov:camera.fov,mode,ceilingVisible:ceiling.visible};}
-function setCamera(s){if(JSON.stringify(cameraState())===JSON.stringify(s))return;mode=s.mode;orbit.enabled=mode==='overview';camera.position.fromArray(s.position);camera.quaternion.fromArray(s.quaternion);orbit.target.fromArray(s.target);camera.fov=s.fov;ceiling.visible=s.ceilingVisible;camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;dirtyCamera=true;}
+function setCamera(s){
+ if(JSON.stringify(cameraState())===JSON.stringify(s))return;
+ mode=s.mode;orbit.enabled=mode==='overview';camera.position.fromArray(s.position);camera.quaternion.fromArray(s.quaternion);orbit.target.fromArray(s.target);camera.fov=s.fov;ceiling.visible=s.ceilingVisible;
+ camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;if(mode==='walk')enforceEyeHeight();dirtyCamera=true;syncWalkUI();
+}
 let lastCamera='';
 let design;
 function setDesign(data,enabled=true){if(!design)design=createDesignLayer(scene,data);design.setVisible(enabled);labels.visible=!enabled;host.dataset.designEnabled=String(enabled);dirtyCamera=true;}
-function designCamera(p){mode='entry';orbit.enabled=false;document.exitPointerLock?.();camera.position.set(...p.position.map(mm));camera.lookAt(...p.target.map(mm));camera.fov=p.fov;ceiling.visible=true;camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;dirtyCamera=true;}
+function designCamera(p){mode='walk';orbit.enabled=false;document.exitPointerLock?.();camera.position.set(...p.position.map(mm));camera.position.y=mm(WALK_EYE_MM);camera.lookAt(mm(p.target[0]),mm(WALK_EYE_MM),mm(p.target[2]));camera.fov=WALK_FOV;ceiling.visible=true;setWallHeightMode('full');camera.updateProjectionMatrix();yaw=camera.rotation.y;pitch=camera.rotation.x;dirtyCamera=true;syncWalkUI();}
 function setLightMode(warm){design?.setWarm(warm);sun.color.set(warm?'#ffe0b0':'#ffffff');fill.color.set(warm?'#fff0db':'#edf4ff');host.dataset.lightMode=warm?'warm':'day';dirtyCamera=true;}
-return {update,setFurniture,setEntry,setKitchen,setBathroomKitchen,setDesign,designCamera,setLightMode,setWallHeightMode,entrance,whole,cameraState,setCamera,source:()=>config,compiled:()=>compiled,screenshot:()=>renderer.domElement.toDataURL('image/png')};
+return {update,setFurniture,setEntry,setKitchen,setBathroomKitchen,setDesign,designCamera,setLightMode,setWallHeightMode,entrance,whole,teleportWalk,cameraState,setCamera,source:()=>config,compiled:()=>compiled,screenshot:()=>renderer.domElement.toDataURL('image/png')};
 }

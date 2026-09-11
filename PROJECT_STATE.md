@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.25 — REFERENCE BUILT-INS / BATH DETAIL**
-- Last updated: **2026-09-11 11:17 KST**
+- Project version: **V8.26 — MOBILE WALKTHROUGH / FIRST-PERSON REVIEW**
+- Last updated: **2026-09-11 12:37 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -90,6 +90,16 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 정리/
 - `dist/review.js`
 
 ## VERSION HISTORY
+
+### V8.26 — Mobile Walkthrough / First-Person Review — 2026-09-11 12:37 KST
+- Twinmotion 계열의 Walk/Presentation 운용방식을 참고해 1인칭 검토 조작을 정리.
+- 워크스루 눈높이 **1600mm 고정**, 전용 FOV **78°**, 전체 벽/천장 표시.
+- 모바일: 좌하단 가상 조이스틱으로 전/후/좌/우, 화면 오른쪽 드래그로 시선 회전, 동시 멀티터치 지원.
+- PC: WASD 이동, 드래그 시선 회전, 클릭 시 Pointer Lock 지원.
+- 기존 `blocked()` 기반 벽 충돌 유지. 이동은 40mm 이하 스텝으로 분할해 관통 가능성을 낮춤.
+- `Walk / Inspect` 2단계 속도, 현관/거실/주방/안방 빠른 위치 버튼, 전체화면 버튼 추가.
+- 워크스루 진입 시 `벽 1/2 보기`를 강제로 해제하고 전체 벽 높이로 검토.
+- V8.25 주방/욕실/현관/붙박이장, 마감재, 조명 및 V7.5 baseline geometry는 수정하지 않음.
 
 ### V8.25 — Reference Built-ins / Bath Detail — 2026-09-11 11:17 KST
 - 오늘의집 역삼푸르지오 24평 레퍼런스 191168을 고정가구/욕실 스타일 기준으로 적용.

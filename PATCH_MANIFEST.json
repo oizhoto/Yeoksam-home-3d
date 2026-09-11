@@ -1,22 +1,24 @@
 {
-  "patch": "yeoksam-v8.25-reference-builtins-patch.zip",
-  "baseExpected": "GitHub main V8.24 at 2026-09-11 06:15 KST",
-  "version": "V8.25",
+  "patch": "yeoksam-v8.26-mobile-walkthrough-patch.zip",
+  "baseExpected": "GitHub main V8.25 — REFERENCE BUILT-INS / BATH DETAIL",
+  "version": "V8.26",
   "baseline": "V7.5 BASELINE LOCKED",
   "changedFiles": [
     "PROJECT_STATE.md",
     "dist/index.html",
     "dist/interior.js",
-    "dist/BATHROOM_KITCHEN_V1.json",
-    "dist/bathroom-kitchen-layer.js",
-    "docs/REFERENCE_191168_V825.md",
-    "tools/check-v825-reference-style.mjs"
+    "dist/shared-3d.js",
+    "docs/MOBILE_WALKTHROUGH_V826.md",
+    "tools/check-v826-walkthrough.mjs"
   ],
   "protectedNotIncluded": [
     "dist/BASE_GEOMETRY_V1.json",
     "dist/INTERIOR_V2_SVG_EXPANSION.json",
     "dist/apartment.config.json",
+    "dist/FIXED_INTERIOR_V1.json",
+    "dist/BATHROOM_KITCHEN_V1.json",
+    "dist/bathroom-kitchen-layer.js",
     "dist/DESIGN_V1.json",
-    "dist/FIXED_INTERIOR_V1.json"
+    "dist/materials.js"
   ]
 }
