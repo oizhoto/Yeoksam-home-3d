@@ -1,8 +1,8 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.26 — MOBILE WALKTHROUGH / FIRST-PERSON REVIEW**
-- Last updated: **2026-09-11 12:37 KST**
+- Project version: **V8.27 — ENTRY 3-PANEL LINKED SLIDING DOOR**
+- Last updated: **2026-09-11 14:52 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Important: project version and baseline version are separate. Interior/material updates increase the project version without changing the locked baseline.
 
@@ -91,6 +91,13 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 정리/
 
 ## VERSION HISTORY
 
+### V8.27 — Entry 3-Panel Linked Sliding Door — 2026-09-11 14:52 KST
+- 사용자 요청에 따라 현관 중문을 **3연동 슬라이딩 도어 표현**으로 변경.
+- V7.5에서 잠근 중문 전체 envelope `center [6500,0,5320]`, `size [50,2200,1000]`은 그대로 유지.
+- 기존 단일 screen-door visual object를 동일 envelope 내부의 3개 연속 패널로 분할해 기존 2D/3D 렌더러에서 3분할 슬림프레임이 보이도록 구현.
+- 패널 깊이 합계는 정확히 1000mm이며 위치/가벽/구조 geometry는 변경하지 않음.
+- V8.26 모바일/PC Walkthrough, V8.25 reference built-ins, 욕실/주방/재질/조명은 수정하지 않음.
+
 ### V8.26 — Mobile Walkthrough / First-Person Review — 2026-09-11 12:37 KST
 - Twinmotion 계열의 Walk/Presentation 운용방식을 참고해 1인칭 검토 조작을 정리.
 - 워크스루 눈높이 **1600mm 고정**, 전용 FOV **78°**, 전체 벽/천장 표시.
@@ -110,7 +117,7 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 정리/
 - 욕실은 기존 fixture 배치를 유지하며 변기 형태를 둥글고 단정한 형태로, 세면대 하부장을 플로팅 무드베이지 스타일로, 젠다이/거울장을 크리미 톤으로 상세화.
 - 레퍼런스의 ㄱ자 주방과 조명은 반영하지 않음.
 - V7.5 baseline 구조/문/확장/현관중문/터닝도어 및 DESIGN 조명 데이터 수정 없음.
-- 레퍼런스 공개 텍스트가 보증하는 것은 밝은 베이지 현관, 오픈 수납, 한샘 무드베이지 주방, 크리미 욕실 타일이며 세부 비례는 사진 기반 근사 모델임.
+- 레퍼런스 공개 텍스트가 보증하는 것은 밝은 베이지 현관, 오픈 수납, Mood Beige kitchen and creamy bathroom tiles이며 세부 비례는 사진 기반 근사 모델임.
 
 ### V8.24 — Material Visual Refinement — 2026-09-11 06:15 KST
 - 바닥 810×325mm 판재 2×2 atlas, color/height/roughness 대응.

@@ -6,7 +6,7 @@ import {drawKitchenLayer} from './kitchen-layer.js';
 
 const $=s=>document.querySelector(s);
 const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
-const PROJECT_VERSION='V8.26';
+const PROJECT_VERSION='V8.27';
 
 const [expandedRaw,furnitureData,fixedData,designData,bathKitchenData]=await Promise.all([
   load('INTERIOR_V2_SVG_EXPANSION.json'),
@@ -49,7 +49,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.26 · Walk Mode: 모바일 조이스틱 + 오른쪽 드래그, PC WASD + 마우스, 1600mm 눈높이, 충돌 유지. V8.25 인테리어/조명/구조 유지.';
+  $('#note').textContent='V8.27 · 현관 중문 3연동 패널 표현. V8.26 모바일/PC 워크스루와 V8.25 인테리어, V7.5 baseline은 그대로 유지.';
 }
 function render(){drawPlan();model();refreshUI();}
 function setView(v){

@@ -2,40 +2,54 @@
   "schemaVersion": 1,
   "units": "mm",
   "name": "FIXED_INTERIOR_V1",
-  "buildVersion": "V8.23",
+  "buildVersion": "V8.27",
   "basis": "INTERIOR_V2_SVG_EXPANSION",
   "entryObjects": [
     {
-      "id": "entry-screen",
+      "id": "entry-screen-panel-1",
       "type": "screenDoor",
-      "name": "현관 중문",
-      "position": [
-        6500,
-        0,
-        5320
-      ],
-      "size": [
-        50,
-        2200,
-        1000
-      ],
+      "name": "현관 3연동 중문 1",
+      "position": [6500, 0, 4986.667],
+      "size": [50, 2200, 333.333],
       "rotationY": 0,
-      "style": "slim-frame translucent glass screen door"
+      "style": "slim-frame translucent glass 3-panel sliding screen door",
+      "panelIndex": 1,
+      "panelCount": 3,
+      "overallEnvelope": {"center": [6500, 0, 5320], "size": [50, 2200, 1000]},
+      "note": "V8.27 visual split only; locked V7.5 middle-door envelope unchanged"
+    },
+    {
+      "id": "entry-screen-panel-2",
+      "type": "screenDoor",
+      "name": "현관 3연동 중문 2",
+      "position": [6500, 0, 5320],
+      "size": [50, 2200, 333.334],
+      "rotationY": 0,
+      "style": "slim-frame translucent glass 3-panel sliding screen door",
+      "panelIndex": 2,
+      "panelCount": 3,
+      "overallEnvelope": {"center": [6500, 0, 5320], "size": [50, 2200, 1000]},
+      "note": "V8.27 visual split only; locked V7.5 middle-door envelope unchanged"
+    },
+    {
+      "id": "entry-screen-panel-3",
+      "type": "screenDoor",
+      "name": "현관 3연동 중문 3",
+      "position": [6500, 0, 5653.333],
+      "size": [50, 2200, 333.333],
+      "rotationY": 0,
+      "style": "slim-frame translucent glass 3-panel sliding screen door",
+      "panelIndex": 3,
+      "panelCount": 3,
+      "overallEnvelope": {"center": [6500, 0, 5320], "size": [50, 2200, 1000]},
+      "note": "V8.27 visual split only; locked V7.5 middle-door envelope unchanged"
     },
     {
       "id": "entry-partition-wall",
       "type": "partitionWall",
       "name": "중문 가벽",
-      "position": [
-        6500,
-        0,
-        6110
-      ],
-      "size": [
-        120,
-        2300,
-        580
-      ],
+      "position": [6500, 0, 6110],
+      "size": [120, 2300, 580],
       "rotationY": 0,
       "style": "full-height solid partition wall"
     },
@@ -43,37 +57,18 @@
       "id": "entry-cabinet",
       "type": "cabinet",
       "name": "현관 수납장",
-      "position": [
-        7180,
-        0,
-        4990
-      ],
-      "size": [
-        1050,
-        2200,
-        340
-      ],
+      "position": [7180, 0, 4990],
+      "size": [1050, 2200, 340],
       "rotationY": 0,
       "style": "full-height white cabinet with open niche",
-      "niche": {
-        "y": 980,
-        "height": 430
-      }
+      "niche": {"y": 980, "height": 430}
     },
     {
       "id": "entry-living-wall",
       "type": "partitionWall",
       "name": "현관-거실측 가벽",
-      "position": [
-        7225,
-        0,
-        6340
-      ],
-      "size": [
-        1450,
-        2300,
-        120
-      ],
+      "position": [7225, 0, 6340],
+      "size": [1450, 2300, 120],
       "rotationY": 0,
       "style": "full-height solid partition wall"
     },
@@ -81,16 +76,8 @@
       "id": "entry-mirror",
       "type": "mirror",
       "name": "전신거울",
-      "position": [
-        7050,
-        120,
-        6274
-      ],
-      "size": [
-        700,
-        1850,
-        8
-      ],
+      "position": [7050, 120, 6274],
+      "size": [700, 1850, 8],
       "rotationY": 0,
       "style": "wall-mounted full-height mirror"
     },
@@ -99,16 +86,8 @@
       "type": "screenDoor",
       "subtype": "turningDoor",
       "name": "워시타워 터닝도어",
-      "position": [
-        4550,
-        0,
-        625
-      ],
-      "size": [
-        50,
-        2200,
-        1250
-      ],
+      "position": [4550, 0, 625],
+      "size": [50, 2200, 1250],
       "rotationY": 0,
       "style": "insulated turning door",
       "note": "LOCKED V7.5 geometry"
@@ -118,16 +97,8 @@
       "type": "cabinet",
       "subtype": "wardrobe",
       "name": "안방 붙박이장",
-      "position": [
-        300,
-        0,
-        8337.5
-      ],
-      "size": [
-        600,
-        2300,
-        3235
-      ],
+      "position": [300, 0, 8337.5],
+      "size": [600, 2300, 3235],
       "rotationY": 0,
       "style": "Livart-inspired flat matte-white full-height built-in wardrobe"
     }
@@ -137,78 +108,33 @@
       "id": "kitchen-lower-run",
       "type": "lowerCabinetRun",
       "name": "일자형 하부장",
-      "position": [
-        5000,
-        0,
-        3300
-      ],
-      "size": [
-        600,
-        880,
-        2550
-      ],
+      "position": [5000, 0, 3300],
+      "size": [600, 880, 2550],
       "rotationY": 0,
-      "modules": [
-        150,
-        600,
-        600,
-        600,
-        600
-      ],
-      "moduleKinds": [
-        "knife",
-        "cabinet",
-        "dishwasher",
-        "cabinet",
-        "cabinet"
-      ],
+      "modules": [150, 600, 600, 600, 600],
+      "moduleKinds": ["knife", "cabinet", "dishwasher", "cabinet", "cabinet"],
       "status": "PROVISIONAL"
     },
     {
       "id": "kitchen-countertop",
       "type": "countertop",
       "name": "주방 상판",
-      "position": [
-        4990,
-        880,
-        3300
-      ],
-      "size": [
-        620,
-        20,
-        2550
-      ],
+      "position": [4990, 880, 3300],
+      "size": [620, 20, 2550],
       "rotationY": 0,
-      "sinkCutout": {
-        "centerZ": 3675,
-        "sizeX": 500,
-        "sizeZ": 760
-      },
+      "sinkCutout": {"centerZ": 3675, "sizeX": 500, "sizeZ": 760},
       "status": "PROVISIONAL"
     },
     {
       "id": "kitchen-upper-run",
       "type": "upperCabinetRun",
       "name": "일자형 상부장",
-      "position": [
-        5125,
-        1500,
-        3300
-      ],
-      "size": [
-        350,
-        780,
-        2550
-      ],
+      "position": [5125, 1500, 3300],
+      "size": [350, 780, 2550],
       "rotationY": 0,
-      "modules": [
-        637.5,
-        637.5,
-        637.5,
-        637.5
-      ],
+      "modules": [637.5, 637.5, 637.5, 637.5],
       "status": "PROVISIONAL"
     }
   ],
-  "note": "V7.5 structural/door baseline locked. V8.23 updates editable kitchen cabinetry only."
+  "note": "V7.5 structural/door baseline locked. V8.27 changes only the visual representation of the locked entry middle-door envelope into three linked sliding panels; kitchen remains V8.23 data."
 }

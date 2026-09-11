@@ -1,24 +1,24 @@
 {
-  "patch": "yeoksam-v8.26-mobile-walkthrough-patch.zip",
-  "baseExpected": "GitHub main V8.25 — REFERENCE BUILT-INS / BATH DETAIL",
-  "version": "V8.26",
+  "patch": "yeoksam-v8.27-three-panel-entry-patch.zip",
+  "baseExpected": "GitHub main V8.26 — MOBILE WALKTHROUGH / FIRST-PERSON REVIEW",
+  "version": "V8.27",
   "baseline": "V7.5 BASELINE LOCKED",
   "changedFiles": [
     "PROJECT_STATE.md",
+    "PATCH_MANIFEST.json",
+    "dist/FIXED_INTERIOR_V1.json",
     "dist/index.html",
     "dist/interior.js",
-    "dist/shared-3d.js",
-    "docs/MOBILE_WALKTHROUGH_V826.md",
-    "tools/check-v826-walkthrough.mjs"
+    "docs/ENTRY_THREE_PANEL_V827.md"
   ],
   "protectedNotIncluded": [
     "dist/BASE_GEOMETRY_V1.json",
     "dist/INTERIOR_V2_SVG_EXPANSION.json",
     "dist/apartment.config.json",
-    "dist/FIXED_INTERIOR_V1.json",
     "dist/BATHROOM_KITCHEN_V1.json",
     "dist/bathroom-kitchen-layer.js",
     "dist/DESIGN_V1.json",
-    "dist/materials.js"
+    "dist/materials.js",
+    "dist/shared-3d.js"
   ]
 }
