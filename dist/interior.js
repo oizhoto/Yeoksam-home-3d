@@ -6,6 +6,7 @@ import {drawKitchenLayer} from './kitchen-layer.js';
 
 const $=s=>document.querySelector(s);
 const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
+const PROJECT_VERSION='V8.25';
 
 const [expandedRaw,furnitureData,fixedData,designData,bathKitchenData]=await Promise.all([
   load('INTERIOR_V2_SVG_EXPANSION.json'),
@@ -19,19 +20,19 @@ let furnitureOn=false;
 let designOn=false;
 let wallHalf=false;
 const viewer=createShared3D($('#scene'));
+$('#scene').dataset.appVersion=PROJECT_VERSION;
+const versionBadge=$('#scene').querySelector('[data-yeoksam-version-badge]');
+if(versionBadge)versionBadge.textContent=PROJECT_VERSION;
 let editor;
 
 const activeFurniture=()=>furnitureOn?(editor?editor.items():furnitureData.items):[];
-
 function label(){return furnitureOn?'확장안 + 가구':'확장안';}
-
 function drawPlan(){
   $('#plan').innerHTML=planSvg(expanded,{showImage:false,orientationLabel:'INTERIOR_V2_SVG_EXPANSION · 2호 라인'});
   drawEntryLayer($('#plan'),{objects:fixedData.entryObjects},{enabled:true});
   drawKitchenLayer($('#plan'),{objects:fixedData.kitchenObjects},{enabled:true});
   if(furnitureOn)editor?.draw();
 }
-
 function model(){
   viewer.update(expanded);
   viewer.setEntry(fixedData.entryObjects);
@@ -40,7 +41,6 @@ function model(){
   viewer.setFurniture(activeFurniture());
   viewer.setDesign(designData,designOn);
 }
-
 function refreshUI(){
   $('#furnitureToggle').classList.toggle('active',furnitureOn);
   ['resetFurniture','exportFurniture'].forEach(id=>$('#'+id).hidden=!furnitureOn);
@@ -49,11 +49,9 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.24 · 확정 마감재 질감 개선 검토안 · 기존 V8.23 구조와 인테리어 배치 유지.';
+  $('#note').textContent='V8.25 · 191168 레퍼런스 스타일 반영: 상하부장·붙박이장·현관장·욕실 디테일. 일자형 주방/조명/구조 baseline 유지.';
 }
-
 function render(){drawPlan();model();refreshUI();}
-
 function setView(v){
   const changed=view!==v;
   view=v;
@@ -66,7 +64,6 @@ function setView(v){
     if(view==='entry')viewer.entrance();
   }
 }
-
 $('#furnitureToggle').onclick=()=>{furnitureOn=!furnitureOn;render();};
 $('#designToggle').onclick=()=>{designOn=!designOn;$('#designToggle').classList.toggle('active',designOn);
 $('#wallHeightToggle').onclick=()=>{wallHalf=!wallHalf;viewer.setWallHeightMode(wallHalf?'half':'full');refreshUI();};
@@ -87,13 +84,11 @@ $('#saveView').onclick=()=>{
     const a=document.createElement('a');a.href=viewer.screenshot();a.download=`${label()}-${view}.png`;a.click();
   }
 };
-
 editor=createFurnitureEditor({
   host:$('#plan'),
   baseItems:furnitureData.items,
   onChange:items=>{if(furnitureOn)viewer.setFurniture(items);}
 });
-
 const furnitureStep=()=>Number($('#furnitureStep').value)||50;
 $('#moveUp').onclick=()=>editor.move(0,-furnitureStep());
 $('#moveDown').onclick=()=>editor.move(0,furnitureStep());

@@ -1,9 +1,26 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "id": "BATHROOM_KITCHEN_V1",
-  "projectVersion": "V8.23",
+  "projectVersion": "V8.25",
   "baselineVersion": "V7.5 BASELINE LOCKED",
-  "updatedAt": "2026-09-11 00:13 KST",
+  "updatedAt": "2026-09-11 11:17 KST",
+  "reference": {
+    "source": "https://contents.ohou.se/projects/191168",
+    "scope": "style and built-in detailing only",
+    "keep": [
+      "bright beige entry storage language",
+      "HANSSEM Mood Beige kitchen palette",
+      "creamy bathroom tile/vanity/ledge language",
+      "minimal flat-panel built-ins"
+    ],
+    "exclude": [
+      "reference L-shaped kitchen layout",
+      "reference lighting design",
+      "reference structural alterations",
+      "reference room expansion decisions"
+    ],
+    "note": "Published text confirms beige entry, open storage, Mood Beige kitchen and creamy bathroom tiles. Exact cabinet proportions/fixture models are photo-derived approximations, not manufacturer specifications."
+  },
   "layoutBasis": {
     "bath1Rect": [
       0,
@@ -30,7 +47,8 @@
           600,
           600
         ],
-        "tone": "warm-greige"
+        "tone": "creamy-warm-beige",
+        "referenceStyle": "191168"
       },
       "objects": [
         {
@@ -61,7 +79,8 @@
             730,
             690
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "style": "rounded-minimal"
         },
         {
           "id": "bath1-vanity",
@@ -76,7 +95,8 @@
             850,
             460
           ],
-          "rotationY": 90
+          "rotationY": 90,
+          "style": "floating-mood-beige"
         },
         {
           "id": "bath1-long-upper-cabinet",
@@ -92,7 +112,8 @@
             150
           ],
           "rotationY": 0,
-          "doorCount": 4
+          "doorCount": 4,
+          "style": "mirror-flat-4-panel"
         },
         {
           "id": "bath1-shower",
@@ -122,7 +143,8 @@
             120,
             260
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "style": "creamy-solid-ledge"
         },
         {
           "id": "bath1-inset-basin",
@@ -137,7 +159,8 @@
             120,
             360
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "style": "soft-rect"
         },
         {
           "id": "bath1-deck-faucet",
@@ -152,8 +175,7 @@
             300,
             180
           ],
-          "rotationY": 0,
-          "note": "deck-mounted on vanity top; clear of rear ledge"
+          "rotationY": 0
         },
         {
           "id": "bath1-paper-holder",
@@ -168,8 +190,7 @@
             90,
             100
           ],
-          "rotationY": 0,
-          "note": "wall-mounted; toilet seated-left side"
+          "rotationY": 0
         },
         {
           "id": "bath1-towel-bar",
@@ -213,7 +234,8 @@
           600,
           600
         ],
-        "tone": "warm-greige"
+        "tone": "creamy-warm-beige",
+        "referenceStyle": "191168"
       },
       "objects": [
         {
@@ -229,7 +251,8 @@
             850,
             430
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "style": "floating-mood-beige"
         },
         {
           "id": "bath2-toilet",
@@ -245,7 +268,7 @@
             690
           ],
           "rotationY": 0,
-          "note": "V8.22: rotated 180deg from V8.21"
+          "style": "rounded-minimal"
         },
         {
           "id": "bath2-ledge",
@@ -260,7 +283,8 @@
             120,
             180
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "style": "creamy-solid-ledge"
         },
         {
           "id": "bath2-long-upper-cabinet",
@@ -276,7 +300,8 @@
             150
           ],
           "rotationY": 0,
-          "doorCount": 4
+          "doorCount": 4,
+          "style": "mirror-flat-4-panel"
         },
         {
           "id": "bath2-shower-tray",
@@ -321,7 +346,8 @@
             120,
             340
           ],
-          "rotationY": 0
+          "rotationY": 0,
+          "style": "soft-rect"
         },
         {
           "id": "bath2-deck-faucet",
@@ -336,8 +362,7 @@
             300,
             180
           ],
-          "rotationY": 0,
-          "note": "deck-mounted on vanity top; clear of rear ledge"
+          "rotationY": 0
         },
         {
           "id": "bath2-shower-fixed-panel",
@@ -352,8 +377,7 @@
             2000,
             1430
           ],
-          "rotationY": 0,
-          "note": "parallel to bathroom door at 90deg open; spans between side walls"
+          "rotationY": 0
         },
         {
           "id": "bath2-shower-door",
@@ -371,8 +395,7 @@
           "rotationY": 0,
           "hinge": "north",
           "swing": "inward",
-          "swingAngle": 85,
-          "note": "located behind bathroom entry door; entry door must close before shower door can open"
+          "swingAngle": 85
         },
         {
           "id": "bath2-paper-holder",
@@ -387,8 +410,7 @@
             90,
             100
           ],
-          "rotationY": 90,
-          "note": "mounted on bath2 right/east wall"
+          "rotationY": 90
         },
         {
           "id": "bath2-towel-bar",
@@ -403,8 +425,7 @@
             40,
             80
           ],
-          "rotationY": 0,
-          "note": "directly opposite bath2 toilet on south wall"
+          "rotationY": 0
         },
         {
           "id": "bath2-towel",
@@ -425,7 +446,7 @@
     }
   ],
   "kitchen": {
-    "concept": "reference-photo-linear-kitchen-opposite-fridge-wall",
+    "concept": "keep-current-linear-layout-reference-191168-style-only",
     "objects": [
       {
         "id": "kitchen-faucet",
@@ -477,7 +498,8 @@
           650
         ],
         "upperStorageHeight": 430,
-        "note": "기존 일자형 조리대 반대편 x=2700 벽에 밀착. 창가(z≈0) 쪽부터 배치. 원도어 3대 병렬 + 상부수납 계획."
+        "style": "mood-beige-flat-panel",
+        "note": "Current straight kitchen/fridge-wall relationship retained."
       },
       {
         "id": "kitchen-sink-bowl",
@@ -492,10 +514,109 @@
           180,
           760
         ],
-        "rotationY": 0,
-        "note": "actual countertop opening is created in FIXED_INTERIOR_V1; sink bowl sits below the opening"
+        "rotationY": 0
       }
     ]
   },
-  "note": "V8.1 corrects fixture placement only. V7.5 baseline geometry remains untouched."
+  "referenceDetails": [
+    {
+      "id": "detail-kitchen-lower",
+      "type": "detailKitchenLower",
+      "position": [
+        5000,
+        0,
+        3300
+      ],
+      "size": [
+        600,
+        880,
+        2550
+      ],
+      "rotationY": 0,
+      "modules": [
+        150,
+        600,
+        600,
+        600,
+        600
+      ],
+      "moduleKinds": [
+        "knife",
+        "drawer",
+        "dishwasher",
+        "drawer",
+        "drawer"
+      ],
+      "finish": "mood-beige",
+      "toeKick": 90,
+      "frontFace": "negative-x"
+    },
+    {
+      "id": "detail-kitchen-upper",
+      "type": "detailKitchenUpper",
+      "position": [
+        5125,
+        1500,
+        3300
+      ],
+      "size": [
+        350,
+        780,
+        2550
+      ],
+      "rotationY": 0,
+      "modules": [
+        637.5,
+        637.5,
+        637.5,
+        637.5
+      ],
+      "finish": "mood-beige",
+      "frontFace": "negative-x"
+    },
+    {
+      "id": "detail-master-wardrobe",
+      "type": "detailWardrobe",
+      "position": [
+        300,
+        0,
+        8337.5
+      ],
+      "size": [
+        600,
+        2300,
+        3235
+      ],
+      "rotationY": 0,
+      "doorCount": 5,
+      "finish": "luca-white-warm",
+      "frontFace": "positive-x",
+      "plinth": 70,
+      "ceilingFiller": 35
+    },
+    {
+      "id": "detail-entry-cabinet",
+      "type": "detailEntryCabinet",
+      "position": [
+        7180,
+        0,
+        4990
+      ],
+      "size": [
+        1050,
+        2200,
+        340
+      ],
+      "rotationY": 0,
+      "finish": "warm-beige",
+      "doorCount": 2,
+      "niche": {
+        "y": 980,
+        "height": 430,
+        "widthRatio": 0.82
+      },
+      "frontFace": "both-z"
+    }
+  ],
+  "note": "V8.25 changes built-in/fixed-furniture appearance only. V7.5 structural/door/expansion baseline and lighting are untouched."
 }
