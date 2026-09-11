@@ -1,5 +1,5 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>역삼푸르지오 · Digital Twin</title><link rel="stylesheet" href="interior.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head><body>
-<div class="version-bar">Yeoksam Digital Twin · V8.28 · 업데이트 2026-09-11 15:02 KST</div>
+<div class="version-bar">Yeoksam Digital Twin · V8.29 · 업데이트 2026-09-12 00:20 KST</div>
 <header><div><h1>역삼푸르지오 · Digital Twin</h1><p>24평 2호 라인 · 장기 인테리어 설계</p></div><a href="review.html">원본 도면 검증</a></header>
 <nav class="control-bar"><div class="control-strip">
   <div class="layer-tabs"><button class="layer-toggle" id="furnitureToggle">가구</button><button class="layer-toggle" id="designToggle">인테리어 시안</button></div>
@@ -9,7 +9,7 @@
   <span id="active">확장안 · 2D</span>
 </div></nav>
 <p class="note" id="note"></p>
-<section id="designControls" hidden style="padding:12px 20px"><strong>인테리어 시안 · Project V8.28 · Baseline V7.5 LOCKED</strong><p>현관 3연동 중문, 화장실1 샤워부스, 화장실2 욕조, 세면대 복구, 2900mm 일자형 주방과 W1200 실제 냉장고/가전장 기준을 반영합니다. V8.26 워크스루와 V8.24 재질은 유지합니다.</p><button data-design-camera="living">거실 전체</button><button data-design-camera="kitchen">거실 → 주방</button><button data-design-camera="entry">현관 → 거실</button><label>조명 <select id="designLight"><option value="day">주간 중성광</option><option value="warm">저녁 따뜻한 조명</option></select></label><p>기존 2D/3D/워크스루와 가구 이동은 그대로 사용할 수 있습니다.</p></section>
+<section id="designControls" hidden style="padding:12px 20px"><strong>인테리어 시안 · Project V8.29 · Baseline V7.5 LOCKED</strong><p>현관 3연동 중문, 화장실1 샤워부스, 화장실2 욕조, 세면대 복구, 2900mm 일자형 주방과 W1200 실제 냉장고/가전장 기준을 반영합니다. V8.26 워크스루와 V8.24 재질은 유지합니다.</p><button data-design-camera="living">거실 전체</button><button data-design-camera="kitchen">거실 → 주방</button><button data-design-camera="entry">현관 → 거실</button><label>조명 <select id="designLight"><option value="day">주간 중성광</option><option value="warm">저녁 따뜻한 조명</option></select></label><p>기존 2D/3D/워크스루와 가구 이동은 그대로 사용할 수 있습니다.</p></section>
 <div id="furnitureExportDialog" class="furniture-export-dialog" hidden><div class="furniture-export-card" role="dialog" aria-modal="true" aria-labelledby="furnitureExportTitle"><div class="furniture-export-head"><h2 id="furnitureExportTitle">가구 좌표 JSON</h2><button id="closeFurnitureExport" aria-label="닫기">✕</button></div><p>현재 배치를 소스코드에 반영하려면 아래 JSON을 복사해 ChatGPT에 보내세요.</p><textarea id="furnitureExportJson" readonly spellcheck="false"></textarea><div class="furniture-export-actions"><button id="copyFurnitureExport" class="primary">JSON 복사</button><span id="copyFurnitureStatus" aria-live="polite"></span></div></div></div>
 <main class="viewer"><section class="view-card"><h2><span id="viewTitle">확장안 · 2D</span> <small id="viewSubtitle">INTERIOR_V2_SVG_EXPANSION</small></h2>
 <div class="plan" id="plan"></div>
@@ -19,5 +19,5 @@
 </div>
 <div class="scene" id="scene" hidden></div></section></main>
 <details><summary>구조 검토 정보</summary><ul id="structures"></ul></details>
-<footer><a href="INTERIOR_V2_SVG_EXPANSION.json" download>확장 geometry JSON</a><a href="FIXED_INTERIOR_V1.json" download>기본 인테리어 JSON</a><span>V8.28 reference repair · baseline V7.5 locked</span></footer>
+<footer><a href="INTERIOR_V2_SVG_EXPANSION.json" download>확장 geometry JSON</a><a href="FIXED_INTERIOR_V1.json" download>기본 인테리어 JSON</a><span>V8.29 Young Builders visual refinement · baseline V7.5 locked</span></footer>
 <script type="module" src="interior.js"></script></body></html>

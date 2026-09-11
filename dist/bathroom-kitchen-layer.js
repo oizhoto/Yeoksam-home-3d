@@ -27,6 +27,14 @@ function place(o,pos,rot=0,size=null){
   o.rotation.y=THREE.MathUtils.degToRad(rot||0);
   return o;
 }
+function roundedRectShape(w,d,r=28,hole=0){
+  const s=new THREE.Shape(),x=-mm(w)/2,z=-mm(d)/2,W=mm(w),D=mm(d),R=Math.min(mm(r),W/2,D/2);
+  s.moveTo(x+R,z);s.lineTo(x+W-R,z);s.quadraticCurveTo(x+W,z,x+W,z+R);s.lineTo(x+W,z+D-R);s.quadraticCurveTo(x+W,z+D,x+W-R,z+D);s.lineTo(x+R,z+D);s.quadraticCurveTo(x,z+D,x,z+D-R);s.lineTo(x,z+R);s.quadraticCurveTo(x,z,x+R,z);
+  if(hole){const hw=w-hole*2,hd=d-hole*2,hr=Math.max(8,r-hole),p=new THREE.Path(),hx=-mm(hw)/2,hz=-mm(hd)/2,H=mm(hw),K=mm(hd),Q=mm(hr);p.moveTo(hx+Q,hz);p.lineTo(hx+H-Q,hz);p.quadraticCurveTo(hx+H,hz,hx+H,hz+Q);p.lineTo(hx+H,hz+K-Q);p.quadraticCurveTo(hx+H,hz+K,hx+H-Q,hz+K);p.lineTo(hx+Q,hz+K);p.quadraticCurveTo(hx,hz+K,hx,hz+K-Q);p.lineTo(hx,hz+Q);p.quadraticCurveTo(hx,hz,hx+Q,hz);s.holes.push(p);}
+  return s;
+}
+function roundedSlab(w,h,d,r,material,hole=0){const geo=new THREE.ExtrudeGeometry(roundedRectShape(w,d,r,hole),{depth:mm(h),bevelEnabled:true,bevelSize:mm(3),bevelThickness:mm(3),bevelSegments:2});geo.rotateX(Math.PI/2);const m=new THREE.Mesh(geo,material);m.castShadow=true;m.receiveShadow=true;return m;}
+function tube(points,r=10,material=mat('chrome')){return new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(mm(p[0]),mm(p[1]),mm(p[2])))),28,mm(r),10,false),material);}
 function toilet(obj){
   const g=new THREE.Group(), white=mat('white');
   const pedestal=new THREE.Mesh(new THREE.CylinderGeometry(mm(135),mm(165),mm(330),28),white);
@@ -42,36 +50,30 @@ function toilet(obj){
 }
 function tub(obj){
   const [w,h,d]=obj.size,g=new THREE.Group();
-  const outer=box([w,h,d],'white');outer.position.y=mm(h/2);g.add(outer);
-  const inner=box([w-120,h*.55,d-120],'tile');inner.position.set(0,mm(h*.70),0);g.add(inner);
-  g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));
-  g.rotation.y=THREE.MathUtils.degToRad(obj.rotationY||0);return g;
+  const apron=roundedSlab(w,h-75,d,58,mat('white'));apron.position.y=mm((h-75)/2);g.add(apron);
+  const shell=roundedSlab(w,90,d,70,mat('white'),70);shell.position.y=mm(h-45);g.add(shell);
+  const well=roundedSlab(w-135,24,d-135,45,mat('tile'));well.position.y=mm(h-105);g.add(well);
+  const drain=new THREE.Mesh(new THREE.CylinderGeometry(mm(24),mm(24),mm(5),28),mat('chrome'));drain.position.set(mm(w*.28),mm(h-88),0);g.add(drain);
+  g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));g.rotation.y=THREE.MathUtils.degToRad(obj.rotationY||0);return g;
 }
 function faucet(obj,kitchen=false){
-  const g=new THREE.Group(), chrome=mat('chrome');
-  const stem=new THREE.Mesh(new THREE.CylinderGeometry(mm(18),mm(18),mm(obj.size[1]||300),24),chrome);
-  stem.position.y=mm((obj.size[1]||300)/2);g.add(stem);
-  const spout=new THREE.Mesh(new THREE.TorusGeometry(mm(kitchen?115:70),mm(16),10,28,Math.PI),chrome);
-  spout.rotation.z=Math.PI/2;spout.position.set(0,mm(kitchen?300:230),mm(kitchen?70:45));g.add(spout);
+  const g=new THREE.Group(), chrome=mat('chrome'),H=obj.size[1]||300;
+  const stem=new THREE.Mesh(new THREE.CylinderGeometry(mm(15),mm(18),mm(H*.7),24),chrome);stem.position.y=mm(H*.35);g.add(stem);
+  g.add(tube([[0,H*.65,0],[0,H,0],[0,H+(kitchen?100:45),kitchen?80:45],[0,H*.76,kitchen?175:115]],kitchen?13:11,chrome));
+  const lever=new THREE.Mesh(new THREE.CylinderGeometry(mm(7),mm(7),mm(90),16),chrome);lever.rotation.z=Math.PI/2;lever.position.set(mm(45),mm(H*.42),0);g.add(lever);
   g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));return g;
 }
 function fridgeWall(obj){
-  const [w,h,d]=obj.size,g=new THREE.Group(), upper=obj.upperStorageHeight||430, lowerH=h-upper;
+  const [w,h,d]=obj.size,g=new THREE.Group(),upper=obj.upperStorageHeight||430,lowerH=h-upper;
   const carcass=box([w,h,d],'moodBeige');carcass.position.y=mm(h/2);g.add(carcass);
-  const moduleW=w/3;
-  for(let i=0;i<3;i++){
-    const door=box([moduleW-12,lowerH-28,d+10],'warmWhite');
-    door.position.set(mm(-w/2+moduleW*(i+.5)),mm((lowerH-28)/2+12),mm(5));g.add(door);
-    const reveal=box([moduleW-34,4,d+18],'shadow');
-    reveal.position.set(mm(-w/2+moduleW*(i+.5)),mm(lowerH-55),mm(9));g.add(reveal);
-  }
-  for(let i=0;i<3;i++){
-    const top=box([moduleW-12,upper-22,d+10],'moodBeige');
-    top.position.set(mm(-w/2+moduleW*(i+.5)),mm(h-upper/2),mm(5));g.add(top);
-  }
-  g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));
-  g.rotation.y=THREE.MathUtils.degToRad(obj.rotationY||0);
-  return g;
+  const modules=obj.modules||[w*.39,w*.61];let cursor=-w/2;
+  modules.forEach((moduleW,i)=>{const cx=cursor+moduleW/2;
+    const door=box([moduleW-10,lowerH-28,d+14],i===0?'moodBeige':'warmWhite');door.position.set(mm(cx),mm((lowerH-28)/2+12),mm(7));g.add(door);
+    if(i===0){for(const [cy,ch] of [[520,390],[1000,420]]){const frame=box([moduleW-56,ch,d+24],'black');frame.position.set(mm(cx),mm(cy),mm(12));g.add(frame);const glass=box([moduleW-86,ch-46,d+28],'mirror');glass.position.set(mm(cx),mm(cy),mm(15));g.add(glass);}}
+    else {const seam=box([moduleW-42,4,d+22],'shadow');seam.position.set(mm(cx),mm(lowerH*.52),mm(12));g.add(seam);for(const sx of [-1,1]){const grip=box([12,390,18],'shadow');grip.position.set(mm(cx+sx*18),mm(lowerH*.52),mm(d/2+18));g.add(grip);}}
+    const top=box([moduleW-10,upper-18,d+14],'moodBeige');top.position.set(mm(cx),mm(h-upper/2),mm(7));g.add(top);cursor+=moduleW;
+  });
+  g.position.set(mm(obj.position[0]),mm(obj.position[1]),mm(obj.position[2]));g.rotation.y=THREE.MathUtils.degToRad(obj.rotationY||0);return g;
 }
 function trueInsetSink(o){
   const g=new THREE.Group(), steel=mat('steel');

@@ -1,7 +1,7 @@
 # PROJECT_STATE — Yeoksam-home-3d
 
 ## Current project version
-- Project version: **V8.28 — REFERENCE REPAIR / BATHROOM-KITCHEN CORRECTION**
+- Project version: **V8.29 — YOUNG BUILDERS VISUAL REFINEMENT**
 - Last updated: **2026-09-11 15:02 KST**
 - Baseline version: **V7.5 BASELINE LOCKED**
 - Project version and baseline version are separate. Interior/material/UI updates do not change the locked baseline.
@@ -100,6 +100,13 @@ AI가 더 예쁜 결과를 만들기 위해 구조 geometry를 임의로 정리/
 - `dist/FURNITURE_V1.json`
 - `dist/BATHROOM_KITCHEN_V1.json`
 - `dist/review.js`
+
+## V8.29 editable visual layer
+
+- 영빌더즈 역삼푸르지오 24평 프로젝트의 크림 화이트, 얇은 주방 이음새, 곡면 위생도기와 부드러운 중성광을 참고함.
+- V7.5 baseline 및 FIXED/DESIGN/BATHROOM_KITCHEN 데이터 좌표는 변경하지 않음.
+- 일자형 2900mm 주방, W1200 냉장고장, 욕실1 샤워부스, 욕실2 욕조, 3연동 중문을 유지함.
+- 욕조 shell, 곡선 수전, 냉장고·오븐 분할과 PBR 조명 반응을 렌더 레이어에서 개선함.
 
 ## VERSION HISTORY
 

@@ -6,7 +6,7 @@ import {drawKitchenLayer} from './kitchen-layer.js';
 
 const $=s=>document.querySelector(s);
 const load=async p=>{const r=await fetch(p,{cache:'no-store'});if(!r.ok)throw Error(`${p}를 읽지 못했습니다.`);return r.json();};
-const PROJECT_VERSION='V8.28';
+const PROJECT_VERSION='V8.29';
 
 const [expandedRaw,furnitureData,fixedData,designData,bathKitchenData]=await Promise.all([
   load('INTERIOR_V2_SVG_EXPANSION.json'),
@@ -49,7 +49,7 @@ function refreshUI(){
   $('#viewTitle').textContent=`${label()} · ${vn}`;
   $('#viewSubtitle').textContent='INTERIOR_V2_SVG_EXPANSION';
   $('#active').textContent=`${label()} · ${vn}`;
-  $('#note').textContent='V8.28 · 화장실1=샤워부스 / 화장실2=욕조 / 양쪽 세면대 유지 / 일자형 주방 2900mm / 실제 W1200 냉장고·가전장 / 3연동 중문. V8.26 워크스루 유지.';
+  $('#note').textContent='V8.29 · 영빌더즈 레퍼런스 시각 개선 / 화장실1=샤워부스 / 화장실2=욕조 / 양쪽 세면대 유지 / 일자형 주방 2900mm / 실제 W1200 냉장고·가전장 / 3연동 중문. V8.26 워크스루 유지.';
 }
 function render(){drawPlan();model();refreshUI();}
 function setView(v){
