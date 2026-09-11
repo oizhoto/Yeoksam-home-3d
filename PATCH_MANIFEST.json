@@ -1,24 +1,25 @@
 {
-  "patch": "yeoksam-v8.27-three-panel-entry-patch.zip",
+  "patch": "yeoksam-v8.28-reference-repair-patch.zip",
   "baseExpected": "GitHub main V8.26 — MOBILE WALKTHROUGH / FIRST-PERSON REVIEW",
-  "version": "V8.27",
+  "version": "V8.28",
   "baseline": "V7.5 BASELINE LOCKED",
   "changedFiles": [
     "PROJECT_STATE.md",
     "PATCH_MANIFEST.json",
     "dist/FIXED_INTERIOR_V1.json",
+    "dist/BATHROOM_KITCHEN_V1.json",
     "dist/index.html",
     "dist/interior.js",
-    "docs/ENTRY_THREE_PANEL_V827.md"
+    "docs/V8_28_REFERENCE_REPAIR.md"
   ],
   "protectedNotIncluded": [
     "dist/BASE_GEOMETRY_V1.json",
     "dist/INTERIOR_V2_SVG_EXPANSION.json",
     "dist/apartment.config.json",
-    "dist/BATHROOM_KITCHEN_V1.json",
+    "dist/shared-3d.js",
     "dist/bathroom-kitchen-layer.js",
     "dist/DESIGN_V1.json",
-    "dist/materials.js",
-    "dist/shared-3d.js"
-  ]
+    "dist/materials.js"
+  ],
+  "commitMessage": "V8.28: repair reference bathrooms kitchen and 3-panel entry"
 }
